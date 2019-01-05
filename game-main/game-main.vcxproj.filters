@@ -13,5 +13,69 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="engine">
+      <UniqueIdentifier>{08712b1e-5ee8-4d4b-b535-89ede8a4cff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="enviroment">
+      <UniqueIdentifier>{9d564c47-345a-4697-805c-d40506a97a13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="loader">
+      <UniqueIdentifier>{0f7ddcf9-8014-4f9d-9b6f-ade182881689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utility">
+      <UniqueIdentifier>{d3ab3525-a81c-4751-912d-4da6bb3c1dab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui">
+      <UniqueIdentifier>{78235312-42c1-42fb-a446-763da3fc2970}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\global-manager.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\base-manager.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game-loader.cpp">
+      <Filter>loader</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\base-ui.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\debug.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game-enviroment.cpp">
+      <Filter>enviroment</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sources\global-manager.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game-enviroment.h">
+      <Filter>enviroment</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\sprites.h">
+      <Filter>enviroment</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\base-manager.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game-loader.h">
+      <Filter>loader</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\debug.h">
+      <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\base-ui.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\custom-types.h">
+      <Filter>utility</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
