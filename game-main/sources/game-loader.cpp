@@ -25,4 +25,10 @@ void GameLoader::Update()
 	p_loadingBar->draw();
 
 	/* Resource loading */
+
+
+
+	if (0)
+		g_mgr->setCurLevel(1);
+
 }

@@ -15,6 +15,7 @@ public:
 	double deltaTime();
 
 	void addLevel(BaseManager* LevelManager);
+	void setCurLevel(int newLevel);
 	void run();
 
 	std::vector<BaseManager*> levels;

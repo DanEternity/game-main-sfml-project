@@ -28,6 +28,9 @@
     <Filter Include="ui">
       <UniqueIdentifier>{78235312-42c1-42fb-a446-763da3fc2970}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game-menu">
+      <UniqueIdentifier>{a1e3ef23-51d6-4ef8-a5bf-ae63ac2c7edb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -53,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="sources\ui-controller.cpp">
       <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game-menu.cpp">
+      <Filter>game-menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="sources\ui-controller.h">
       <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game-menu.h">
+      <Filter>game-menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

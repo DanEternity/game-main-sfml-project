@@ -20,6 +20,11 @@ void GlobalManager::addLevel(BaseManager * LevelManager)
 	levels.push_back(LevelManager);
 }
 
+void GlobalManager::setCurLevel(int newLevel)
+{
+	p_cur_lvl = newLevel;
+}
+
 void GlobalManager::run()
 {
 	/*pre update*/

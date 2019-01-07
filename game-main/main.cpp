@@ -25,8 +25,10 @@ int main()
 
 	g_mgr = new GlobalManager();
 	g_loader = new GameLoader();
-	g_mgr->addLevel(g_loader);
+	g_menu = new GameMenu();
 
+	g_mgr->addLevel(g_loader);
+	g_mgr->addLevel(g_menu);
 	g_wnd->setFramerateLimit(120);
 
 	// Load a sprite to display
