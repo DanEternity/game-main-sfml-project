@@ -11,6 +11,8 @@ class BaseUIElem
 {
 public:
 	//BaseUIElem();
+	
+
 	virtual void setPosition(int x, int y);
 	virtual void setSize(int width, int heigh);
 	void setSize(double radius);
@@ -26,7 +28,7 @@ public:
 	bool active();
 
 	virtual void draw();
-	
+	bool inside(int x, int y);
 	
 private:
 	int p_x = 0, p_y = 0; // координаты верхнего правого угла
@@ -36,6 +38,7 @@ private:
 	bool p_visible = false;
 	bool p_active = false;
 
+	UIElementType uiClassType = base;
 	BaseUIElemFormType type = square;
 };
 

@@ -51,6 +51,9 @@
     <ClCompile Include="sources\game-enviroment.cpp">
       <Filter>enviroment</Filter>
     </ClCompile>
+    <ClCompile Include="sources\ui-controller.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\global-manager.h">
@@ -76,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="sources\custom-types.h">
       <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\ui-controller.h">
+      <Filter>ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

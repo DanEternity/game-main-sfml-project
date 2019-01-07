@@ -69,6 +69,14 @@ void BaseUIElem::draw()
 {
 }
 
+bool BaseUIElem::inside(int x, int y)
+{
+	if (type == square)
+		return (x > p_x && y > p_y && x < p_x + p_w && y < p_y + p_h);
+	else
+		return (p_r * p_r > (p_w - x) * (p_w - x) + (p_h - y) * (p_h - y));
+}
+
 void UI_Image::draw()
 {
 	g_wnd->draw(*p_s);

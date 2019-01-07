@@ -8,7 +8,8 @@
 
 
 void Log(std::string output);
-
-
+void Logs(std::string output);
+void Logs(const void * output);
+void Logln(std::string output);
 
 #endif // DEBUG_H

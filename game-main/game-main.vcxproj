@@ -161,6 +161,7 @@
     <ClCompile Include="sources\game-enviroment.cpp" />
     <ClCompile Include="sources\game-loader.cpp" />
     <ClCompile Include="sources\global-manager.cpp" />
+    <ClCompile Include="sources\ui-controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\base-manager.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="sources\game-loader.h" />
     <ClInclude Include="sources\global-manager.h" />
     <ClInclude Include="sources\sprites.h" />
+    <ClInclude Include="sources\ui-controller.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
