@@ -79,7 +79,8 @@ bool BaseUIElem::inside(int x, int y)
 
 void UI_Image::draw()
 {
-	g_wnd->draw(*p_s);
+	if (visible())
+		g_wnd->draw(*p_s);
 }
 
 void UI_Image::LoadFromFile(std::string FileName)
@@ -93,6 +94,20 @@ void UI_Image::LoadFromFile(std::string FileName)
 	textures.push_back(tex);
 
 	p_s = new sf::Sprite(*tex);
+
+	setVisibility(true);
+}
+
+void UI_Image::LoadFromSprite(sf::Sprite * Sprite)
+{
+	if (Sprite == NULL)
+	{
+		Log("Error. You are trying to bind Sprite == NULL. Operation canceled.");
+		return;
+	}
+	p_s = Sprite;
+
+	setVisibility(true);
 }
 
 void UI_Image::setPosition(int x, int y)

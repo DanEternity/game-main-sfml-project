@@ -1,6 +1,7 @@
 #pragma once
 
 #include "base-manager.h"
+#include "debug.h"
 #include <vector>
 
 #ifndef global_mgr

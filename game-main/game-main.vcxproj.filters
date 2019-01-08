@@ -60,6 +60,9 @@
     <ClCompile Include="sources\game-menu.cpp">
       <Filter>game-menu</Filter>
     </ClCompile>
+    <ClCompile Include="sources\sprites.cpp">
+      <Filter>enviroment</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\global-manager.h">

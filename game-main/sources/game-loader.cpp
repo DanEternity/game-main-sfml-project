@@ -14,6 +14,22 @@ void GameLoader::Init()
 
 	/* Create loading table */
 
+	std::string base = "sources/resources/";
+
+	// example
+	tex_name.push_back(base + "testSprite.png"); // texture file name
+	sprite_pointer.push_back(&TestObject1);		 // pointer to SpriteObject
+
+	// Для удобство лучше сохранять все спрайты в одном файле
+	// это не обязательно, но так будет проще их потом искать
+	// в данном примере указатель ссылайте на TestObject1, 
+	// который находится в файле sprites.h
+
+	// Чтобы использовать загруженный спрайт нужно у объекта
+	// интерфейса вызвать метод LoadFromSprite() и передать
+	// в качестве параметра это спрайт (в данном случае
+	// это будет TestObject1)
+
 	/* Post Init */
 
 	levelInitRequired = false; // init completed
@@ -26,9 +42,25 @@ void GameLoader::Update()
 
 	/* Resource loading */
 
+	if (idx < tex_name.size())
+	{
+		// Loading sprite texture
+		sf::Texture * tex = new sf::Texture();
+		if (!tex->loadFromFile(tex_name[idx]))
+			Log("ERROR: texture loading failure!");
+
+		textures.push_back(tex);
+
+		*sprite_pointer[idx] = new sf::Sprite(*tex);
+		idx++;
+	}
+	else
+	{
+		//loadCompleted = true;
+	}
 
 
-	if (0)
+	if (loadCompleted)
 		g_mgr->setCurLevel(1);
 
 }

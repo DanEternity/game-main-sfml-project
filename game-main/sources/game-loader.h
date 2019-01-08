@@ -23,12 +23,13 @@ public:
 	virtual void Update() override;
 
 	std::vector<std::string> tex_name;
-	std::vector<sf::Sprite*> sprite_pointer;
+	std::vector<sf::Sprite**> sprite_pointer;
 
 
 private:
 
 	int idx = 0;
+	bool loadCompleted = false;
 
 	/* Graphics */
 

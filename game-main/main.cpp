@@ -52,6 +52,8 @@ int main()
 	// Start the game loop
 	Log("Initialization complete");
 
+	g_mgr->setCurLevel(0);
+
 	while (window.isOpen())
 	{
 		// Process events

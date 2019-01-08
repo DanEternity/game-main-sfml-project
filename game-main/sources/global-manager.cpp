@@ -22,6 +22,7 @@ void GlobalManager::addLevel(BaseManager * LevelManager)
 
 void GlobalManager::setCurLevel(int newLevel)
 {
+	Log("Global manager: Change level to " + std::to_string(newLevel));
 	p_cur_lvl = newLevel;
 }
 

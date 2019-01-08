@@ -162,6 +162,7 @@
     <ClCompile Include="sources\game-loader.cpp" />
     <ClCompile Include="sources\game-menu.cpp" />
     <ClCompile Include="sources\global-manager.cpp" />
+    <ClCompile Include="sources\sprites.cpp" />
     <ClCompile Include="sources\ui-controller.cpp" />
   </ItemGroup>
   <ItemGroup>
