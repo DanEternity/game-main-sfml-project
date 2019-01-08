@@ -28,7 +28,7 @@ void GameLoader::Update()
 
 
 
-	if (0)
+	if (1)
 		g_mgr->setCurLevel(1);
 
 }

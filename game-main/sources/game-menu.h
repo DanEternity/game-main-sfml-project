@@ -13,7 +13,11 @@ class GameMenu : public BaseManager
 public:
 	virtual void Init() override;
 	virtual void Update() override;
+
+
 private:
 
+	UI_Controller ui_ctrl;
+	UI_Image *p_menu_bg;
 };
 
