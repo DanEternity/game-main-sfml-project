@@ -33,6 +33,41 @@ void GameLoader::Init()
 	// в качестве параметра это спрайт (в данном случае
 	// это будет TestObject1)
 
+	tex_name.push_back(base + "start1normal.png");
+	sprite_pointer.push_back(&menu_btsNormal[0]);
+	tex_name.push_back(base + "start1hover.png");
+	sprite_pointer.push_back(&menu_btsHover[0]);
+	tex_name.push_back(base + "start1onclick.png");
+	sprite_pointer.push_back(&menu_btsOnClick[0]);
+
+	tex_name.push_back(base + "continue1normal.png");
+	sprite_pointer.push_back(&menu_btsNormal[1]);
+	tex_name.push_back(base + "continue1hover.png");
+	sprite_pointer.push_back(&menu_btsHover[1]);
+	tex_name.push_back(base + "continue1onclick.png");
+	sprite_pointer.push_back(&menu_btsOnClick[1]);
+
+	tex_name.push_back(base + "options1normal.png");
+	sprite_pointer.push_back(&menu_btsNormal[2]);
+	tex_name.push_back(base + "options1hover.png");
+	sprite_pointer.push_back(&menu_btsHover[2]);
+	tex_name.push_back(base + "options1onclick.png");
+	sprite_pointer.push_back(&menu_btsOnClick[2]);
+
+	tex_name.push_back(base + "stats1normal.png");
+	sprite_pointer.push_back(&menu_btsNormal[3]);
+	tex_name.push_back(base + "stats1hover.png");
+	sprite_pointer.push_back(&menu_btsHover[3]);
+	tex_name.push_back(base + "stats1onclick.png");
+	sprite_pointer.push_back(&menu_btsOnClick[3]);
+
+	tex_name.push_back(base + "exit1normal.png");
+	sprite_pointer.push_back(&menu_btsNormal[4]);
+	tex_name.push_back(base + "exit1hover.png");
+	sprite_pointer.push_back(&menu_btsHover[4]);
+	tex_name.push_back(base + "exit1onclick.png");
+	sprite_pointer.push_back(&menu_btsOnClick[4]);
+
 	/* Post Init */
 
 	levelInitRequired = false; // init completed
@@ -63,7 +98,7 @@ void GameLoader::Update()
 	}
 	else
 	{
-		//loadCompleted = true;
+		loadCompleted = true;
 	}
 
 
