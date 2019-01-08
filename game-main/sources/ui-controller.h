@@ -9,6 +9,7 @@
 #include "base-ui.h"
 #include "custom-types.h"
 #include "debug.h"
+#include "game-enviroment.h"
 
 class UI_Controller
 {

@@ -10,7 +10,7 @@ void Logs(std::string output)
 	std::cout << output;
 }
 
-void Logs(const void * output)
+void Logp(const void * output)
 {
 	std::cout << output;
 }

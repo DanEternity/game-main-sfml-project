@@ -72,7 +72,7 @@ void BaseUIElem::draw()
 bool BaseUIElem::inside(int x, int y)
 {
 	if (type == square)
-		return (x > p_x && y > p_y && x < p_x + p_w && y < p_y + p_h);
+		return ((x > p_x) && (y > p_y) && (x < p_x + p_w) && (y < p_y + p_h));
 	else
 		return (p_r * p_r > (p_w - x) * (p_w - x) + (p_h - y) * (p_h - y));
 }
@@ -94,6 +94,9 @@ void UI_Image::LoadFromFile(std::string FileName)
 	textures.push_back(tex);
 
 	p_s = new sf::Sprite(*tex);
+	auto p_size = p_s->getTexture()->getSize();
+	p_w = p_size.x;
+	p_h = p_size.y;
 
 	setVisibility(true);
 }
@@ -106,6 +109,27 @@ void UI_Image::LoadFromSprite(sf::Sprite * Sprite)
 		return;
 	}
 	p_s = Sprite;
+
+	auto p_size = p_s->getTexture()->getSize();
+	p_w = p_size.x;
+	p_h = p_size.y;
+	setVisibility(true);
+}
+
+void UI_Image::SetSprite(sf::Sprite * Sprite) // not for initialization (only for update)
+{
+	if (Sprite == NULL)
+	{
+		Log("Error. You are trying to bind Sprite == NULL. Operation canceled.");
+		return;
+	}
+	p_s = Sprite;
+
+	auto p_size = p_s->getTexture()->getSize();
+	p_w = p_size.x;
+	p_h = p_size.y;
+
+	setPosition(p_x, p_y);
 
 	setVisibility(true);
 }

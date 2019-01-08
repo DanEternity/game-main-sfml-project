@@ -38,6 +38,8 @@ struct UIEventData
 
 	bool mouse_change_l;
 	bool mouse_change_r;
+
+	int objectID;
 };
 
 typedef void(*func_pointer_void_void)(); // no return no parameters
@@ -54,3 +56,10 @@ struct UIEventState_private
 
 };
 
+enum buttonState
+{
+	normal,
+	hover,
+	pressed,
+	disabled
+};

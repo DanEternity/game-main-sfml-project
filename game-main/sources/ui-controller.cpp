@@ -56,7 +56,15 @@ void UI_Controller::DispatchEvents()
 	auto mp = sf::Mouse().getPosition();
 	bool m_left = sf::Mouse().isButtonPressed(sf::Mouse().Left);
 	bool m_right = sf::Mouse().isButtonPressed(sf::Mouse().Right);
-	
+	auto wnd_pos = g_wnd->getPosition();
+
+	//Log("MOUSE -> " + std::to_string(mp.x) + " " + std::to_string(mp.y));
+
+	mp -= wnd_pos;
+	mp.x -= 4;
+	mp.y -= 34;
+
+
 	UIEventData buff;
 	buff.mouse_x = mp.x;
 	buff.mouse_y = mp.y;
@@ -68,6 +76,7 @@ void UI_Controller::DispatchEvents()
 	for (int i(0); i < p_list.size(); i++)
 	{
 		UIEventState_private* q = &p_list[i];
+		buff.objectID = i;
 
 		if (q->p->inside(mp.x, mp.y))
 		{
@@ -79,46 +88,47 @@ void UI_Controller::DispatchEvents()
 				{
 					// call onHoverBegin
 					Logs("Call onHoverBegin for object [");
-					Logs(q->p);
+					Logp(q->p);
 					Logln("]");
 					buff.eventType = onHoverBegin;
 					q->funcPointer[onHoverBegin](&buff);
 				}
 			}
-			if (!p_m_l && m_left || !p_m_r && m_right)
+			if ((!p_m_l && m_left || !p_m_r && m_right)&& q->flagReg[onPress])
 			{
 				// call onPress
 				Logs("Call onPress for object [");
-				Logs(q->p);
+				Logp(q->p);
 				Logln("]");
 				buff.eventType = onPress;
 				q->funcPointer[onPress](&buff);
 			}
 
-			if (p_m_l && !m_left || p_m_r && !m_right)
+			if ((p_m_l && !m_left || p_m_r && !m_right)&& q->flagReg[onRelease])
 			{
 				// call onRelease
 				Logs("Call onRelease for object [");
-				Logs(q->p);
+				Logp(q->p);
 				Logln("]");
 				buff.eventType = onRelease;
 				q->funcPointer[onRelease](&buff);
 			}
 		}
-		if (q->p_inside)
-		{
-			q->p_inside = false;
-
-			if (q->flagReg[onHoverEnd])
+		else
+			if (q->p_inside)
 			{
-				// call onHoverEnd
-				Logs("Call onHoverEnd for object [");
-				Logs(q->p);
-				Logln("]");
-				buff.eventType = onHoverEnd;
-				q->funcPointer[onHoverEnd](&buff);
+				q->p_inside = false;
+
+				if (q->flagReg[onHoverEnd])
+				{
+					// call onHoverEnd
+					Logs("Call onHoverEnd for object [");
+					Logp(q->p);
+					Logln("]");
+					buff.eventType = onHoverEnd;
+					q->funcPointer[onHoverEnd](&buff);
+				}
 			}
-		}
 	}
 	p_m_l = m_left;
 	p_m_r = m_right;
