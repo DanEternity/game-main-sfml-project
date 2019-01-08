@@ -10,11 +10,13 @@
 #include "base-manager.h"
 #include "base-ui.h"
 #include "debug.h"
+#include "ui-text.h"
+
 
 #include <string>
 #include <vector>
 
-void Log(std::string data);
+class UI_text;
 
 class GameLoader : public BaseManager
 {
@@ -23,17 +25,21 @@ public:
 	virtual void Update() override;
 
 	std::vector<std::string> tex_name;
-	std::vector<sf::Sprite*> sprite_pointer;
+	std::vector<sf::Sprite**> sprite_pointer;
 
 
 private:
 
 	int idx = 0;
+	bool loadCompleted = false;
 
 	/* Graphics */
-
+	UI_Image *test;
 	UI_Image *p_bg;
 	UI_Image *p_loadingBar;
+	 
+	UI_text * p_text;
+
 };
 
 #endif // !GAME_LOADER

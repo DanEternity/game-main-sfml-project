@@ -79,7 +79,8 @@ bool BaseUIElem::inside(int x, int y)
 
 void UI_Image::draw()
 {
-	g_wnd->draw(*p_s);
+	if (visible())
+		g_wnd->draw(*p_s);
 }
 
 void UI_Image::LoadFromFile(std::string FileName)
@@ -93,6 +94,20 @@ void UI_Image::LoadFromFile(std::string FileName)
 	textures.push_back(tex);
 
 	p_s = new sf::Sprite(*tex);
+
+	setVisibility(true);
+}
+
+void UI_Image::LoadFromSprite(sf::Sprite * Sprite)
+{
+	if (Sprite == NULL)
+	{
+		Log("Error. You are trying to bind Sprite == NULL. Operation canceled.");
+		return;
+	}
+	p_s = Sprite;
+
+	setVisibility(true);
 }
 
 void UI_Image::setPosition(int x, int y)
@@ -118,4 +133,49 @@ void UI_Image::setScale(double sx, double sy)
 sf::Sprite * UI_Image::sprite()
 {
 	return p_s;
+}
+
+UI_collection::~UI_collection()
+{
+	for (int i(0); i < p_list.size(); i++)
+	{
+		p_list[i]->~BaseUIElem();
+	}
+}
+
+void UI_collection::draw()
+{
+	for (int i(0); i < p_list.size(); i++)
+		p_list[i]->draw();
+}
+
+void UI_collection::setPosition(int x, int y)
+{
+	BaseUIElem::setPosition(x, y);
+	int dx = x - p_x;
+	int dy = y - p_y;
+
+	for (int i(0); i < p_list.size(); i++)
+	{
+		auto pos = p_list[i]->getPosition();
+		p_list[i]->setPosition(pos.first + dx, pos.second + dy);
+	}
+}
+
+void UI_collection::setSize(int width, int heigh)
+{
+	BaseUIElem::setSize(width, heigh);
+	//double sx = double(width) / p_s->getTexture()->getSize().x;
+	//double sy = double(heigh) / p_s->getTexture()->getSize().y;
+	//p_s->setScale(sx, sy);
+}
+
+void UI_collection::addElem(BaseUIElem * elem)
+{
+	if (elem == NULL)
+	{
+		Log("Error. You are trying to add elem == NULL. Operation canceled.");
+		return;
+	}
+	p_list.push_back(elem);
 }
