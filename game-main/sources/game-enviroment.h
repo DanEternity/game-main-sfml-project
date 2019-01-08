@@ -23,3 +23,16 @@ extern GameLoader * g_loader; // Game loader pointer
 extern GameMenu * g_menu; // GameMenu manager pointer
 
 extern std::vector<sf::Texture *> textures;
+extern sf::Font * fontArial;
+
+
+/* System info */
+
+extern int sys_screen_w;
+extern int sys_screen_h;
+
+/* Game settings */
+
+extern int resolution_w; // x
+extern int resolution_h; // y
+

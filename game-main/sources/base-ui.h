@@ -12,7 +12,6 @@ class BaseUIElem
 public:
 	//BaseUIElem();
 	
-
 	virtual void setPosition(int x, int y);
 	virtual void setSize(int width, int heigh);
 	void setSize(double radius);
@@ -30,7 +29,7 @@ public:
 	virtual void draw();
 	bool inside(int x, int y);
 	
-private:
+protected:
 	int p_x = 0, p_y = 0; // координаты верхнего правого угла
 	int p_w = 0, p_h = 0; // ширина, высота
 	double p_r = 0;       // радиус (для объектов типа circle)
@@ -54,6 +53,23 @@ public:
 
 
 	sf::Sprite * sprite();
-private:
+protected:
 	sf::Sprite * p_s;
+};
+
+class UI_collection : public BaseUIElem
+{
+public:
+	~UI_collection();
+
+	virtual void draw() override;
+	//void LoadFromFile(std::string FileName);
+	//void LoadFromSprite(sf::Sprite * Sprite);
+	virtual void setPosition(int x, int y) override;
+	virtual void setSize(int width, int heigh) override;
+	//void setScale(double sx, double sy);
+
+	void addElem(BaseUIElem * elem);
+protected:
+	std::vector<BaseUIElem *> p_list;
 };

@@ -63,6 +63,12 @@
     <ClCompile Include="sources\sprites.cpp">
       <Filter>enviroment</Filter>
     </ClCompile>
+    <ClCompile Include="sources\ui-text.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\lib\RichText.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\global-manager.h">
@@ -95,5 +101,22 @@
     <ClInclude Include="sources\game-menu.h">
       <Filter>game-menu</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\version.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\ui-text.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\lib\RichText.hpp">
+      <Filter>ui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game-main.rc">
+      <Filter>Файлы ресурсов</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

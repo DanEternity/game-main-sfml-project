@@ -162,10 +162,13 @@
     <ClCompile Include="sources\game-loader.cpp" />
     <ClCompile Include="sources\game-menu.cpp" />
     <ClCompile Include="sources\global-manager.cpp" />
+    <ClCompile Include="sources\lib\RichText.cpp" />
     <ClCompile Include="sources\sprites.cpp" />
     <ClCompile Include="sources\ui-controller.cpp" />
+    <ClCompile Include="sources\ui-text.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="sources\base-manager.h" />
     <ClInclude Include="sources\base-ui.h" />
     <ClInclude Include="sources\custom-types.h" />
@@ -174,8 +177,14 @@
     <ClInclude Include="sources\game-loader.h" />
     <ClInclude Include="sources\game-menu.h" />
     <ClInclude Include="sources\global-manager.h" />
+    <ClInclude Include="sources\lib\RichText.hpp" />
     <ClInclude Include="sources\sprites.h" />
     <ClInclude Include="sources\ui-controller.h" />
+    <ClInclude Include="sources\ui-text.h" />
+    <ClInclude Include="sources\version.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game-main.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

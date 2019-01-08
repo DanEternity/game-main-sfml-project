@@ -12,6 +12,9 @@ void GameLoader::Init()
 	//p_loadingBar->setSize(300, 50);
 	//p_loadingBar->setScale(0.5f, 1);
 
+	p_text = new UI_text(fontArial);
+	p_text->setPosition(520, 610);
+
 	/* Create loading table */
 
 	std::string base = "sources/resources/";
@@ -39,6 +42,10 @@ void GameLoader::Update()
 {
 	p_bg->draw();
 	p_loadingBar->draw();
+
+	*(p_text->textStream) << "Loading...";
+	p_text->setColor(sf::Color::White);
+	p_text->draw();
 
 	/* Resource loading */
 
