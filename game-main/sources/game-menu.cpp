@@ -48,64 +48,149 @@ void GameMenu::Init()
 	//p_settings_button->setPosition(850, 400);
 	//p_exit_button->setPosition(650, 560);
 
+	p_back_button = new UI_Image();
+	p_back_button->CopyTexture(p_exit_button->sprite());
+	p_back_button->setPosition(600, 560);
+
+	bt_op.push_back(p_back_button);
+
+
+
 	ui_ctrl = new UI_Controller();
 
 	for (int i(0); i < bsqc.size() - 1; i++)
 	{
 		ui_ctrl->AddElement(bsqc[i]);
-		ui_ctrl->RegisterEvent(i, onHoverBegin, &hoverEvent);
-		ui_ctrl->RegisterEvent(i, onHoverEnd, &hoverEventEnd);
+		ui_ctrl->RegisterEvent(i, onHoverBegin, &menuEventHandler_main);
+		ui_ctrl->RegisterEvent(i, onHoverEnd, &menuEventHandler_main);
+		ui_ctrl->RegisterEvent(i, onPress, &menuEventHandler_main);
+		ui_ctrl->RegisterEvent(i, onRelease, &menuEventHandler_main);
 	}
+
+	ui_ctrl_2 = new UI_Controller();
+	/*for (int i(0); i < bsqc.size() - 1; i++)
+	{
+		ui_ctrl_2->AddElement(bsqc[i]);
+		ui_ctrl_2->RegisterEvent(i, onHoverBegin, &hoverEvent);
+		ui_ctrl_2->RegisterEvent(i, onHoverEnd, &hoverEventEnd);
+		ui_ctrl_2->RegisterEvent(i, onPress, &pressEvent);
+	}*/
+	ui_ctrl_2->AddElement(p_back_button);
+	ui_ctrl_2->RegisterEvent(0, onRelease, &releaseEvent_options);
 
 	levelInitRequired = false;
 }
 
 void GameMenu::Update()
 {
-	ui_ctrl->Update();
-
-	p_menu_bg->draw();
-	for (int i(0); i < bsqc.size(); i++)
-		bsqc[i]->draw();
-}
-
-void GameMenu::SetButtonState(int id, buttonState state)
-{
-	
-	//bsqc[id]->LoadFromSprite()
-
-	switch (state)
+	switch (p_m_state)
 	{
-	case normal:
-		bsqc[id]->SetSprite(menu_btsNormal[id]);
+	case main_menu:
+		{
+			ui_ctrl->Update();
+
+			p_menu_bg->draw();
+			for (int i(0); i < bsqc.size(); i++)
+				bsqc[i]->draw();
+		}
 		break;
-	case hover:
-		bsqc[id]->SetSprite(menu_btsHover[id]);
-		break;
-	case pressed:
-		bsqc[id]->SetSprite(menu_btsOnClick[id]);
-		break;
-	case disabled:
-		bsqc[id]->SetSprite(menu_btsOnClick[id]);
+	case options:
+		{
+			ui_ctrl_2->Update();
+
+			p_menu_bg->draw();
+			p_back_button->draw();
+		}
 		break;
 	default:
-		Log("Error. Wrong button state.");
+		p_m_state = main_menu;
 		break;
 	}
 }
 
-void hoverEvent(UIEventData * data)
+void GameMenu::SetButtonState(int list_id, int id, buttonState state)
 {
-	int idx = data->objectID;
-
-	g_menu->SetButtonState(idx, hover);
-
+	
+	//bsqc[id]->LoadFromSprite()
+	if (list_id == 0)
+	{
+		switch (state)
+		{
+		case normal:
+			bsqc[id]->SetSprite(menu_btsNormal[id]);
+			break;
+		case hover:
+			bsqc[id]->SetSprite(menu_btsHover[id]);
+			break;
+		case pressed:
+			bsqc[id]->SetSprite(menu_btsOnClick[id]);
+			break;
+		case disabled:
+			bsqc[id]->SetSprite(menu_btsOnClick[id]);
+			break;
+		default:
+			Log("Error. Wrong button state.");
+			break;
+		}
+	}
+	if (list_id == 1)
+	{
+		// options
+	}
 }
 
-void hoverEventEnd(UIEventData * data)
+void GameMenu::SetMenuState(gameMenuState state)
+{
+	p_m_state = state;
+}
+
+
+void releaseEvent_options(UIEventData * data)
 {
 	int idx = data->objectID;
+	
+	if (idx == 0)
+		g_menu->SetMenuState(main_menu);
+}
 
-	g_menu->SetButtonState(idx, normal);
 
+
+void menuEventHandler_main(UIEventData * data)
+{
+	auto type = data->eventType;
+
+	switch (type)
+	{
+	case onPress:
+		{
+			int idx = data->objectID;
+
+			g_menu->SetButtonState(0, idx, pressed);
+		}
+		break;
+	case onRelease:
+		{
+			int idx = data->objectID;
+
+			if (idx == 2)
+				g_menu->SetMenuState(options);
+		}
+		break;
+	case onHoverBegin:
+		{
+			int idx = data->objectID;
+
+			g_menu->SetButtonState(0, idx, hover);
+		}
+		break;
+	case onHoverEnd:
+		{
+			int idx = data->objectID;
+
+			g_menu->SetButtonState(0, idx, normal);
+		}
+		break;
+	default:
+		break;
+	}
 }

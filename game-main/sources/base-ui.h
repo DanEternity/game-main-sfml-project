@@ -48,6 +48,7 @@ public:
 	void LoadFromFile(std::string FileName);
 	void LoadFromSprite(sf::Sprite * Sprite);
 	void SetSprite(sf::Sprite * Sprite);
+	void CopyTexture(sf::Sprite * Sprite);
 	virtual void setPosition(int x, int y) override;
 	virtual void setSize(int width, int heigh) override;
 	void setScale(double sx, double sy);

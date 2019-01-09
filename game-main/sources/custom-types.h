@@ -63,3 +63,10 @@ enum buttonState
 	pressed,
 	disabled
 };
+
+enum gameMenuState
+{
+	main_menu,
+	options
+	// и другие
+};

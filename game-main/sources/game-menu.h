@@ -21,11 +21,14 @@ class GameMenu : public BaseManager
 public:
 	virtual void Init() override;
 	virtual void Update() override;
-	void SetButtonState(int id, buttonState state);
-
+	void SetButtonState(int list_id, int id, buttonState state);
+	void SetMenuState(gameMenuState state);
 private:
 
+	gameMenuState p_m_state = main_menu;
+
 	UI_Controller * ui_ctrl;
+	UI_Controller * ui_ctrl_2;
 
 	UI_Image *p_menu_bg;
 	UI_Image *p_play_button;
@@ -35,12 +38,18 @@ private:
 	UI_Image *p_credits_button;
 	UI_Image *p_exit_button;
 
+	UI_Image *p_back_button;
+
 	std::vector<UI_Image *> bsqc;
+	std::vector<UI_Image *> bt_op;
 };
 
 void hoverEvent(UIEventData * data);
 void hoverEventEnd(UIEventData * data);
+void releaseEvent(UIEventData * data);
+void releaseEvent_options(UIEventData * data);
+void pressEvent(UIEventData * data);
 
-
+void menuEventHandler_main(UIEventData * data);
 
 #endif // !GAME_MENU
