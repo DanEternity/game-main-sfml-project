@@ -103,16 +103,21 @@ void UI_Image::LoadFromFile(std::string FileName)
 
 void UI_Image::LoadFromSprite(sf::Sprite * Sprite)
 {
+	//CopyTexture(Sprite);
+
 	if (Sprite == NULL)
 	{
 		Log("Error. You are trying to bind Sprite == NULL. Operation canceled.");
 		return;
 	}
-	p_s = Sprite;
+
+	p_s = new sf::Sprite();
+	p_s->setTexture(*Sprite->getTexture());
 
 	auto p_size = p_s->getTexture()->getSize();
 	p_w = p_size.x;
 	p_h = p_size.y;
+	
 	setVisibility(true);
 }
 
@@ -123,13 +128,13 @@ void UI_Image::SetSprite(sf::Sprite * Sprite) // not for initialization (only fo
 		Log("Error. You are trying to bind Sprite == NULL. Operation canceled.");
 		return;
 	}
-	p_s = Sprite;
 
+	//p_s = new sf::Sprite();
 	auto p_size = p_s->getTexture()->getSize();
+	p_s->setTexture(*Sprite->getTexture());
+	
 	p_w = p_size.x;
 	p_h = p_size.y;
-
-	setPosition(p_x, p_y);
 
 	setVisibility(true);
 }
@@ -141,13 +146,20 @@ void UI_Image::CopyTexture(sf::Sprite * Sprite)
 		Log("Error. You are trying to bind Sprite == NULL. Operation canceled.");
 		return;
 	}
+	if (p_s == NULL)
+		LoadFromSprite(Sprite);
+
+	auto p_size = p_s->getTexture()->getSize();
+
 	p_s = new sf::Sprite();
 	p_s->setTexture(*Sprite->getTexture());
 
-	auto p_size = p_s->getTexture()->getSize();
+
 	p_w = p_size.x;
 	p_h = p_size.y;
+
 	setVisibility(true);
+
 }
 
 void UI_Image::setPosition(int x, int y)

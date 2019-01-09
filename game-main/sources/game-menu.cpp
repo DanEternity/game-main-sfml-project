@@ -283,7 +283,7 @@ void menuEventHandler_options(UIEventData * data)
 
 		if (idx == 0)
 			g_menu->SetMenuState(main_menu);
-		g_menu->SetButtonState(0, idx, hover);
+		g_menu->SetButtonState(1, idx, hover);
 	}
 	break;
 	case onHoverBegin:
@@ -324,7 +324,7 @@ void menuEventHandler_stats(UIEventData * data)
 
 		if (idx == 0)
 			g_menu->SetMenuState(main_menu);
-		g_menu->SetButtonState(0, idx, hover);
+		g_menu->SetButtonState(2, idx, hover);
 	}
 	break;
 	case onHoverBegin:

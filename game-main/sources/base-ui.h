@@ -45,10 +45,10 @@ class UI_Image : public BaseUIElem
 {
 public:
 	virtual void draw() override;
-	void LoadFromFile(std::string FileName);
-	void LoadFromSprite(sf::Sprite * Sprite);
-	void SetSprite(sf::Sprite * Sprite);
-	void CopyTexture(sf::Sprite * Sprite);
+	void LoadFromFile(std::string FileName); // Creates sprite object from file
+	void LoadFromSprite(sf::Sprite * Sprite); // Creates sprite object from texture from other sprite
+	void SetSprite(sf::Sprite * Sprite); // Modifies sprite with texture from other sprite
+	void CopyTexture(sf::Sprite * Sprite); // Modifies or creates sprite with texture from other sprite
 	virtual void setPosition(int x, int y) override;
 	virtual void setSize(int width, int heigh) override;
 	void setScale(double sx, double sy);
