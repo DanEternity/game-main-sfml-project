@@ -23,12 +23,16 @@ public:
 	virtual void Update() override;
 	void SetButtonState(int list_id, int id, buttonState state);
 	void SetMenuState(gameMenuState state);
+
+	bool initMenuRequired;
+
 private:
 
 	gameMenuState p_m_state = main_menu;
 
 	UI_Controller * ui_ctrl;
 	UI_Controller * ui_ctrl_2;
+	UI_Controller * ui_ctrl_3;
 
 	UI_Image *p_menu_bg;
 	UI_Image *p_play_button;
@@ -42,14 +46,12 @@ private:
 
 	std::vector<UI_Image *> bsqc;
 	std::vector<UI_Image *> bt_op;
+	std::vector<UI_Image *> bt_st;
 };
 
-void hoverEvent(UIEventData * data);
-void hoverEventEnd(UIEventData * data);
-void releaseEvent(UIEventData * data);
-void releaseEvent_options(UIEventData * data);
-void pressEvent(UIEventData * data);
 
 void menuEventHandler_main(UIEventData * data);
+void menuEventHandler_options(UIEventData * data);
+void menuEventHandler_stats(UIEventData * data);
 
 #endif // !GAME_MENU
