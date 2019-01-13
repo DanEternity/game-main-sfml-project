@@ -33,6 +33,7 @@ private:
 	UI_Controller * ui_ctrl;
 	UI_Controller * ui_ctrl_2;
 	UI_Controller * ui_ctrl_3;
+	UI_Controller * ui_ctrl_4;
 
 	UI_Image *p_menu_bg;
 	UI_Image *p_play_button;
@@ -47,11 +48,13 @@ private:
 	std::vector<UI_Image *> bsqc;
 	std::vector<UI_Image *> bt_op;
 	std::vector<UI_Image *> bt_st;
+	std::vector<UI_Image *> bt_gs;
 };
 
 
 void menuEventHandler_main(UIEventData * data);
 void menuEventHandler_options(UIEventData * data);
 void menuEventHandler_stats(UIEventData * data);
+void menuEventHandler_gameSetup(UIEventData * data);
 
 #endif // !GAME_MENU

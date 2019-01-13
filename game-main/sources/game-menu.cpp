@@ -88,6 +88,16 @@ void GameMenu::Init()
 		ui_ctrl_3->RegisterEvent(i, onRelease, &menuEventHandler_stats);
 	}
 
+	ui_ctrl_4 = new UI_Controller();
+	for (int i(0); i < bt_gs.size(); i++)
+	{
+		ui_ctrl_4->AddElement(bt_gs[i]);
+		ui_ctrl_4->RegisterEvent(i, onHoverBegin, &menuEventHandler_gameSetup);
+		ui_ctrl_4->RegisterEvent(i, onHoverEnd, &menuEventHandler_gameSetup);
+		ui_ctrl_4->RegisterEvent(i, onPress, &menuEventHandler_gameSetup);
+		ui_ctrl_4->RegisterEvent(i, onRelease, &menuEventHandler_gameSetup);
+	}
+
 	levelInitRequired = false;
 }
 
@@ -138,6 +148,17 @@ void GameMenu::Update()
 			p_back_button->draw();
 		}
 		break;
+	case gamesetup:
+	{
+		if (initMenuRequired)
+		{
+
+		}
+		ui_ctrl_4->Update();
+		g_mgr->setCurLevel(2);
+
+	}
+	break;
 	default:
 		p_m_state = main_menu;
 		break;
@@ -237,6 +258,8 @@ void menuEventHandler_main(UIEventData * data)
 		{
 			int idx = data->objectID;
 
+			if (idx == 0)
+				g_menu->SetMenuState(gamesetup);
 			if (idx == 2)
 				g_menu->SetMenuState(options);
 			if (idx == 3)
@@ -339,6 +362,47 @@ void menuEventHandler_stats(UIEventData * data)
 		int idx = data->objectID;
 
 		g_menu->SetButtonState(2, idx, normal);
+	}
+	break;
+	default:
+		break;
+	}
+}
+
+void menuEventHandler_gameSetup(UIEventData * data)
+{
+	auto type = data->eventType;
+
+	switch (type)
+	{
+	case onPress:
+	{
+		int idx = data->objectID;
+
+		g_menu->SetButtonState(3, idx, pressed);
+	}
+	break;
+	case onRelease:
+	{
+		int idx = data->objectID;
+
+		if (idx == 0)
+			g_menu->SetMenuState(main_menu);
+		g_menu->SetButtonState(3, idx, hover);
+	}
+	break;
+	case onHoverBegin:
+	{
+		int idx = data->objectID;
+
+		g_menu->SetButtonState(3, idx, hover);
+	}
+	break;
+	case onHoverEnd:
+	{
+		int idx = data->objectID;
+
+		g_menu->SetButtonState(3, idx, normal);
 	}
 	break;
 	default:

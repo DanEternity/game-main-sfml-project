@@ -67,6 +67,7 @@ enum buttonState
 enum gameMenuState
 {
 	main_menu,
+	gamesetup,
 	options,
 	stats
 	// и другие
