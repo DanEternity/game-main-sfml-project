@@ -60,13 +60,55 @@ void AdventureManager::Destroy()
 
 void AdventureManager::ProcessNormalState()
 {
+	float dt = g_mgr->deltaTime();
+	if (dt < 0)
+		Log("UULULULULULULU");
+	// debug;;;
+	if (0)
+	{
+		//mapScale += g_mgr->deltaTime();
+		mapScale += 0.001f;
+
+		if (mapScale > 5)
+			mapScale = .4f;
+
+
+	}
+
+	// end;;;
+
+	/* read keyboard */
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp))
+	{
+		mapScale += dt * 2;
+		mapScale = std::min(mapScale, 5.f);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown))
+	{
+		mapScale -= dt * 2;
+		mapScale = std::max(mapScale, 1.f);
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		camX -= dt * 200.f;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		camX += dt * 200.f;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		camY -= dt * 200.f;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		camY += dt * 200.f;
+
+		//sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+	//	sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+
 	// draw bg? LUL 
 	// no...
 	
 	// calc camera
 	sf::Vector2f cm = { camX, camY }; // center
-	sf::Vector2f cl = { camX - resolution_w / 2, camY - resolution_h / 2 }; // left up
-	sf::Vector2f cr = { camX + resolution_w / 2, camY + resolution_h / 2 }; // right down
+	sf::Vector2f cl = { camX - (resolution_w / 2 * mapScale), camY - (resolution_h / 2 * mapScale) }; // left up
+	sf::Vector2f cr = { camX + (resolution_w / 2 * mapScale), camY + (resolution_h / 2 * mapScale) }; // right down
 
 	// draw objects
 	for (int i(0); i < mapObjects.size(); i++)
@@ -109,7 +151,7 @@ void AdventureManager::InitLevel(bool debug)
 	mapObjects.push_back(buff);
 
 
-
+	mapScale = 1.f;
 	camX = 1600 / 2 + 400;
 	camY = 900 / 2;
 

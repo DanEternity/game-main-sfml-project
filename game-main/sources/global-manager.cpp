@@ -7,8 +7,9 @@ int GlobalManager::frameCount()
 
 double GlobalManager::deltaTime()
 {
-	return (p_CurrentCallTime - p_LastCallTime);
+	return (p_CurrentCallTime.asSeconds());
 }
+
 
 GlobalManager::GlobalManager()
 {
@@ -29,6 +30,8 @@ void GlobalManager::setCurLevel(int newLevel)
 void GlobalManager::run()
 {
 	/*pre update*/
+	p_CurrentCallTime = p_Clock.restart();
+
 
 	/*update*/
 	if (levels[p_cur_lvl]->levelInitRequired)
@@ -37,4 +40,5 @@ void GlobalManager::run()
 		levels[p_cur_lvl]->Update();
 
 	/*post update*/
+	p_LastCallTime = p_CurrentCallTime;
 }

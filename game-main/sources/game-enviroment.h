@@ -51,6 +51,7 @@ extern int resolution_h; // y
 
 /* Game information */
 
+extern bool gameRun;
 extern std::queue<QGlobalEvent> EventList; // Events
 
 

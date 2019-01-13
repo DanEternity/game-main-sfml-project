@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML\Window.hpp>
+
 #include "base-manager.h"
 #include "debug.h"
 #include <vector>
@@ -23,10 +25,12 @@ public:
 
 private:
 	__int64 p_FrameCount = 0;
-	double p_LastCallTime = 0;
-	double p_CurrentCallTime = 0;
+	sf::Time p_LastCallTime = sf::Time();
+	sf::Time p_CurrentCallTime;
 	int p_cur_lvl = 0;
 	//bool levelInitRequired = true;
+
+	sf::Clock p_Clock;
 };
 
 

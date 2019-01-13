@@ -32,7 +32,7 @@ int main()
 	g_mgr->setCurLevel(0);
 
 	// Start the game loop
-	while (window.isOpen())
+	while (window.isOpen() && gameRun)
 	{
 		// Process events
 		sf::Event event;
