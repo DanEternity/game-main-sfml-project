@@ -11,7 +11,7 @@ class BaseUIElem
 {
 public:
 	//BaseUIElem();
-	
+	virtual void draw();
 	virtual void setPosition(int x, int y);
 	virtual void setSize(int width, int heigh);
 	void setSize(double radius);
@@ -26,7 +26,7 @@ public:
 	bool visible();
 	bool active();
 
-	virtual void draw();
+	
 	bool inside(int x, int y);
 	
 protected:

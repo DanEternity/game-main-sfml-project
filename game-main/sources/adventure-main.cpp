@@ -61,16 +61,11 @@ void AdventureManager::Destroy()
 void AdventureManager::ProcessNormalState()
 {
 	float dt = g_mgr->deltaTime();
-	if (dt < 0)
-		Log("UULULULULULULU");
+	
 	// debug;;;
 	if (0)
 	{
-		//mapScale += g_mgr->deltaTime();
-		mapScale += 0.001f;
-
-		if (mapScale > 5)
-			mapScale = .4f;
+		
 
 
 	}
@@ -99,12 +94,10 @@ void AdventureManager::ProcessNormalState()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 		camY += dt * 200.f;
 
-		//sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
-	//	sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
-
 	// draw bg? LUL 
 	// no...
-	
+	int ObjectCount = 0;
+
 	// calc camera
 	sf::Vector2f cm = { camX, camY }; // center
 	sf::Vector2f cl = { camX - (resolution_w / 2 * mapScale), camY - (resolution_h / 2 * mapScale) }; // left up
@@ -113,8 +106,11 @@ void AdventureManager::ProcessNormalState()
 	// draw objects
 	for (int i(0); i < mapObjects.size(); i++)
 	{
-		if (0) // условие
+		auto md = mapObjects[i];
+		if (!(md.x + md.sizeX > cl.x && md.x - md.sizeX < cr.x && md.y + md.sizeY > cl.y &&  md.y - md.sizeY < cr.y)) // условие
 			continue;
+		ObjectCount++;
+
 		sf::Vector2f q = { mapObjects[i].x,mapObjects[i].y };
 		sf::Vector2f mq = (q - cl) / mapScale;
 
@@ -123,6 +119,9 @@ void AdventureManager::ProcessNormalState()
 		mapObjects[i].model->sprite()->setRotation(mapObjects[i].rotation);
 		mapObjects[i].model->draw();
 	}
+
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	//	Log(std::to_string(ObjectCount));
 }
 
 void AdventureManager::InitLevel(QGlobalEvent q)
