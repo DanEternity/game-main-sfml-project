@@ -31,6 +31,9 @@
     <Filter Include="game-menu">
       <UniqueIdentifier>{a1e3ef23-51d6-4ef8-a5bf-ae63ac2c7edb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="adventure">
+      <UniqueIdentifier>{a490fbe9-6099-4779-8955-439d28fd18a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -63,11 +66,29 @@
     <ClCompile Include="sources\sprites.cpp">
       <Filter>enviroment</Filter>
     </ClCompile>
-    <ClCompile Include="sources\ui-text.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="sources\lib\RichText.cpp">
       <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\ui-text.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\adventure-main.cpp">
+      <Filter>adventure</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\ui-objects.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Ship.cpp">
+      <Filter>adventure</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Character.cpp">
+      <Filter>adventure</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Items.cpp">
+      <Filter>adventure</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\modules.cpp">
+      <Filter>adventure</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +133,27 @@
     </ClInclude>
     <ClInclude Include="sources\lib\RichText.hpp">
       <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\ui-objects.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\adventure-main.h">
+      <Filter>adventure</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Ship.h">
+      <Filter>adventure</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Character.h">
+      <Filter>adventure</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Items.h">
+      <Filter>adventure</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\modules.h">
+      <Filter>adventure</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Consts.h">
+      <Filter>enviroment</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

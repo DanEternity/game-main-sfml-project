@@ -71,3 +71,17 @@ enum gameMenuState
 	stats
 	// и другие
 };
+
+enum QEventType
+{
+	initGame,
+	initGameDebug
+};
+
+struct QGlobalEvent
+{
+	QEventType type;
+	int QtypeValue;
+	__int64 QValue;
+	void * extendedData;
+};

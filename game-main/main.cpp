@@ -10,8 +10,10 @@
 #include "sources\sprites.h"
 #include "sources\debug.h"
 #include "resource.h"
+#include "sources\custom-types.h"
 
 void init();
+void debug();
 
 /*CODE*/
 int main()
@@ -62,12 +64,23 @@ void init()
 	g_mgr = new GlobalManager();
 	g_loader = new GameLoader();
 	g_menu = new GameMenu();
+	g_adv = new AdventureManager();
 
 	g_mgr->addLevel(g_loader);
 	g_mgr->addLevel(g_menu);
+	g_mgr->addLevel(g_adv);
+
 	g_wnd->setFramerateLimit(120);
 
 	fontArial = new sf::Font();
 	fontArial->loadFromFile("sources/fonts/arial.ttf");
 
+	debug();
+}
+
+void debug()
+{
+	QGlobalEvent q;
+	q.type = initGameDebug;
+	EventList.push(q);
 }
