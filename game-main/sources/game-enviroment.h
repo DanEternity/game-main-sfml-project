@@ -47,6 +47,7 @@ extern int sys_screen_h;
 extern int resolution_w; // x
 extern int resolution_h; // y
 
+extern int testValue;
 
 
 /* Game information */
