@@ -17,6 +17,7 @@
 #include <vector>
 
 class UI_text;
+class UI_Image;
 
 class GameLoader : public BaseManager
 {

@@ -5,7 +5,7 @@
 
 #include "base-manager.h"
 #include "custom-types.h"
-#include "base-ui.h"
+#include "ui-objects.h"
 #include "ui-controller.h"
 #include "game-enviroment.h"
 #include "sprites.h"
@@ -15,40 +15,43 @@
 #include <vector>
 
 class UI_Controller;
+class UI_ObjectImage;
 
 class GameMenu : public BaseManager
 {
 public:
 	virtual void Init() override;
 	virtual void Update() override;
-	void SetButtonState(int list_id, int id, buttonState state);
+	void SetButtonState(int list_id, int id, buttonState state, bool advancedMode = false);
 	void SetMenuState(gameMenuState state);
-
+	void SetMenuSubState(gameMenuSubState state);
 	bool initMenuRequired;
 
 private:
 
 	gameMenuState p_m_state = main_menu;
+	gameMenuSubState p_m_sub_state = subStateNull;
 
 	UI_Controller * ui_ctrl;
 	UI_Controller * ui_ctrl_2;
 	UI_Controller * ui_ctrl_3;
 	UI_Controller * ui_ctrl_4;
 
-	UI_Image *p_menu_bg;
-	UI_Image *p_play_button;
-	UI_Image *p_continue_button;
-	UI_Image *p_stats_button;
-	UI_Image *p_settings_button;
-	UI_Image *p_credits_button;
-	UI_Image *p_exit_button;
+	UI_ObjectImage *p_menu_bg;
+	UI_ObjectImage *p_play_button;
+	UI_ObjectImage *p_continue_button;
+	UI_ObjectImage *p_stats_button;
+	UI_ObjectImage *p_settings_button;
+	UI_ObjectImage *p_credits_button;
+	UI_ObjectImage *p_exit_button;
 
-	UI_Image *p_back_button;
+	UI_ObjectImage *p_back_button;
+	UI_ObjectImage *p_test_button;
 
-	std::vector<UI_Image *> bsqc;
-	std::vector<UI_Image *> bt_op;
-	std::vector<UI_Image *> bt_st;
-	std::vector<UI_Image *> bt_gs;
+	std::vector<UI_ObjectImage *> bsqc;
+	std::vector<UI_ObjectImage *> bt_op;
+	std::vector<UI_ObjectImage *> bt_st;
+	std::vector<UI_ObjectImage *> bt_gs;
 };
 
 

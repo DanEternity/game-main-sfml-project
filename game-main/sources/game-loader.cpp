@@ -68,6 +68,20 @@ void GameLoader::Init()
 	tex_name.push_back(base + "exit1onclick.png");
 	sprite_pointer.push_back(&menu_btsOnClick[4]);
 
+	tex_name.push_back(base + "credits_button.jpg");
+	sprite_pointer.push_back(&menu_btsNormal[5]);
+	tex_name.push_back(base + "credits_button.jpg");
+	sprite_pointer.push_back(&menu_btsHover[5]);
+	tex_name.push_back(base + "credits_button.jpg");
+	sprite_pointer.push_back(&menu_btsOnClick[5]);
+
+	tex_name.push_back(base + "settings_button.jpg");
+	sprite_pointer.push_back(&menu_btsNormal[6]);
+	tex_name.push_back(base + "settings_button.jpg");
+	sprite_pointer.push_back(&menu_btsHover[6]);
+	tex_name.push_back(base + "settings_button.jpg");
+	sprite_pointer.push_back(&menu_btsOnClick[6]);
+
 	/* Post Init */
 
 	levelInitRequired = false; // init completed

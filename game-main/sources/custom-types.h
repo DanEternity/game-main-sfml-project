@@ -28,6 +28,8 @@ enum UIEventFuncResult
 
 };
 
+class BaseUIElem;
+
 struct UIEventData
 {
 	UIEventType eventType;
@@ -40,6 +42,7 @@ struct UIEventData
 	bool mouse_change_r;
 
 	int objectID;
+	BaseUIElem * ref;
 };
 
 typedef void(*func_pointer_void_void)(); // no return no parameters
@@ -70,6 +73,14 @@ enum gameMenuState
 	gamesetup,
 	options,
 	stats
+	// и другие
+};
+
+enum gameMenuSubState
+{
+	subStateNull,
+	optionsNormal,
+	optionsWindowed
 	// и другие
 };
 

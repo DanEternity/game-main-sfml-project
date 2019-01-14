@@ -10,6 +10,9 @@
 class BaseUIElem
 {
 public:
+	int globalID = 0;
+	int localID = 0;
+
 	//BaseUIElem();
 	virtual void draw();
 	virtual void setPosition(int x, int y);

@@ -4,12 +4,9 @@
 #include "ui-text.h"
 #include "game-enviroment.h"
 
-
 class UI_ObjectImage : public UI_Image
 {
 public:
-	int globalID;
-	int localID;
 
 	UI_ObjectImage();
 	UI_ObjectImage(int ID);
