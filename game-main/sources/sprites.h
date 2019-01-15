@@ -13,3 +13,6 @@ extern sf::Sprite * TestObject1;
 extern sf::Sprite * menu_btsNormal[15]; // normal
 extern sf::Sprite * menu_btsHover[15]; // hover
 extern sf::Sprite * menu_btsOnClick[15]; // onclick
+
+extern sf::Sprite * scroller_base_400; 
+extern sf::Sprite * scroller_btn_v1[3];

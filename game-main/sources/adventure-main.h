@@ -18,6 +18,7 @@
 
 
 class UI_ObjectImage;
+class UI_ScrollerObject;
 
 struct AMObject
 {
@@ -69,6 +70,10 @@ private:
 	
 	float mapScale = 1;
 	float camX, camY; // ship coordinates;
+
+	/* UI and testing*/
+
+	UI_ScrollerObject * testScroller;
 };
 
 #endif // !ADVENTURE_MANAGER

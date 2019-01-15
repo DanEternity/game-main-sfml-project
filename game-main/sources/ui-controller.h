@@ -19,6 +19,9 @@ public:
 	bool DeleteEvent(int id, UIEventType eventType);
 	void DispatchEvents();
 	void Update();
+	sf::Vector2i getMouseXY();
+	bool mouseLeftButton();
+	bool mouseRightButton();
 private:
 	//std::vector<BaseUIElem *> p_list;
 	std::vector<UIEventState_private> p_list;

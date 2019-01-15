@@ -61,8 +61,8 @@ void UI_Controller::DispatchEvents()
 	//Log("MOUSE -> " + std::to_string(mp.x) + " " + std::to_string(mp.y));
 
 	mp -= wnd_pos;
-	mp.x -= 4;
-	mp.y -= 34;
+	mp.x -= 7;
+	mp.y -= 31;
 
 
 	UIEventData buff;
@@ -140,4 +140,26 @@ void UI_Controller::Update()
 
 	DispatchEvents();
 
+}
+
+sf::Vector2i UI_Controller::getMouseXY()
+{
+	auto mp = sf::Mouse().getPosition();
+	auto wnd_pos = g_wnd->getPosition();
+
+	mp -= wnd_pos;
+	mp.x -= 7;
+	mp.y -= 31;
+	return mp;
+}
+
+bool UI_Controller::mouseLeftButton()
+{
+	return sf::Mouse().isButtonPressed(sf::Mouse().Left);
+	
+}
+
+bool UI_Controller::mouseRightButton()
+{
+	return sf::Mouse().isButtonPressed(sf::Mouse().Right);
 }

@@ -33,6 +33,8 @@ void GameLoader::Init()
 	// в качестве параметра это спрайт (в данном случае
 	// это будет TestObject1)
 
+	/* Menu buttons */
+
 	tex_name.push_back(base + "start1normal.png");
 	sprite_pointer.push_back(&menu_btsNormal[0]);
 	tex_name.push_back(base + "start1hover.png");
@@ -81,6 +83,17 @@ void GameLoader::Init()
 	sprite_pointer.push_back(&menu_btsHover[6]);
 	tex_name.push_back(base + "settings_button.jpg");
 	sprite_pointer.push_back(&menu_btsOnClick[6]);
+
+	/* Scroller textures */
+
+	tex_name.push_back(base + "scroller/base_400.png");
+	sprite_pointer.push_back(&scroller_base_400);
+	tex_name.push_back(base + "scroller/b1_normal.png");
+	sprite_pointer.push_back(&scroller_btn_v1[0]);
+	tex_name.push_back(base + "scroller/b1_hover.png");
+	sprite_pointer.push_back(&scroller_btn_v1[1]);
+	tex_name.push_back(base + "scroller/b1_pressed.png");
+	sprite_pointer.push_back(&scroller_btn_v1[2]);
 
 	/* Post Init */
 

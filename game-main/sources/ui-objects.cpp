@@ -118,3 +118,139 @@ UI_MultiObject::UI_MultiObject(int x, int y)
 	p_sprite = new sf::Sprite();
 
 }
+
+void UI_ScrollerObject::draw()
+{
+	area->draw();
+	button->draw();
+}
+
+void UI_ScrollerObject::setPosition(int x, int y)
+{
+	area->setPosition(x, y);
+	int bt_y = 0;
+	bt_y = y + buttonHeigh * ((p_area_size_y - 4) - p_bt_size_y) + 3;
+	button->setPosition(x + 3, bt_y);
+}
+
+void UI_ScrollerObject::setSize(int width, int heigh)
+{
+	// i dont know how to change texture size;
+}
+
+UI_ScrollerObject::UI_ScrollerObject()
+{
+	Create();
+}
+
+void UI_ScrollerObject::Create()
+{
+	area = new UI_ObjectImage();
+	button = new UI_ObjectImage();
+
+	p_bt_size_x = 10;
+	p_bt_size_y = 50;
+
+	p_area_size_x = 16;
+	p_area_size_y = 400;
+
+	area->CopyTexture(scroller_base_400);
+	button->CopyTexture(scroller_btn_v1[0]);
+	button->setSize(24, 50);
+
+	button->setPosition(p_x + 3, p_y + 3);
+
+	scroller_ctrl = new UI_Controller();
+
+	setupController();
+}
+
+void UI_ScrollerObject::Create(int bx, int by, int ax, int ay)
+{
+	area = new UI_ObjectImage();
+	button = new UI_ObjectImage();
+
+	p_bt_size_x = 10;
+	p_bt_size_y = 50;
+
+	p_area_size_x = 16;
+	p_area_size_y = 400;
+
+	if (ay == 400)
+	{
+		area->CopyTexture(scroller_base_400);
+	}
+	
+	button->CopyTexture(scroller_btn_v1[0]);
+
+	scroller_ctrl = new UI_Controller();
+
+	setupController();
+}
+
+void UI_ScrollerObject::HandleEvent(UIEventData * e)
+{
+	//
+	switch (e->eventType)
+	{
+	case onHoverBegin:
+		p_btn_hover = true;
+		if (!p_btn_pressed)
+			button->SetSprite(scroller_btn_v1[1]);
+		break;
+	case onHoverEnd:
+		p_btn_hover = false;
+		if (!p_btn_pressed)
+			button->SetSprite(scroller_btn_v1[0]);
+		break;
+	case onPress:
+		p_btn_pressed = true;
+		p_old_btn_y = e->mouse_y - button->getPosition().second;
+		button->SetSprite(scroller_btn_v1[2]);
+		break;
+	case onRelease:
+		p_btn_pressed = false;
+		button->SetSprite(scroller_btn_v1[0]);
+		break;
+	default:
+		break;
+	}
+}
+
+void UI_ScrollerObject::Update()
+{
+	scroller_ctrl->Update();
+
+	if (p_btn_pressed)
+	{
+		if (!scroller_ctrl->mouseLeftButton())
+		{
+			p_btn_pressed = false;
+			button->SetSprite(scroller_btn_v1[0]);
+			return;
+		}
+		auto m = scroller_ctrl->getMouseXY();
+		int y = std::max(area->getPosition().second + 3, std::min(m.y - p_old_btn_y, p_area_size_y - p_bt_size_y - 3 + area->getPosition().second));
+		button->setPosition(button->getPosition().first, y);
+	}
+}
+
+void UI_ScrollerObject::setupController()
+{
+	scroller_ctrl->AddElement(button);
+	scroller_ctrl->RegisterEvent(0, onHoverBegin, &UI_ScrollerPrivateEventHandler);
+	scroller_ctrl->RegisterEvent(0, onHoverEnd, &UI_ScrollerPrivateEventHandler);
+	scroller_ctrl->RegisterEvent(0, onPress, &UI_ScrollerPrivateEventHandler);
+	scroller_ctrl->RegisterEvent(0, onRelease, &UI_ScrollerPrivateEventHandler);
+	UI_ScrollerPrivateEventRegister(this);
+}
+
+void UI_ScrollerPrivateEventRegister(UI_ScrollerObject * target)
+{
+	UI_ScrollerEventRegTable.push_back(target);
+}
+
+void UI_ScrollerPrivateEventHandler(UIEventData * data)
+{
+	UI_ScrollerEventRegTable[data->objectID]->HandleEvent(data);
+}

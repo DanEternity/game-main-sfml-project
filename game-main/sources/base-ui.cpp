@@ -72,7 +72,7 @@ void BaseUIElem::draw()
 bool BaseUIElem::inside(int x, int y)
 {
 	if (type == square)
-		return ((x > p_x) && (y > p_y) && (x < p_x + p_w) && (y < p_y + p_h));
+		return ((x >= p_x) && (y >= p_y) && (x <= p_x + p_w) && (y <= p_y + p_h));
 	else
 		return (p_r * p_r > (p_w - x) * (p_w - x) + (p_h - y) * (p_h - y));
 }
@@ -133,8 +133,8 @@ void UI_Image::SetSprite(sf::Sprite * Sprite) // not for initialization (only fo
 	auto p_size = p_s->getTexture()->getSize();
 	p_s->setTexture(*Sprite->getTexture());
 	
-	p_w = p_size.x;
-	p_h = p_size.y;
+	p_w = float(p_size.x) * p_s->getScale().x;
+	p_h = float(p_size.y) * p_s->getScale().y;
 
 	setVisibility(true);
 }

@@ -63,10 +63,11 @@ void AdventureManager::ProcessNormalState()
 	float dt = g_mgr->deltaTime();
 	
 	// debug;;;
-	if (0)
+	if (1)
 	{
+		testScroller->Update();
+		testScroller->draw();
 		
-
 
 	}
 
@@ -153,6 +154,10 @@ void AdventureManager::InitLevel(bool debug)
 	mapScale = 1.f;
 	camX = 1600 / 2 + 400;
 	camY = 900 / 2;
+
+	testScroller = new UI_ScrollerObject();
+	testScroller->Create();
+	testScroller->setPosition(1500, 80);
 
 	state = AMNormal;
 }
