@@ -84,6 +84,20 @@ void GameLoader::Init()
 	tex_name.push_back(base + "settings_button.jpg");
 	sprite_pointer.push_back(&menu_btsOnClick[6]);
 
+	tex_name.push_back(base + "btn_arrow_left.png");
+	sprite_pointer.push_back(&menu_btsNormal[7]);
+	tex_name.push_back(base + "btn_arrow_left.png");
+	sprite_pointer.push_back(&menu_btsHover[7]);
+	tex_name.push_back(base + "btn_arrow_left.png");
+	sprite_pointer.push_back(&menu_btsOnClick[7]);
+
+	tex_name.push_back(base + "btn_arrow_right.png");
+	sprite_pointer.push_back(&menu_btsNormal[8]);
+	tex_name.push_back(base + "btn_arrow_right.png");
+	sprite_pointer.push_back(&menu_btsHover[8]);
+	tex_name.push_back(base + "btn_arrow_right.png");
+	sprite_pointer.push_back(&menu_btsOnClick[8]);
+
 	/* Scroller textures */
 
 	tex_name.push_back(base + "scroller/base_400.png");

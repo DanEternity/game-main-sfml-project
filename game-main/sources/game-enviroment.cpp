@@ -15,6 +15,8 @@ int sys_screen_h;
 int resolution_w = 1600; // x
 int resolution_h = 900; // y
 
+int testValue = 0;
+
 bool gameRun = true;
 
 /* Game constants */
