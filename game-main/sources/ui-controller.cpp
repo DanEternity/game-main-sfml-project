@@ -70,8 +70,8 @@ void UI_Controller::DispatchEvents()
 	buff.mouse_y = mp.y;
 	buff.mouse_bt_l = m_left;
 	buff.mouse_bt_r = m_right;
-	buff.mouse_change_l = (m_left == p_m_l);
-	buff.mouse_change_r = (m_right == p_m_r);
+	buff.mouse_change_l = (m_left != p_m_l);
+	buff.mouse_change_r = (m_right != p_m_r);
 	
 	for (int i(0); i < p_list.size(); i++)
 	{

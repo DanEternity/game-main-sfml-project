@@ -204,13 +204,19 @@ void UI_ScrollerObject::HandleEvent(UIEventData * e)
 			button->SetSprite(scroller_btn_v1[0]);
 		break;
 	case onPress:
-		p_btn_pressed = true;
-		p_old_btn_y = e->mouse_y - button->getPosition().second;
-		button->SetSprite(scroller_btn_v1[2]);
+		if (e->mouse_change_l)
+		{
+			p_btn_pressed = true;
+			p_old_btn_y = e->mouse_y - button->getPosition().second;
+			button->SetSprite(scroller_btn_v1[2]);
+		}
 		break;
 	case onRelease:
-		p_btn_pressed = false;
-		button->SetSprite(scroller_btn_v1[0]);
+		if (e->mouse_change_l)
+		{
+			p_btn_pressed = false;
+			button->SetSprite(scroller_btn_v1[0]);
+		}
 		break;
 	default:
 		break;
