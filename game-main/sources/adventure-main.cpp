@@ -67,7 +67,7 @@ void AdventureManager::ProcessNormalState()
 	{
 		testScroller->Update();
 		testScroller->draw();
-		
+		mapScale = 1.f + testScroller->getValue();
 
 	}
 

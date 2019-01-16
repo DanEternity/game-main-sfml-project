@@ -74,6 +74,7 @@ public:
 
 	void HandleEvent(UIEventData * e);
 	void Update();
+	float getValue(); 
 
 	UI_ObjectImage * button;
 	UI_ObjectImage * area;
