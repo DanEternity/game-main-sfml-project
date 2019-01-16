@@ -80,7 +80,8 @@ enum gameMenuSubState
 {
 	subStateNull,
 	optionsNormal,
-	optionsWindowed
+	optionsWindowed,
+	statscontext
 	// и другие
 };
 

@@ -26,6 +26,7 @@ public:
 
 
 	void UpdateOptions();
+	void UpdateStats();
 	void SetButtonState(int list_id, int id, buttonState state, bool advancedMode = false);
 	void SetMenuState(gameMenuState state);
 	void SetMenuSubState(gameMenuSubState state);
@@ -41,6 +42,7 @@ private:
 	UI_Controller * ui_ctrl_st;
 	UI_Controller * ui_ctrl_ng;
 	UI_Controller * ui_ctrl_op_wnd;
+	UI_Controller * ui_ctrl_st_ctxt;
 
 	UI_ObjectImage *p_menu_bg;
 	UI_ObjectImage *p_op_wnd_bg; // windowed options background
@@ -64,6 +66,7 @@ private:
 	std::vector<UI_ObjectImage *> bt_op_wnd; // windowed options buttons
 	std::vector<UI_ObjectImage *> bt_st; // statistics buttons
 	std::vector<UI_ObjectImage *> bt_ng; // new game setup buttons
+	std::vector<UI_ObjectImage *> bt_st_ctxt; // context statistics buttons
 };
 
 
@@ -72,5 +75,6 @@ void menuEventHandler_options(UIEventData * data);
 void menuEventHandler_stats(UIEventData * data);
 void menuEventHandler_gameSetup(UIEventData * data);
 void menuEventHandler_options_wnd(UIEventData * data);
+void menuEventHandler_stats_context(UIEventData * data);
 
 #endif // !GAME_MENU
