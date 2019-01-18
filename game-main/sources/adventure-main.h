@@ -45,6 +45,12 @@ enum AMState
 	AMNormal
 };
 
+class ZoneObject
+{
+public:
+
+};
+
 class AdventureManager : public BaseManager
 {
 public:

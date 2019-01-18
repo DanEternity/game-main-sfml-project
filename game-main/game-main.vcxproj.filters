@@ -34,6 +34,21 @@
     <Filter Include="adventure">
       <UniqueIdentifier>{a490fbe9-6099-4779-8955-439d28fd18a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game-data">
+      <UniqueIdentifier>{e5670706-a5ce-4a9e-9659-f59df1c403b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="character-system">
+      <UniqueIdentifier>{2bbb4c92-d65d-456e-b860-ddd9a33a737f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="landing-mode">
+      <UniqueIdentifier>{15a764eb-669d-4054-bb93-cc3ff0cdde82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts">
+      <UniqueIdentifier>{ba839c55-6651-4ed4-b20a-6dc20ace4b4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="space-battle">
+      <UniqueIdentifier>{95abec92-ec03-4358-b556-707953189010}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -78,17 +93,23 @@
     <ClCompile Include="sources\ui-objects.cpp">
       <Filter>ui</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Ship.cpp">
-      <Filter>adventure</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\Character.cpp">
-      <Filter>adventure</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\Items.cpp">
-      <Filter>adventure</Filter>
-    </ClCompile>
     <ClCompile Include="sources\modules.cpp">
       <Filter>adventure</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\items.cpp">
+      <Filter>adventure</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\ship.cpp">
+      <Filter>adventure</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\landing-main.cpp">
+      <Filter>landing-mode</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\characters.cpp">
+      <Filter>character-system</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\space-battle-manager.cpp">
+      <Filter>space-battle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,20 +161,53 @@
     <ClInclude Include="sources\adventure-main.h">
       <Filter>adventure</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Ship.h">
-      <Filter>adventure</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\Character.h">
-      <Filter>adventure</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\Items.h">
-      <Filter>adventure</Filter>
-    </ClInclude>
     <ClInclude Include="sources\modules.h">
       <Filter>adventure</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Consts.h">
+    <ClInclude Include="sources\game-data-global.h">
+      <Filter>game-data</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\items.h">
+      <Filter>adventure</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\consts.h">
       <Filter>enviroment</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\ship.h">
+      <Filter>adventure</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\landing-main.h">
+      <Filter>landing-mode</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\characters.h">
+      <Filter>character-system</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\character-manager.h">
+      <Filter>character-system</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\ship-scheme.h">
+      <Filter>adventure</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\ship-manager.h">
+      <Filter>adventure</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\adventure-logbook.h">
+      <Filter>adventure</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\quests.h">
+      <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\script-system.h">
+      <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\star-map-navigator.h">
+      <Filter>adventure</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\space-battle-manager.h">
+      <Filter>space-battle</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\space-battle-info.h">
+      <Filter>space-battle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
