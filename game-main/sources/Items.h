@@ -3,6 +3,7 @@
 #include <string>
 #include "ui-objects.h"
 #include "custom-types.h"
+#include "effects.h"
 
 class BaseItem
 {

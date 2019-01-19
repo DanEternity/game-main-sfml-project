@@ -168,6 +168,7 @@
     <ClCompile Include="sources\landing-main.cpp" />
     <ClCompile Include="sources\lib\RichText.cpp" />
     <ClCompile Include="sources\modules.cpp" />
+    <ClCompile Include="sources\ship-manager.cpp" />
     <ClCompile Include="sources\ship.cpp" />
     <ClCompile Include="sources\space-battle-manager.cpp" />
     <ClCompile Include="sources\sprites.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="sources\consts.h" />
     <ClInclude Include="sources\custom-types.h" />
     <ClInclude Include="sources\debug.h" />
+    <ClInclude Include="sources\effects.h" />
     <ClInclude Include="sources\game-data-global.h" />
     <ClInclude Include="sources\game-enviroment.h" />
     <ClInclude Include="sources\game-loader.h" />

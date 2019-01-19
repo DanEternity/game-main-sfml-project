@@ -111,6 +111,9 @@
     <ClCompile Include="sources\space-battle-manager.cpp">
       <Filter>space-battle</Filter>
     </ClCompile>
+    <ClCompile Include="sources\ship-manager.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\global-manager.h">
@@ -208,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="sources\space-battle-info.h">
       <Filter>space-battle</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\effects.h">
+      <Filter>utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

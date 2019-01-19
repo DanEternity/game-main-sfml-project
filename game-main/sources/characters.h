@@ -7,6 +7,7 @@
 #include <string>
 #include <map>
 #include "custom-types.h"
+#include "effects.h"
 
 enum CharRace;
 enum CharClass;
