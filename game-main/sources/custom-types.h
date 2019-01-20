@@ -120,7 +120,7 @@ enum ModuleSlot
 
 enum DamageType
 {
-	phisycal,
+	physical,
 	energy
 };
 
