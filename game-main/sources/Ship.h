@@ -5,36 +5,38 @@
 
 #define QBase 0
 #define QMod 1
-#define QBattle 2
+#define QModPercent 2
+#define QBattle 3
+
 
 class Ship
 {
 public:
 	Ship();
 
-	float PowerSupply[3]; // произведено энергии
-	float PowerUse[3]; // потрачено энергии
-	float ActionPoints[3]; // очки действия (в бою)
-	float Evasion[3]; // рейтинг уклонения (может быть отрицательным (?))
-	float Mobility[3]; // рейтинг маневренности (снижает стоимость движения)
-	float Stealth[3]; // скрытность корабля
-	float StealthTier[3]; // определяет необходимый уровень сенсоров для получения данных о цели (хп, щит, защита и т.д.)
-	float SensorPower[3]; // мощность сенсоров
-	float SensorTier[3]; // уровень сенсоров
-	float HyperDriveSpeed[3]; // мод. скорости движения корабля (хз особо на игру не влияет, но где-то может быть важным. Ускоряет передвижение корабля по миру)
-	float HyperDriveTier[3]; // класс гипердвигателя (определяет возможность путешествия в некоторые узлы
-	float HyperDriveFuelCost[3]; // стоимость прыжка / или модификатор стоимости прыжка (скорее всего второе)
-	float Hull[3]; // прочность корпуса
-	float HullResist[HullResistN][3]; // защита корпуса
-	float HullReg[3]; // хотя реген корпуса может показаться бредом, некоторые враги вполне могут использовать это
-	float Shield[3]; // емкость щита
-	float ShieldResist[ShieldResistN][3]; // защита щита 
-	float ShieldReg[3]; // регенерация щита
+	float PowerSupply[4]; // произведено энергии
+	float PowerUse[4]; // потрачено энергии
+	float ActionPoints[4]; // очки действия (в бою)
+	float Evasion[4]; // рейтинг уклонения (может быть отрицательным (?))
+	float Mobility[4]; // рейтинг маневренности (снижает стоимость движения)
+	float Stealth[4]; // скрытность корабля
+	float StealthTier[4]; // определяет необходимый уровень сенсоров для получения данных о цели (хп, щит, защита и т.д.)
+	float SensorPower[4]; // мощность сенсоров
+	float SensorTier[4]; // уровень сенсоров
+	float HyperDriveSpeed[4]; // мод. скорости движения корабля (хз особо на игру не влияет, но где-то может быть важным. Ускоряет передвижение корабля по миру)
+	float HyperDriveTier[4]; // класс гипердвигателя (определяет возможность путешествия в некоторые узлы
+	float HyperDriveFuelCost[4]; // стоимость прыжка / или модификатор стоимости прыжка (скорее всего второе)
+	float Hull[4]; // прочность корпуса
+	float HullResist[HullResistN][4]; // защита корпуса
+	float HullReg[4]; // хотя реген корпуса может показаться бредом, некоторые враги вполне могут использовать это
+	float Shield[4]; // емкость щита
+	float ShieldResist[ShieldResistN][4]; // защита щита 
+	float ShieldReg[4]; // регенерация щита
 
 					// статы на модерацию =)
-	float MissileDefense[3]; // рейтинг системы ПРО
-	float MissileDefenseTier[3]; // уровень системы ПРО
-	float HullStructureStability[3]; // сопротивляемость критическому урону(УРОНУ, а не шансу крита)
-	float ShieldStructureStability[3]; // тоже самое, но для щита
+	float MissileDefense[4]; // рейтинг системы ПРО
+	float MissileDefenseTier[4]; // уровень системы ПРО
+	float HullStructureStability[4]; // сопротивляемость критическому урону(УРОНУ, а не шансу крита)
+	float ShieldStructureStability[4]; // тоже самое, но для щита
 
 };

@@ -114,6 +114,9 @@
     <ClCompile Include="sources\ship-manager.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="sources\ship-scheme.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\global-manager.h">

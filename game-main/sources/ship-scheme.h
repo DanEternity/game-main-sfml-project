@@ -9,6 +9,13 @@ struct QShipSlotCell
 	ModuleSlot s;
 	int x;
 	int y;
+	QShipSlotCell()
+	{
+		m = NULL;
+		s = slot_Universal;
+		x = 0;
+		y = 0;
+	}
 };
 
 class ShipScheme
@@ -48,8 +55,12 @@ public:
 	float HullStructureStability; // сопротивляемость критическому урону(УРОНУ, а не шансу крита)
 	float ShieldStructureStability; // тоже самое, но для щита
 
+	void create(int scremeID);
+	bool checkSlotComp(ModuleItem * module, int slot_id);
+	void setModule(ModuleItem * module, int slot_id);
 
-
+private:
+	void schemeDebug();
 private:
 
 };

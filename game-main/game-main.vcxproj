@@ -169,6 +169,7 @@
     <ClCompile Include="sources\lib\RichText.cpp" />
     <ClCompile Include="sources\modules.cpp" />
     <ClCompile Include="sources\ship-manager.cpp" />
+    <ClCompile Include="sources\ship-scheme.cpp" />
     <ClCompile Include="sources\ship.cpp" />
     <ClCompile Include="sources\space-battle-manager.cpp" />
     <ClCompile Include="sources\sprites.cpp" />
