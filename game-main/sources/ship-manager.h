@@ -23,4 +23,5 @@ public:
 	void applyModuleStatEffect(LocalEffect * effect);
 
 	void init(ShipScheme * scheme);
+	void debug();
 };

@@ -254,3 +254,28 @@ void ShipManager::init(ShipScheme * qScheme)
 	ship->ShieldStructureStability[0] = scheme->ShieldStructureStability; // тоже самое, но дл€ щита
 }
 
+void ShipManager::debug()
+{
+	SystemModuleItem * p = new SystemModuleItem();
+	p->nameLine = "Sample";
+	p->image = NULL;
+	p->descLines.push_back("Sample description");
+	p->lvl = 1;
+	p->rare = 1;
+	p->powerUsage = 1;
+	LocalEffect eff = LocalEffect();
+	eff.effectID = ModuleStat; // do not change
+	eff.subType = StatPowerSupply;
+	eff.f1 = 10; // +X
+	eff.f2 = 0; // +X%
+	p->effects.push_back(eff);
+	eff.subType = StatHull;
+	eff.f1 = 125; // +X
+	eff.f2 = 0; // +X%
+	p->effects.push_back(eff);
+
+	// scheme->setModule(p);
+	p = new SystemModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
+	// только создать новый объект через new
+}
+
