@@ -3,6 +3,13 @@
 #include "ship.h"
 #include "ship-scheme.h"
 #include "items.h"
+#include "effects.h"
+
+#include <vector>
+
+class Ship;
+class BaseItem;
+class ShipScheme;
 
 class ShipStorage
 {

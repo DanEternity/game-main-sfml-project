@@ -202,6 +202,9 @@ void GameMenu::Update()
 
 		}
 		ui_ctrl_ng->Update();
+
+		MainInitializer::createGame(&gd, 24, 0); // 24 = any namber; //////////////////
+
 		g_mgr->setCurLevel(2);
 
 	}

@@ -11,6 +11,10 @@
 #include "sources\debug.h"
 #include "resource.h"
 #include "sources\custom-types.h"
+#include "sources\wnd-utils.h"
+#include "sources\game-loader.h"
+#include "sources\game-menu.h"
+#include "sources\adventure-main.h"
 
 void init();
 void debug();

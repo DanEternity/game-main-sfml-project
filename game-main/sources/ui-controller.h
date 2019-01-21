@@ -10,6 +10,7 @@
 #include "custom-types.h"
 #include "debug.h"
 #include "game-enviroment.h"
+#include "wnd-utils.h"
 
 class UI_Controller
 {

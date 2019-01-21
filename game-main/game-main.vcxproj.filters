@@ -49,6 +49,9 @@
     <Filter Include="space-battle">
       <UniqueIdentifier>{95abec92-ec03-4358-b556-707953189010}</UniqueIdentifier>
     </Filter>
+    <Filter Include="items">
+      <UniqueIdentifier>{a05b1d85-f43b-47e5-9a0d-5dabfd70738a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -93,12 +96,6 @@
     <ClCompile Include="sources\ui-objects.cpp">
       <Filter>ui</Filter>
     </ClCompile>
-    <ClCompile Include="sources\modules.cpp">
-      <Filter>adventure</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\items.cpp">
-      <Filter>adventure</Filter>
-    </ClCompile>
     <ClCompile Include="sources\ship.cpp">
       <Filter>adventure</Filter>
     </ClCompile>
@@ -111,11 +108,23 @@
     <ClCompile Include="sources\space-battle-manager.cpp">
       <Filter>space-battle</Filter>
     </ClCompile>
+    <ClCompile Include="sources\game-init.cpp">
+      <Filter>adventure</Filter>
+    </ClCompile>
     <ClCompile Include="sources\ship-manager.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>adventure</Filter>
     </ClCompile>
     <ClCompile Include="sources\ship-scheme.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>adventure</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\wnd-utils.cpp">
+      <Filter>enviroment</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\items.cpp">
+      <Filter>items</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\modules.cpp">
+      <Filter>items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,14 +176,8 @@
     <ClInclude Include="sources\adventure-main.h">
       <Filter>adventure</Filter>
     </ClInclude>
-    <ClInclude Include="sources\modules.h">
-      <Filter>adventure</Filter>
-    </ClInclude>
     <ClInclude Include="sources\game-data-global.h">
       <Filter>game-data</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\items.h">
-      <Filter>adventure</Filter>
     </ClInclude>
     <ClInclude Include="sources\consts.h">
       <Filter>enviroment</Filter>
@@ -217,6 +220,18 @@
     </ClInclude>
     <ClInclude Include="sources\effects.h">
       <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game-init.h">
+      <Filter>adventure</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\wnd-utils.h">
+      <Filter>enviroment</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\items.h">
+      <Filter>items</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\modules.h">
+      <Filter>items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

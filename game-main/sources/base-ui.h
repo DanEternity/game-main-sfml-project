@@ -3,7 +3,8 @@
 #include <SFML\Graphics.hpp>
 
 #include "custom-types.h"
-//#include "game-enviroment.h"
+#include "wnd-utils.h"
+#include "debug.h"
 
 #include <algorithm>
 

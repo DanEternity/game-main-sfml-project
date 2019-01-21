@@ -11,6 +11,7 @@
 #include "sprites.h"
 #include "debug.h"
 #include "ui-text.h"
+#include "game-init.h"
 
 #include <vector>
 

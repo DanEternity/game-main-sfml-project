@@ -2,6 +2,9 @@
 
 #include "items.h"
 
+//class BaseItem;
+
+
 class ModuleItem : public BaseItem
 {
 public:

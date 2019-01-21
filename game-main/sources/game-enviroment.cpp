@@ -1,13 +1,13 @@
 #include "game-enviroment.h"
 
-sf::RenderWindow * g_wnd; // main window pointer
+
 GlobalManager * g_mgr; // Global manager pointer
 GameLoader * g_loader; // Game loader pointer
 GameMenu * g_menu; // GameMenu manager pointer
 AdventureManager * g_adv; // Adventure manager pointer
 
 std::vector<sf::Texture *> textures;
-sf::Font * fontArial;
+
 
 int sys_screen_w;
 int sys_screen_h;

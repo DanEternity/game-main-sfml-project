@@ -1,5 +1,5 @@
 #include "base-ui.h"
-#include "game-enviroment.h"
+
 
 void BaseUIElem::setPosition(int x, int y)
 {
@@ -91,7 +91,7 @@ void UI_Image::LoadFromFile(std::string FileName)
 	if (!tex->loadFromFile(FileName))
 		Log("ERROR: texture loading failure!");
 
-	textures.push_back(tex);
+	//textures.push_back(tex);
 
 	p_s = new sf::Sprite(*tex);
 	auto p_size = p_s->getTexture()->getSize();

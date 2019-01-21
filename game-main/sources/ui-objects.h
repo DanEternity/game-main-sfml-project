@@ -3,12 +3,11 @@
 #ifndef UI_OBJECTS
 #define UI_OBJECTS
 
-
-
 #include "ui-controller.h"
 #include "base-ui.h"
 #include "ui-text.h"
 #include "game-enviroment.h"
+#include "sprites.h"
 
 class UI_Controller;
 

@@ -1,9 +1,16 @@
 #pragma once
 
+#ifndef ITEMS
+#define ITEMS
+
 #include <string>
-#include "ui-objects.h"
 #include "custom-types.h"
+
+#include "ui-objects.h"
 #include "effects.h"
+
+class BaseITem;
+class UI_ObjectImage;
 
 class BaseItem
 {
@@ -44,3 +51,5 @@ public:
 
 	std::vector<LocalEffect> effect;
 };
+
+#endif // !Items

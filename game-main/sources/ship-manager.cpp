@@ -20,7 +20,7 @@ void ShipManager::clearStats()
 	 
 	 ship->HullReg[1] = 0; // хотя реген корпуса может показаться бредом, некоторые враги вполне могут использовать это
 	 ship->Shield[1] = 0; // емкость щита
-	 for (int i(0); i < 2; i++)
+	 for (int i(0); i < ArmorTypesCount; i++)
 	 {
 		 ship->HullResist[i][1] = 0; // защита корпуса
 		 ship->ShieldResist[i][1] = 0; // защита щита 
@@ -34,33 +34,33 @@ void ShipManager::clearStats()
 
 	 /* mod % */
 
-	 ship->PowerSupply[2] = 0; // произведено энергии
-	 ship->PowerUse[2] = 0; // потрачено энергии
-	 ship->ActionPoints[2] = 0; // очки действия (в бою)
-	 ship->Evasion[2] = 0; // рейтинг уклонения (может быть отрицательным (?))
-	 ship->Mobility[2] = 0; // рейтинг маневренности (снижает стоимость движения)
-	 ship->Stealth[2] = 0; // скрытность корабля
-	 ship->StealthTier[2] = 0; // определяет необходимый уровень сенсоров для получения данных о цели (хп, щит, защита и т.д.)
-	 ship->SensorPower[2] = 0; // мощность сенсоров
-	 ship->SensorTier[2] = 0; // уровень сенсоров
-	 ship->HyperDriveSpeed[2] = 0; // мод. скорости движения корабля (хз особо на игру не влияет, но где-то может быть важным. Ускоряет передвижение корабля по миру)
-	 ship->HyperDriveTier[2] = 0; // класс гипердвигателя (определяет возможность путешествия в некоторые узлы
-	 ship->HyperDriveFuelCost[2] = 0; // стоимость прыжка / или модификатор стоимости прыжка (скорее всего второе)
-	 ship->Hull[2] = 0; // прочность корпуса
+	 ship->PowerSupply[2] = 1; // произведено энергии
+	 ship->PowerUse[2] = 1; // потрачено энергии
+	 ship->ActionPoints[2] = 1; // очки действия (в бою)
+	 ship->Evasion[2] = 1; // рейтинг уклонения (может быть отрицательным (?))
+	 ship->Mobility[2] = 1; // рейтинг маневренности (снижает стоимость движения)
+	 ship->Stealth[2] = 1; // скрытность корабля
+	 ship->StealthTier[2] = 1; // определяет необходимый уровень сенсоров для получения данных о цели (хп, щит, защита и т.д.)
+	 ship->SensorPower[2] = 1; // мощность сенсоров
+	 ship->SensorTier[2] = 1; // уровень сенсоров
+	 ship->HyperDriveSpeed[2] = 1; // мод. скорости движения корабля (хз особо на игру не влияет, но где-то может быть важным. Ускоряет передвижение корабля по миру)
+	 ship->HyperDriveTier[2] = 1; // класс гипердвигателя (определяет возможность путешествия в некоторые узлы
+	 ship->HyperDriveFuelCost[2] = 1; // стоимость прыжка / или модификатор стоимости прыжка (скорее всего второе)
+	 ship->Hull[2] = 1; // прочность корпуса
 
-	 ship->HullReg[2] = 0; // хотя реген корпуса может показаться бредом, некоторые враги вполне могут использовать это
-	 ship->Shield[2] = 0; // емкость щита
-	 for (int i(0); i < 2; i++)
+	 ship->HullReg[2] = 1; // хотя реген корпуса может показаться бредом, некоторые враги вполне могут использовать это
+	 ship->Shield[2] = 1; // емкость щита
+	 for (int i(0); i < ArmorTypesCount; i++)
 	 {
-		 ship->HullResist[i][2] = 0; // защита корпуса
-		 ship->ShieldResist[i][2] = 0; // защита щита 
+		 ship->HullResist[i][2] = 1; // защита корпуса
+		 ship->ShieldResist[i][2] = 1; // защита щита 
 	 }
-	 ship->ShieldReg[2] = 0; // регенерация щита
+	 ship->ShieldReg[2] = 1; // регенерация щита
 
-	 ship->MissileDefense[2] = 0; // рейтинг системы ПРО
-	 ship->MissileDefenseTier[2] = 0; // уровень системы ПРО
-	 ship->HullStructureStability[2] = 0; // сопротивляемость критическому урону(УРОНУ, а не шансу крита)
-	 ship->ShieldStructureStability[2] = 0; // тоже самое, но для щита
+	 ship->MissileDefense[2] = 1; // рейтинг системы ПРО
+	 ship->MissileDefenseTier[2] = 1; // уровень системы ПРО
+	 ship->HullStructureStability[2] = 1; // сопротивляемость критическому урону(УРОНУ, а не шансу крита)
+	 ship->ShieldStructureStability[2] = 1; // тоже самое, но для щита
 
 	 /* battle stats */
 
@@ -80,7 +80,7 @@ void ShipManager::clearStats()
 
 	 ship->HullReg[3] = 0; // хотя реген корпуса может показаться бредом, некоторые враги вполне могут использовать это
 	 ship->Shield[3] = 0; // емкость щита
-	 for (int i(0); i < 2; i++)
+	 for (int i(0); i < ArmorTypesCount; i++)
 	 {
 		 ship->HullResist[i][3] = 0; // защита корпуса
 		 ship->ShieldResist[i][3] = 0; // защита щита 
@@ -96,6 +96,7 @@ void ShipManager::clearStats()
 
 void ShipManager::updateStats()
 {
+	Log("Updating ship values... ");
 	/* Nullify all stats */
 	clearStats();
 
@@ -107,7 +108,7 @@ void ShipManager::updateStats()
 			if (mType == moduleTypeSys)
 			{
 				SystemModuleItem *m = (SystemModuleItem*)(scheme->slots[i].m);
-				for (int j(0); m->effects.size(); j++)
+				for (int j(0); j < m->effects.size(); j++)
 				{
 					applyEffect(&m->effects[j]);
 				}
@@ -128,7 +129,7 @@ void ShipManager::updateStats()
 	ship->HyperDriveTier[3] = (ship->HyperDriveTier[0] + ship->HyperDriveTier[1]) * ship->HyperDriveTier[2]; 
 	ship->HyperDriveFuelCost[3] = (ship->HyperDriveFuelCost[0] + ship->HyperDriveFuelCost[1]) * ship->HyperDriveFuelCost[2]; 
 	ship->Hull[3] = (ship->Hull[0] + ship->Hull[1]) * ship->Hull[2]; // прочность корпуса
-	for (int i(0); i < 2; i++)
+	for (int i(0); i < ArmorTypesCount; i++)
 	{
 		ship->HullResist[i][3] = (ship->HullResist[i][0] + ship->HullResist[i][1]) * ship->HullResist[i][2]; // защита корпуса
 		ship->ShieldResist[i][3] = (ship->ShieldResist[i][0] + ship->ShieldResist[i][1]) * ship->ShieldResist[i][2]; // защита щита 
@@ -153,6 +154,7 @@ void ShipManager::applyEffect(LocalEffect * effect)
 	switch (type)
 	{
 	case EffectTypeNull:
+		Log("Error! Effect was EffectTypeNULL!");
 		break;
 	case ModuleStat:
 		applyModuleStatEffect(effect);
@@ -285,7 +287,7 @@ void ShipManager::init(ShipScheme * qScheme)
 	ship->HyperDriveTier[0] = scheme->HyperDriveTier; // класс гипердвигателя (определяет возможность путешествия в некоторые узлы
 	ship->HyperDriveFuelCost[0] = scheme->HyperDriveFuelCost; // стоимость прыжка / или модификатор стоимости прыжка (скорее всего второе)
 	ship->Hull[0] = scheme->Hull; // прочность корпуса
-	for (int i(0); i < 2; i++)
+	for (int i(0); i < ArmorTypesCount; i++)
 	{
 		ship->HullResist[i][0] = scheme->HullResist[i]; // защита корпуса
 		ship->ShieldResist[i][0] = scheme->ShieldResist[i]; // защита щита 
@@ -301,234 +303,6 @@ void ShipManager::init(ShipScheme * qScheme)
 
 void ShipManager::debug()
 {
-	SystemModuleItem * p = new SystemModuleItem();
-	WeaponModuleItem * w = new WeaponModuleItem();
-
-	p->nameLine = "Sample";
-	p->image = NULL;
-	p->descLines.push_back("Sample description");
-	p->lvl = 1;
-	p->rare = 1;
-	p->powerUsage = 1;
-	LocalEffect eff = LocalEffect();
-	eff.effectID = ModuleStat; // do not change
-	eff.subType = StatPowerSupply;
-	eff.f1 = 10; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	eff.subType = StatHull;
-	eff.f1 = 125; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	p->slot = slot_Universal;
-	p->type = moduleTypeSys;
 	
-
-	// scheme->setModule(p);
-	p = new SystemModuleItem(); // и так далее // объявлять p второй раз не нужно
-	// только создать новый объект через new
-	p->nameLine = "Click";
-	p->image = NULL;
-	p->descLines.push_back("Base sensor");
-	p->lvl = 1;
-	p->rare = 1;
-	p->powerUsage = 1;
-	eff.effectID = ModuleStat; // do not change
-	eff.subType = StatSensorPower;
-	eff.f1 = 50; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	eff.subType = StatSensorTier;
-	eff.f1 = 1; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	p->slot = slot_Universal;
-	p->type = moduleTypeSys;
-
-
-	p = new SystemModuleItem(); // и так далее // объявлять p второй раз не нужно
-	// только создать новый объект через new
-	p->nameLine = "Prototype";
-	p->image = NULL;
-	p->descLines.push_back("Shield generator prototype");
-	p->lvl = 1;
-	p->rare = 1;
-	p->powerUsage = 2;
-	eff.effectID = ModuleStat; // do not change
-	eff.subType = StatShield;
-	eff.f1 = 100; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	eff.subType = StatShieldResist;
-	eff.i1 = 0;
-	eff.f1 = 1; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	eff.subType = StatShieldResist;
-	eff.i1 = 1;
-	eff.f1 = 1.5f; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	p->slot = slot_Universal;
-	p->type = moduleTypeSys;
-
-
-	p = new SystemModuleItem(); // и так далее // объявлять p второй раз не нужно
-	// только создать новый объект через new
-	p->nameLine = "Atom-300";
-	p->image = NULL;
-	p->descLines.push_back("First gen nuclear reactor");
-	p->lvl = 1;
-	p->rare = 1;
-	p->powerUsage = 0;
-	eff.effectID = ModuleStat; // do not change
-	eff.subType = StatPowerSupply;
-	eff.f1 = 30; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	eff.subType = StatActionPoints;
-	eff.f1 = 10; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	p->slot = slot_Core;
-	p->type = moduleTypeSys;
-
-
-	p = new SystemModuleItem(); // и так далее // объявлять p второй раз не нужно
-	// только создать новый объект через new
-	p->nameLine = "Jump-prototype";
-	p->image = NULL;
-	p->descLines.push_back("Hyper drive core prototype");
-	p->lvl = 1;
-	p->rare = 1;
-	p->powerUsage = 25;
-	eff.effectID = ModuleStat; // do not change
-	eff.subType = StatHyperDriveSpeed;
-	eff.f1 = 10; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	eff.subType = StatHyperDriveTier;
-	eff.f1 = 1; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	eff.subType = StatHyperDriveFuelCost;
-	eff.f1 = 100; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	p->slot = slot_HyperDrive;
-	p->type = moduleTypeSys;
-
-
-	p = new SystemModuleItem(); // и так далее // объявлять p второй раз не нужно
-	// только создать новый объект через new
-	p->nameLine = "Alice";
-	p->image = NULL;
-	p->descLines.push_back("Space ship's system prototype");
-	p->lvl = 1;
-	p->rare = 1;
-	p->powerUsage = 2;
-	eff.effectID = ModuleStat; // do not change
-	eff.subType = StatHyperDriveSpeed;
-	eff.f1 = 0; // +X
-	eff.f2 = 2; // +X%
-	p->effects.push_back(eff);
-	eff.subType = StatPowerSupply;
-	eff.f1 = 0; // +X
-	eff.f2 = 10; // +X%
-	p->effects.push_back(eff);
-	eff.subType = StatHyperDriveFuelCost;
-	eff.f1 = 0; // +X
-	eff.f2 = 10; // +X%
-	p->effects.push_back(eff);
-	eff.subType = StatSensorPower;
-	eff.f1 = 0; // +X
-	eff.f2 = 10; // +X%
-	p->effects.push_back(eff);
-	eff.subType = StatShield;
-	eff.f1 = 0; // +X
-	eff.f2 = 10; // +X%
-	p->effects.push_back(eff);
-	eff.subType = StatMissileDefense;
-	eff.f1 = 20; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	eff.subType = StatMissileDefenseTier;
-	eff.f1 = 1; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	p->slot = slot_System;
-	p->type = moduleTypeSys;
-
-	p = new SystemModuleItem(); // и так далее // объявлять p второй раз не нужно
-	// только создать новый объект через new
-	p->nameLine = "Tigr";
-	p->image = NULL;
-	p->descLines.push_back("First mass production human space engine");
-	p->lvl = 1;
-	p->rare = 1;
-	p->powerUsage = 5;
-	eff.effectID = ModuleStat; // do not change
-	eff.subType = StatEvasion;
-	eff.f1 = 10; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	eff.subType = StatMobility;
-	eff.f1 = 2; // +X
-	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	p->slot = slot_Engine;
-	p->type = moduleTypeSys;
-	
-
-	w = new WeaponModuleItem(); // и так далее // объявлять p второй раз не нужно
-	// только создать новый объект через new
-	w->nameLine = "Gauss-weapon";
-	w->image = NULL;
-	w->descLines.push_back("First mass production human kinetic space weapon");
-	w->lvl = 1;
-	w->rare = 1;
-	w->powerUsage = 3;
-	w->ActivationCost = 1;
-	w->baseDamage = 10;
-	w->baseAccuracy = 70;
-	w->damageLosePerCell = 1;
-	w->damageMaxCells = 5;
-	w->accuracyLosePerCell = 20;
-	w->accuracyMaxCells = 3;
-	w->damageType = physical;
-	w->armorPierce[0] = 10;
-	w->armorPierce[1] = 5;
-	w->critChanceHull = 5;
-	w->critDamageHull = 20;
-	w->critChanceShield = 0;
-	w->critDamageShield = 20;
-	w->slot = slot_MainWeapon;
-	w->type = moduleTypeWeapon;
-
-
-	w = new WeaponModuleItem(); // и так далее // объявлять p второй раз не нужно
-	// только создать новый объект через new
-	w->nameLine = "Plasma-weapon prototype";
-	w->image = NULL;
-	w->descLines.push_back("First prototype of human plasma space weapon");
-	w->lvl = 1;
-	w->rare = 1;
-	w->powerUsage = 3;
-	w->ActivationCost = 2;
-	w->baseDamage = 30;
-	w->baseAccuracy = 100;
-	w->damageLosePerCell = 10;
-	w->damageMaxCells = 3;
-	w->accuracyLosePerCell = 10;
-	w->accuracyMaxCells = 3;
-	w->damageType = energy;
-	w->armorPierce[0] = 5;
-	w->armorPierce[1] = 15;
-	w->critChanceHull = 1;
-	w->critDamageHull = 60;
-	w->critChanceShield = 20;
-	w->critDamageShield = 80;
-	w->slot = slot_MainWeapon;
-	w->type = moduleTypeWeapon;
 }
 

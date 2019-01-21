@@ -12,6 +12,16 @@
 #include "script-system.h"
 #include "star-map-navigator.h"
 #include "space-battle-info.h"
+#include "effects.h"
+
+class ShipManager;
+class Ship;
+class ShipScheme;
+class CharacterSystem;
+class Character;
+class AdventureLogbook;
+class ScriptSystem;
+class ShipStorage;
 
 class GameData
 {
@@ -22,6 +32,8 @@ public:
 	Ship * mainShip;
 
 	ShipScheme * scheme;
+
+	ShipStorage * storage;
 	
 	CharacterSystem * charSystem;
 	// charSystem should use THIS vector instead of own
@@ -39,7 +51,7 @@ public:
 	__int64 mainSeed;
 	// seed of global world generation
 
-	std::vector<ZoneObject *> zones;
+	//std::vector<ZoneObject *> zones;
 	// space map
 
 	StarMapNavigator * starMap;
@@ -47,6 +59,7 @@ public:
 
 	SpaceBattleInfo * spaceBattleInfo;
 	// buffer for space battle registration 
+
 };
 
 static GameData * gd;

@@ -3,6 +3,10 @@
 #include "custom-types.h"
 #include "modules.h"
 
+#define ArmorTypesCount 2
+class ModuleItem;
+
+
 struct QShipSlotCell
 {
 	ModuleItem* m;
@@ -44,10 +48,10 @@ public:
 	float HyperDriveTier; // класс гипердвигателя (определяет возможность путешествия в некоторые узлы
 	float HyperDriveFuelCost; // стоимость прыжка / или модификатор стоимости прыжка (скорее всего второе)
 	float Hull; // прочность корпуса
-	float HullResist[HullResistN]; // защита корпуса
+	float HullResist[ArmorTypesCount]; // защита корпуса
 	float HullReg; // хотя реген корпуса может показаться бредом, некоторые враги вполне могут использовать это
 	float Shield; // емкость щита
-	float ShieldResist[ShieldResistN]; // защита щита 
+	float ShieldResist[ArmorTypesCount]; // защита щита 
 	float ShieldReg; // регенерация щита
 
 	float MissileDefense; // рейтинг системы ПРО

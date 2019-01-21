@@ -161,6 +161,7 @@
     <ClCompile Include="sources\characters.cpp" />
     <ClCompile Include="sources\debug.cpp" />
     <ClCompile Include="sources\game-enviroment.cpp" />
+    <ClCompile Include="sources\game-init.cpp" />
     <ClCompile Include="sources\game-loader.cpp" />
     <ClCompile Include="sources\game-menu.cpp" />
     <ClCompile Include="sources\global-manager.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="sources\ui-controller.cpp" />
     <ClCompile Include="sources\ui-objects.cpp" />
     <ClCompile Include="sources\ui-text.cpp" />
+    <ClCompile Include="sources\wnd-utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -191,6 +193,7 @@
     <ClInclude Include="sources\effects.h" />
     <ClInclude Include="sources\game-data-global.h" />
     <ClInclude Include="sources\game-enviroment.h" />
+    <ClInclude Include="sources\game-init.h" />
     <ClInclude Include="sources\game-loader.h" />
     <ClInclude Include="sources\game-menu.h" />
     <ClInclude Include="sources\global-manager.h" />
@@ -211,6 +214,7 @@
     <ClInclude Include="sources\ui-objects.h" />
     <ClInclude Include="sources\ui-text.h" />
     <ClInclude Include="sources\version.h" />
+    <ClInclude Include="sources\wnd-utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game-main.rc" />

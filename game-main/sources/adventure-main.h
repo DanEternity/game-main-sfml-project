@@ -63,7 +63,6 @@ public:
 private:
 	void ProcessNormalState();
 
-
 	bool initEventRequired = true;
 
 	void InitLevel(QGlobalEvent q);
@@ -81,5 +80,7 @@ private:
 
 	UI_ScrollerObject * testScroller;
 };
+
+
 
 #endif // !ADVENTURE_MANAGER

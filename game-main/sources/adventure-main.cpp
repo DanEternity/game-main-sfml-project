@@ -34,7 +34,7 @@ void AdventureManager::Init()
 	}
 
 	levelInitRequired = false;
-
+	Log("Level initialized... starting main game...");
 }
 
 void AdventureManager::Update()
@@ -161,3 +161,4 @@ void AdventureManager::InitLevel(bool debug)
 
 	state = AMNormal;
 }
+

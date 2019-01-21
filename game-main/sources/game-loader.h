@@ -11,7 +11,7 @@
 #include "base-ui.h"
 #include "debug.h"
 #include "ui-text.h"
-
+#include "wnd-utils.h"
 
 #include <string>
 #include <vector>

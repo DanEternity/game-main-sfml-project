@@ -8,6 +8,7 @@
 #define QModPercent 2
 #define QBattle 3
 
+#define ArmorTypesCount 2
 
 class Ship
 {
