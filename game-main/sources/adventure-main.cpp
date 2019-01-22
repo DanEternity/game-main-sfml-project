@@ -68,7 +68,7 @@ void AdventureManager::ProcessNormalState()
 		testScroller->Update();
 		testScroller->draw();
 		mapScale = 1.f + testScroller->getValue();
-
+		DrawModuleInfoBox(gd->scheme->slots[3].m, 20, 20);
 	}
 
 	// end;;;

@@ -10,7 +10,7 @@
 #include "lib\RichText.hpp"
 #include "base-ui.h"
 #include "game-enviroment.h"
-
+#include "wnd-utils.h"
 
 
 

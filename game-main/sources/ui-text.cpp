@@ -43,4 +43,6 @@ void UI_text::outTextXY(int x, int y, std::string text)
 {
 	textStream->setPosition(x, y);
 	*textStream << text;
+	g_wnd->draw(*textStream);
+	textStream->clear();
 }

@@ -156,6 +156,35 @@ void GameMenu::Init()
 		ui_ctrl_ng->RegisterEvent(i, onRelease, &menuEventHandler_gameSetup);
 	}
 
+	testModule = new SystemModuleItem();
+	SystemModuleItem * p = static_cast<SystemModuleItem*>(testModule); 
+	LocalEffect eff;
+	p->nameLine = "Prototype";
+	p->image = NULL;
+	p->descLines.push_back("Shield generator prototype");
+	p->slot = slot_Universal;
+	p->type = moduleTypeSys;
+	p->subType = class_ShieldGenerator;
+	p->lvl = 1;
+	p->rare = 1;
+	p->powerUsage = 2.1f;
+	eff.type = ModuleStat; // do not change
+	eff.subType = StatShield;
+	eff.f1 = 100; // +X
+	eff.f2 = 0; // +X%
+	p->effects.push_back(eff);
+	eff.subType = StatShieldResist;
+	eff.i1 = 0;
+	eff.f1 = 10; // +X
+	eff.f2 = 0; // +X%
+	p->effects.push_back(eff);
+	eff.subType = StatShieldResist;
+	eff.i1 = 1;
+	eff.f1 = 15; // +X
+	eff.f2 = 0; // +X%
+	p->effects.push_back(eff);
+
+
 	levelInitRequired = false;
 }
 
@@ -227,6 +256,8 @@ void GameMenu::UpdateStats()
 		p_back_button->draw();
 		p_test_button->draw();
 		ui_ctrl_st->Update();
+
+		DrawModuleInfoBox(testModule, 100, 100);
 	}
 	if (p_m_sub_state == statscontext)
 	{

@@ -10,6 +10,8 @@
 #include "ui-controller.h"
 #include "game-enviroment.h"
 #include "debug.h"
+#include "game-data-global.h"
+#include "module-info.h"
 
 #include <vector>
 #include <algorithm>

@@ -80,6 +80,8 @@ void ShipScheme::schemeDebug()
 	p->nameLine = "Sample";
 	p->image = NULL;
 	p->descLines.push_back("Sample description");
+	p->slot = slot_Universal;
+	p->type = moduleTypeSys;
 	p->lvl = 1;
 	p->rare = 1;
 	p->powerUsage = 1;
@@ -93,8 +95,7 @@ void ShipScheme::schemeDebug()
 	eff.f1 = 125; // +X
 	eff.f2 = 0; // +X%
 	p->effects.push_back(eff);
-	p->slot = slot_Universal;
-	p->type = moduleTypeSys;
+	
 
 	delete(p);
 
@@ -103,6 +104,9 @@ void ShipScheme::schemeDebug()
 	p->nameLine = "Click";
 	p->image = NULL;
 	p->descLines.push_back("Base sensor");
+	p->slot = slot_Universal;
+	p->type = moduleTypeSys;
+	p->subType = class_Sensor;
 	p->lvl = 1;
 	p->rare = 1;
 	p->powerUsage = 1;
@@ -115,8 +119,7 @@ void ShipScheme::schemeDebug()
 	eff.f1 = 1; // +X
 	eff.f2 = 0; // +X%
 	p->effects.push_back(eff);
-	p->slot = slot_Universal;
-	p->type = moduleTypeSys;
+	
 	setModule(p, 7);
 
 	p = new SystemModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
@@ -124,6 +127,9 @@ void ShipScheme::schemeDebug()
 	p->nameLine = "Prototype";
 	p->image = NULL;
 	p->descLines.push_back("Shield generator prototype");
+	p->slot = slot_Universal;
+	p->type = moduleTypeSys;
+	p->subType = class_ShieldGenerator;
 	p->lvl = 1;
 	p->rare = 1;
 	p->powerUsage = 2;
@@ -134,16 +140,15 @@ void ShipScheme::schemeDebug()
 	p->effects.push_back(eff);
 	eff.subType = StatShieldResist;
 	eff.i1 = 0;
-	eff.f1 = 1; // +X
+	eff.f1 = 10; // +X
 	eff.f2 = 0; // +X%
 	p->effects.push_back(eff);
 	eff.subType = StatShieldResist;
 	eff.i1 = 1;
-	eff.f1 = 1.5f; // +X
+	eff.f1 = 15; // +X
 	eff.f2 = 0; // +X%
 	p->effects.push_back(eff);
-	p->slot = slot_Universal;
-	p->type = moduleTypeSys;
+	
 	setModule(p, 6);
 
 	p = new SystemModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
@@ -151,6 +156,8 @@ void ShipScheme::schemeDebug()
 	p->nameLine = "Atom-300";
 	p->image = NULL;
 	p->descLines.push_back("First gen nuclear reactor");
+	p->slot = slot_Core;
+	p->type = moduleTypeSys;
 	p->lvl = 1;
 	p->rare = 1;
 	p->powerUsage = 0;
@@ -163,8 +170,7 @@ void ShipScheme::schemeDebug()
 	eff.f1 = 10; // +X
 	eff.f2 = 0; // +X%
 	p->effects.push_back(eff);
-	p->slot = slot_Core;
-	p->type = moduleTypeSys;
+	
 	setModule(p, 2);
 
 	p = new SystemModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
@@ -172,6 +178,8 @@ void ShipScheme::schemeDebug()
 	p->nameLine = "Jump-prototype";
 	p->image = NULL;
 	p->descLines.push_back("Hyper drive core prototype");
+	p->slot = slot_HyperDrive;
+	p->type = moduleTypeSys;
 	p->lvl = 1;
 	p->rare = 1;
 	p->powerUsage = 25;
@@ -188,8 +196,7 @@ void ShipScheme::schemeDebug()
 	eff.f1 = 100; // +X
 	eff.f2 = 0; // +X%
 	p->effects.push_back(eff);
-	p->slot = slot_HyperDrive;
-	p->type = moduleTypeSys;
+	
 	setModule(p, 4);
 
 	p = new SystemModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
@@ -197,29 +204,31 @@ void ShipScheme::schemeDebug()
 	p->nameLine = "Alice";
 	p->image = NULL;
 	p->descLines.push_back("Space ship's system prototype");
+	p->slot = slot_System;
+	p->type = moduleTypeSys;
 	p->lvl = 1;
 	p->rare = 1;
 	p->powerUsage = 2;
 	eff.type = ModuleStat; // do not change
 	eff.subType = StatHyperDriveSpeed;
 	eff.f1 = 0; // +X
-	eff.f2 = 2; // +X%
+	eff.f2 = 0.02f; // +X%
 	p->effects.push_back(eff);
 	eff.subType = StatPowerSupply;
 	eff.f1 = 0; // +X
-	eff.f2 = 10; // +X%
+	eff.f2 = 0.1f; // +X%
 	p->effects.push_back(eff);
 	eff.subType = StatHyperDriveFuelCost;
 	eff.f1 = 0; // +X
-	eff.f2 = 10; // +X%
+	eff.f2 = 0.1f; // +X%
 	p->effects.push_back(eff);
 	eff.subType = StatSensorPower;
 	eff.f1 = 0; // +X
-	eff.f2 = 10; // +X%
+	eff.f2 = 0.1f; // +X%
 	p->effects.push_back(eff);
 	eff.subType = StatShield;
 	eff.f1 = 0; // +X
-	eff.f2 = 10; // +X%
+	eff.f2 = 0.1f; // +X%
 	p->effects.push_back(eff);
 	eff.subType = StatMissileDefense;
 	eff.f1 = 20; // +X
@@ -229,8 +238,7 @@ void ShipScheme::schemeDebug()
 	eff.f1 = 1; // +X
 	eff.f2 = 0; // +X%
 	p->effects.push_back(eff);
-	p->slot = slot_System;
-	p->type = moduleTypeSys;
+	
 	setModule(p, 3);
 
 	p = new SystemModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
@@ -238,6 +246,8 @@ void ShipScheme::schemeDebug()
 	p->nameLine = "Tigr";
 	p->image = NULL;
 	p->descLines.push_back("First mass production human space engine");
+	p->slot = slot_Engine;
+	p->type = moduleTypeSys;
 	p->lvl = 1;
 	p->rare = 1;
 	p->powerUsage = 5;
@@ -250,8 +260,7 @@ void ShipScheme::schemeDebug()
 	eff.f1 = 2; // +X
 	eff.f2 = 0; // +X%
 	p->effects.push_back(eff);
-	p->slot = slot_Engine;
-	p->type = moduleTypeSys;
+	
 	setModule(p, 5);
 
 	w = new WeaponModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
@@ -259,6 +268,8 @@ void ShipScheme::schemeDebug()
 	w->nameLine = "Gauss-weapon";
 	w->image = NULL;
 	w->descLines.push_back("First mass production human kinetic space weapon");
+	w->slot = slot_MainWeapon;
+	w->type = moduleTypeWeapon;
 	w->lvl = 1;
 	w->rare = 1;
 	w->powerUsage = 3;
@@ -276,8 +287,7 @@ void ShipScheme::schemeDebug()
 	w->critDamageHull = 20;
 	w->critChanceShield = 0;
 	w->critDamageShield = 20;
-	w->slot = slot_MainWeapon;
-	w->type = moduleTypeWeapon;
+	
 	setModule(w, 0);
 
 	w = new WeaponModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
@@ -285,6 +295,8 @@ void ShipScheme::schemeDebug()
 	w->nameLine = "Plasma-weapon prototype";
 	w->image = NULL;
 	w->descLines.push_back("First prototype of human plasma space weapon");
+	w->slot = slot_MainWeapon;
+	w->type = moduleTypeWeapon;
 	w->lvl = 1;
 	w->rare = 1;
 	w->powerUsage = 3;
@@ -302,7 +314,6 @@ void ShipScheme::schemeDebug()
 	w->critDamageHull = 60;
 	w->critChanceShield = 20;
 	w->critDamageShield = 80;
-	w->slot = slot_MainWeapon;
-	w->type = moduleTypeWeapon;
+	
 	setModule(w, 1);
 }

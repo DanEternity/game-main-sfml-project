@@ -12,6 +12,8 @@
 #include "debug.h"
 #include "ui-text.h"
 #include "game-init.h"
+#include "modules.h"
+#include "module-info.h"
 
 #include <vector>
 
@@ -68,6 +70,8 @@ private:
 	std::vector<UI_ObjectImage *> bt_st; // statistics buttons
 	std::vector<UI_ObjectImage *> bt_ng; // new game setup buttons
 	std::vector<UI_ObjectImage *> bt_st_ctxt; // context statistics buttons
+
+	ModuleItem * testModule;
 };
 
 

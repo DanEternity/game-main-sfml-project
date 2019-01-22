@@ -16,3 +16,5 @@ extern sf::Sprite * menu_btsOnClick[15]; // onclick
 
 extern sf::Sprite * scroller_base_400; 
 extern sf::Sprite * scroller_btn_v1[3];
+
+extern sf::Sprite * itemInfoBoxBackground;
