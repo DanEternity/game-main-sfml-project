@@ -200,16 +200,16 @@ void GameMenu::Init()
 	w->damageType = energy;
 	w->baseDamage = 30;
 	w->baseAccuracy = 100;
-	w->damageLosePerCell = 10;
+	w->damageLosePerCell = 0.333f;
 	w->damageMaxCells = 3;
-	w->accuracyLosePerCell = 10;
+	w->accuracyLosePerCell = 0.1f;
 	w->accuracyMaxCells = 3;
 	w->armorPierce[0] = 5;
 	w->armorPierce[1] = 15;
 	w->critChanceHull = 0.01f;
-	w->critDamageHull = 60;
+	w->critDamageHull = 2.f;
 	w->critChanceShield = 0.2f;
-	w->critDamageShield = 80;
+	w->critDamageShield = 2.667f;
 
 	levelInitRequired = false;
 }
