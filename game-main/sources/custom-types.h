@@ -118,7 +118,7 @@ enum ModuleSlot
 	slot_Universal
 };
 
-enum ModuleSubClass
+enum ModuleSysSubClass
 {
 	class_Null,
 	class_ShieldGenerator,
@@ -128,8 +128,20 @@ enum ModuleSubClass
 	class_HullArmor
 };
 
+enum ModuleWepSubClass
+{
+	// main weapons
+	class_WepNull,
+	class_HeavyPlasmaCannon,
+	class_MedGauss,
+	// sub weapons 
+	class_lightMissile,
+	class_lightTorpedo
+};
+
 enum DamageType
 {
+	damage_null,
 	physical,
 	energy
 };
