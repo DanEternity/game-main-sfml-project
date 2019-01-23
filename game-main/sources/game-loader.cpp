@@ -132,7 +132,7 @@ void GameLoader::Update()
 		if (!tex->loadFromFile(tex_name[idx]))
 			Log("ERROR: texture loading failure!");
 
-		textures.push_back(tex);
+		//textures.push_back(tex);
 
 		*sprite_pointer[idx] = new sf::Sprite(*tex);
 		idx++;
