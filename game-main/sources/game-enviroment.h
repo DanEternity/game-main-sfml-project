@@ -24,7 +24,7 @@ extern GameMenu * g_menu; // GameMenu manager pointer
 extern AdventureManager * g_adv; // Adventure manager pointer
 //extern Ship * g_ship; // Player's main ship
 
-extern std::vector<sf::Texture *> textures;
+//extern std::vector<sf::Texture *> textures;
 
 
 /* functions */

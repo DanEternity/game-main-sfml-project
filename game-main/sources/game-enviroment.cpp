@@ -6,7 +6,7 @@ GameLoader * g_loader; // Game loader pointer
 GameMenu * g_menu; // GameMenu manager pointer
 AdventureManager * g_adv; // Adventure manager pointer
 
-std::vector<sf::Texture *> textures;
+//std::vector<sf::Texture *> textures;
 
 
 int sys_screen_w;
