@@ -18,3 +18,10 @@ extern sf::Sprite * scroller_base_400;
 extern sf::Sprite * scroller_btn_v1[3];
 
 extern sf::Sprite * itemInfoBoxBackground;
+
+/* adventure ui */
+extern sf::Sprite * UI_leftTop;
+extern sf::Sprite * UI_leftDown;
+extern sf::Sprite * UI_rightTop;
+extern sf::Sprite * UI_rightDown;
+

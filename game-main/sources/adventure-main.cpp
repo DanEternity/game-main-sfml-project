@@ -33,12 +33,18 @@ void AdventureManager::Init()
 		break;
 	}
 
+	initUI();
+	UI_initialized = true;
+
 	levelInitRequired = false;
 	Log("Level initialized... starting main game...");
 }
 
 void AdventureManager::Update()
 {
+
+	processBaseState(); // DRAW BASE MAP
+
 	switch (state)
 	{
 	case AMNone:
@@ -47,7 +53,7 @@ void AdventureManager::Update()
 	case AMNormal:
 		// primary state
 		// can move, open windows, interact, etc...
-		ProcessNormalState();
+		
 		break;
 	default:
 		break;
@@ -58,12 +64,52 @@ void AdventureManager::Destroy()
 {
 }
 
-void AdventureManager::ProcessNormalState()
+void AdventureManager::initUI()
+{
+	
+	leftTopElem = new UI_ObjectImage();
+	leftTopElem->LoadFromSprite(UI_leftTop);
+	leftTopElem->setPosition(0, 0);
+
+	leftDownElem = new UI_ObjectImage();
+	leftDownElem->LoadFromSprite(UI_leftDown);
+	leftDownElem->setPosition(0, resolution_h - leftDownElem->getSize().second);
+
+	rightDownElem = new UI_ObjectImage();
+	rightDownElem->LoadFromSprite(UI_rightDown);
+	rightDownElem->setPosition(resolution_w - rightDownElem->getSize().first, resolution_h - rightDownElem->getSize().second);
+
+	rightTopElem = new UI_ObjectImage();
+	rightTopElem->LoadFromSprite(UI_rightTop);
+	rightTopElem->setPosition(resolution_w - rightTopElem->getSize().first, 0);
+
+
+
+	UI_text * text = new UI_text(fontArial);
+
+/*
+	UI_ObjectImage * btnShip;
+	UI_ObjectImage * btnCharacters;
+	UI_ObjectImage * btnMap;
+	UI_ObjectImage * btnLog;
+	UI_ObjectImage * btnMenu;
+
+	UI_ObjectImage * hullBar;
+	UI_ObjectImage * ShieldBar;
+	UI_ObjectImage * fuelBar;
+
+	UI_ObjectImage * shipImage;
+
+	UI_Controller * mainScreenUIController;
+*/
+}
+
+void AdventureManager::processBaseState()
 {
 	float dt = g_mgr->deltaTime();
 	
 	// debug;;;
-	if (1)
+	if (0)
 	{
 		testScroller->Update();
 		testScroller->draw();
@@ -74,27 +120,31 @@ void AdventureManager::ProcessNormalState()
 	// end;;;
 
 	/* read keyboard */
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp))
+	if (controlsWorldScrolling)
 	{
-		mapScale += dt * 2;
-		mapScale = std::min(mapScale, 5.f);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp))
+		{
+			mapScale += dt * 2;
+			mapScale = std::min(mapScale, 5.f);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown))
+		{
+			mapScale -= dt * 2;
+			mapScale = std::max(mapScale, 1.f);
+		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown))
+	
+	if (controlsShipMovement)
 	{
-		mapScale -= dt * 2;
-		mapScale = std::max(mapScale, 1.f);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+			camX -= dt * 200.f;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+			camX += dt * 200.f;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+			camY -= dt * 200.f;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+			camY += dt * 200.f;
 	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		camX -= dt * 200.f;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		camX += dt * 200.f;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		camY -= dt * 200.f;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		camY += dt * 200.f;
-
 	// draw bg? LUL 
 	// no...
 	int ObjectCount = 0;
@@ -123,6 +173,16 @@ void AdventureManager::ProcessNormalState()
 
 	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	//	Log(std::to_string(ObjectCount));
+
+	drawMainUI();
+}
+
+void AdventureManager::drawMainUI()
+{
+	leftTopElem->draw();
+	leftDownElem->draw();
+	rightDownElem->draw();
+	rightTopElem->draw();
 }
 
 void AdventureManager::InitLevel(QGlobalEvent q)
@@ -162,3 +222,11 @@ void AdventureManager::InitLevel(bool debug)
 	state = AMNormal;
 }
 
+AMContextStatus::AMContextStatus()
+{
+	active = false;
+	//advancedTask = 0;
+	i1 = 0;
+	i2 = 0;
+	v0 = nullptr;
+}

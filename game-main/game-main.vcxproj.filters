@@ -138,6 +138,9 @@
     <ClCompile Include="sources\game-data-global.cpp">
       <Filter>game-data</Filter>
     </ClCompile>
+    <ClCompile Include="sources\utility.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\global-manager.h">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="sources\ui-base-elements.h">
       <Filter>common objects</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\utility.h">
+      <Filter>utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

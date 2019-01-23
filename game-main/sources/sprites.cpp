@@ -9,3 +9,9 @@ sf::Sprite * scroller_base_400;
 sf::Sprite * scroller_btn_v1[3];
 
 sf::Sprite * itemInfoBoxBackground;
+
+/* adventure ui */
+sf::Sprite * UI_leftTop;
+sf::Sprite * UI_leftDown;
+sf::Sprite * UI_rightTop;
+sf::Sprite * UI_rightDown;

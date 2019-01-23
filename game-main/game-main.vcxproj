@@ -180,6 +180,7 @@
     <ClCompile Include="sources\ui-controller.cpp" />
     <ClCompile Include="sources\ui-objects.cpp" />
     <ClCompile Include="sources\ui-text.cpp" />
+    <ClCompile Include="sources\utility.cpp" />
     <ClCompile Include="sources\wnd-utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +219,7 @@
     <ClInclude Include="sources\ui-controller.h" />
     <ClInclude Include="sources\ui-objects.h" />
     <ClInclude Include="sources\ui-text.h" />
+    <ClInclude Include="sources\utility.h" />
     <ClInclude Include="sources\version.h" />
     <ClInclude Include="sources\wnd-utils.h" />
   </ItemGroup>

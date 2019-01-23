@@ -29,6 +29,7 @@ public:
 	std::vector<std::string> tex_name;
 	std::vector<sf::Sprite**> sprite_pointer;
 
+	void addResource(sf::Sprite** sp, std::string filename);
 
 private:
 

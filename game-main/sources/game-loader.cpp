@@ -114,6 +114,11 @@ void GameLoader::Init()
 	tex_name.push_back(base + "adventure_ui/InfoBoxBG1.png");
 	sprite_pointer.push_back(&itemInfoBoxBackground);
 
+	addResource(&UI_leftDown, base + "adventure_ui/leftDown.png");
+	addResource(&UI_rightDown, base + "adventure_ui/rightDown.png");
+	addResource(&UI_leftTop, base + "adventure_ui/not_found.png");
+	addResource(&UI_rightTop, base + "adventure_ui/not_found.png");
+
 	/* Post Init */
 
 	levelInitRequired = false; // init completed
@@ -152,4 +157,10 @@ void GameLoader::Update()
 	if (loadCompleted)
 		g_mgr->setCurLevel(1);
 
+}
+
+void GameLoader::addResource(sf::Sprite ** sp, std::string filename)
+{
+	tex_name.push_back(filename);
+	sprite_pointer.push_back(sp);
 }
