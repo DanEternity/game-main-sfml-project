@@ -7,3 +7,5 @@ sf::Sprite * menu_btsOnClick[15]; // onclick
 
 sf::Sprite * scroller_base_400;
 sf::Sprite * scroller_btn_v1[3];
+
+sf::Sprite * itemInfoBoxBackground;

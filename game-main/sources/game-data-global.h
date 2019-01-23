@@ -62,7 +62,7 @@ public:
 
 };
 
-static GameData * gd;
+extern GameData * gd;
 
 #endif // !GAME_DATA_GLOBAL
 

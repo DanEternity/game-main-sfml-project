@@ -118,6 +118,16 @@ enum ModuleSlot
 	slot_Universal
 };
 
+enum ModuleSubClass
+{
+	class_Null,
+	class_ShieldGenerator,
+	class_Sensor,
+	class_ShieldEnhancer,
+	class_SensorEnhacer,
+	class_HullArmor
+};
+
 enum DamageType
 {
 	physical,

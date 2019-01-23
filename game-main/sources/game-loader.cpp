@@ -109,6 +109,11 @@ void GameLoader::Init()
 	tex_name.push_back(base + "scroller/b1_pressed.png");
 	sprite_pointer.push_back(&scroller_btn_v1[2]);
 
+	/* adenture ui textures */
+
+	tex_name.push_back(base + "adventure_ui/InfoBoxBG1.png");
+	sprite_pointer.push_back(&itemInfoBoxBackground);
+
 	/* Post Init */
 
 	levelInitRequired = false; // init completed
@@ -139,6 +144,7 @@ void GameLoader::Update()
 	}
 	else
 	{
+		initAllSamples();
 		loadCompleted = true;
 	}
 

@@ -52,6 +52,9 @@
     <Filter Include="items">
       <UniqueIdentifier>{a05b1d85-f43b-47e5-9a0d-5dabfd70738a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="common objects">
+      <UniqueIdentifier>{b9487078-27fc-4617-b5fa-5fa4439213a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -125,6 +128,15 @@
     </ClCompile>
     <ClCompile Include="sources\modules.cpp">
       <Filter>items</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\module-info.cpp">
+      <Filter>common objects</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\ui-base-elements.cpp">
+      <Filter>common objects</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game-data-global.cpp">
+      <Filter>game-data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +244,12 @@
     </ClInclude>
     <ClInclude Include="sources\modules.h">
       <Filter>items</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\module-info.h">
+      <Filter>common objects</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\ui-base-elements.h">
+      <Filter>common objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
