@@ -156,7 +156,7 @@ void GameMenu::Init()
 		ui_ctrl_ng->RegisterEvent(i, onRelease, &menuEventHandler_gameSetup);
 	}
 
-	testModule = new SystemModuleItem();
+	/*testModule = new SystemModuleItem();
 	SystemModuleItem * p = static_cast<SystemModuleItem*>(testModule); 
 	LocalEffect eff;
 	p->nameLine = "Prototype";
@@ -183,7 +183,33 @@ void GameMenu::Init()
 	eff.f1 = 15; // +X
 	eff.f2 = 0; // +X%
 	p->effects.push_back(eff);
-
+	*/
+	testModule = new WeaponModuleItem();
+	WeaponModuleItem * w = static_cast<WeaponModuleItem*>(testModule);
+	//w = new WeaponModuleItem(); 
+	w->nameLine = "Plasma-weapon prototype";
+	w->image = NULL;
+	w->descLines.push_back("First prototype of human plasma space weapon");
+	w->slot = slot_MainWeapon;
+	w->type = moduleTypeWeapon;
+	w->subType = class_HeavyPlasmaCannon;
+	w->lvl = 1;
+	w->rare = 1;
+	w->powerUsage = 3;
+	w->ActivationCost = 2;
+	w->damageType = energy;
+	w->baseDamage = 30;
+	w->baseAccuracy = 100;
+	w->damageLosePerCell = 10;
+	w->damageMaxCells = 3;
+	w->accuracyLosePerCell = 10;
+	w->accuracyMaxCells = 3;
+	w->armorPierce[0] = 5;
+	w->armorPierce[1] = 15;
+	w->critChanceHull = 0.01f;
+	w->critDamageHull = 60;
+	w->critChanceShield = 0.2f;
+	w->critDamageShield = 80;
 
 	levelInitRequired = false;
 }

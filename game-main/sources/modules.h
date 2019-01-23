@@ -10,7 +10,7 @@ class ModuleItem : public BaseItem
 public:
 	ModuleType type;
 	ModuleSlot slot;
-	ModuleSubClass subType = class_Null;
+	
 
 	float powerUsage;
 };
@@ -20,6 +20,7 @@ class WeaponModuleItem : public ModuleItem
 public:
 	WeaponModuleItem();
 	float ActivationCost;
+	ModuleWepSubClass subType = class_WepNull;
 	float baseDamage;
 	float baseAccuracy;
 	float damageLosePerCell;
@@ -41,6 +42,7 @@ class SystemModuleItem : public ModuleItem
 {
 public:
 	SystemModuleItem();
+	ModuleSysSubClass subType = class_Null;
 	// effects
 	// different from WeaponModuleItem
 	std::vector<LocalEffect> effects;

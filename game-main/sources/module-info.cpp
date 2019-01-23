@@ -15,7 +15,7 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 	{
 	case moduleTypeSys:
 	{
-		
+
 		SystemModuleItem * q = static_cast<SystemModuleItem*>(module);
 		int captionSize = std::max(20, int(32.f / (float(q->nameLine.size()) / 80.f + 1.f)));
 		//int captionSize = 32 / (40 / 40 + 1);
@@ -33,15 +33,15 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 			break;
 		case 4:
 		case 5:
-			s_text->setColor(sf::Color(255, 215, 0,255));
+			s_text->setColor(sf::Color(255, 215, 0, 255));
 			break;
 		case 6:
 		case 7:
-			s_text->setColor(sf::Color(32,255,32,255));
+			s_text->setColor(sf::Color(32, 255, 32, 255));
 			break;
 		case 8:
 		case 9:
-			s_text->setColor(sf::Color(197,0,127,255));
+			s_text->setColor(sf::Color(197, 0, 127, 255));
 			break;
 		case 10:
 			s_text->setColor(sf::Color::Cyan);
@@ -63,11 +63,11 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 		s_text->outTextXY(x + 160, y + 56, "Level: " + std::to_string(q->lvl));
 		s_text->outTextXY(x + 256, y + 56, "Rarity: " + std::to_string(q->rare));
 		auto qq = q->slot;
-		
+
 		switch (qq)
 		{
 		case slot_Core:
-			s_text->outTextXY(x + 160, y + 92, "Module type: Reactor" );
+			s_text->outTextXY(x + 160, y + 92, "Module type: Reactor");
 			break;
 		case slot_Engine:
 			s_text->outTextXY(x + 160, y + 92, "Module type: Engine");
@@ -91,7 +91,7 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 			{
 			case class_Null:
 				Log("Error! Subclass was NULL");
-				return;				
+				return;
 				break;
 			case class_ShieldGenerator:
 				s_text->outTextXY(x + 160, y + 92, "Module type: Shield Generator (Universal)");
@@ -111,13 +111,13 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 			default:
 				break;
 			}
-			
+
 		}
-			break;
+		break;
 		default:
 			break;
 		}
-		
+
 		ss << q->powerUsage;
 		std::string s;
 		ss >> s;
@@ -738,12 +738,213 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 			}
 		}
 	}
-		break;
+	break;
 	case moduleTypeWeapon:
+	{
+		WeaponModuleItem * q = static_cast<WeaponModuleItem*>(module);
+		int captionSize = std::max(20, int(32.f / (float(q->nameLine.size()) / 80.f + 1.f)));
+		//int captionSize = 32 / (40 / 40 + 1);
+		s_text->setCharacterSize(captionSize);
+		//s_text->setColor(sf::Color::Yellow);
+		switch (q->rare)
+		{
+		case 0:
+		case 1:
+			s_text->setColor(sf::Color::White);
+			break;
+		case 2:
+		case 3:
+			s_text->setColor(sf::Color(32, 92, 255, 255));
+			break;
+		case 4:
+		case 5:
+			s_text->setColor(sf::Color(255, 215, 0, 255));
+			break;
+		case 6:
+		case 7:
+			s_text->setColor(sf::Color(32, 255, 32, 255));
+			break;
+		case 8:
+		case 9:
+			s_text->setColor(sf::Color(197, 0, 127, 255));
+			break;
+		case 10:
+			s_text->setColor(sf::Color::Cyan);
+			break;
+		default:
+			break;
+		}
+		s_text->outTextXY(x + 160, y + 10, q->nameLine);
+		if (q->image != NULL)
+		{
+			q->image->setPosition(x + 10, y + 10);
+			q->image->draw();
+		}
+		s_text->setCharacterSize(16);
+		std::stringstream ss;
 
+		s_text->setColor(sf::Color::White);
+
+		s_text->outTextXY(x + 160, y + 56, "Level: " + std::to_string(q->lvl));
+		s_text->outTextXY(x + 256, y + 56, "Rarity: " + std::to_string(q->rare));
+
+		auto weaponDamageType = q->damageType;
+		switch (weaponDamageType)
+		{
+		case damage_null:
+			Log("Error! Damage type was NULL");
+			return;
+			break;
+		case physical:
+			s_text->outTextXY(x + 352, y + 56, "Weapon Type: Kinetic");
+			break;
+		case energy:
+			s_text->outTextXY(x + 352, y + 56, "Weapon Type: Energy");
+			break;
+		default:
+			break;
+		}
+
+		auto weaponSlot = q->slot;
+
+		switch (weaponSlot)
+		{
+
+		case slot_MainWeapon:
+			{
+				auto weaponSlotType = q->subType;
+				switch (weaponSlotType)
+				{
+				case class_Null:
+					Log("Error! Subclass was NULL");
+					return;
+					break;
+				case class_HeavyPlasmaCannon:
+					s_text->outTextXY(x + 160, y + 92, "Module type: Heavy Plasma Cannon (Primary)");
+					break;
+				case class_MedGauss:
+					s_text->outTextXY(x + 160, y + 92, "Module type: Medium Gauss Cannon (Primary)");
+					break;
+				default:
+					break;
+				}
+
+			}
+			break;
+		case slot_SubWeapon:
+			{
+				auto weaponSlotType = q->subType;
+				switch (weaponSlotType)
+				{
+				case class_Null:
+					Log("Error! Subclass was NULL");
+					return;
+					break;
+				case class_lightMissile:
+					s_text->outTextXY(x + 160, y + 92, "Module type: Light Missile (Secondary)");
+					break;
+				case class_lightTorpedo:
+					s_text->outTextXY(x + 160, y + 92, "Module type: Light Torpedo (Secondary)");
+					break;
+				default:
+					break;
+				}
+
+			}
+			break;
+		}
+
+		ss << q->powerUsage;
+		std::string s;
+		ss >> s;
+		s_text->outTextXY(x + 160, y + 128, "Power usage: " + s);
+		ss.clear();
+		s.clear();
+		ss << q->ActivationCost;
+		ss >> s;
+		int count = 0;
+		s_text->outTextXY(x + 320, y + 128, "Activation Cost: " + s);
+		ss.clear();
+		s.clear();
+		ss << q->baseDamage;
+		ss >> s;
+		s_text->outTextXY(x + 25, y + 174 + 36 * count, "Base Damage: " + s);
+		ss.clear();
+		s.clear();
+		count++;
+		ss << q->baseAccuracy;
+		ss >> s;
+		s_text->outTextXY(x + 25, y + 174 + 36 * count, "Base Accuracy: " + s);
+		ss.clear();
+		s.clear();
+		count++;
+		ss << q->damageLosePerCell;
+		ss >> s;
+		s_text->outTextXY(x + 25, y + 174 + 36 * count, "Damage Loss: " + s);
+		ss.clear();
+		s.clear();
+		count++;
+		ss << q->damageMaxCells;
+		ss >> s;
+		s_text->outTextXY(x + 25, y + 174 + 36 * count, "Effective Damage: " + s);
+		ss.clear();
+		s.clear();
+		count++;
+		ss << q->accuracyLosePerCell;
+		ss >> s;
+		s_text->outTextXY(x + 25, y + 174 + 36 * count, "Accuracy Loss: " + s);
+		ss.clear();
+		s.clear();
+		count++;
+		ss << q->accuracyMaxCells;
+		ss >> s;
+		s_text->outTextXY(x + 25, y + 174 + 36 * count, "Effective Accuracy: " + s);
+		ss.clear();
+		s.clear();
+		count++;
+		int countSec = 0;
+		ss << q->armorPierce[0];
+		ss >> s;
+		s_text->outTextXY(x + 200, y + 174 + 36 * countSec, "Hull Pierce: " + s);
+		ss.clear();
+		s.clear();
+		countSec++;
+		ss << q->armorPierce[1];
+		ss >> s;
+		s_text->outTextXY(x + 200, y + 174 + 36 * countSec, "Shield Pierce: " + s);
+		ss.clear();
+		s.clear();
+		countSec++;
+		ss << (q->critChanceHull)*100;
+		ss >> s;
+		s_text->outTextXY(x + 200, y + 174 + 36 * countSec, "Hull Crit Chance: " + s + "%");
+		ss.clear();
+		s.clear();
+		countSec++;
+		ss << q->critDamageHull;
+		ss >> s;
+		s_text->outTextXY(x + 200, y + 174 + 36 * countSec, "Hull Crit Damage: " + s);
+		ss.clear();
+		s.clear();
+		countSec++;
+		ss << (q->critChanceShield)*100;
+		ss >> s;
+		s_text->outTextXY(x + 200, y + 174 + 36 * countSec, "Shield Crit Chance: " + s + "%");
+		ss.clear();
+		s.clear();
+		countSec++;
+		ss << q->critDamageShield;
+		ss >> s;
+		s_text->outTextXY(x + 200, y + 174 + 36 * countSec, "Shield Crit Damage: " + s);
+		ss.clear();
+		s.clear();
+		countSec++;
+
+	}
 		break;
 	default:
 		Log("Error! Undefined module type.");
 		break;
 	}
 }
+
