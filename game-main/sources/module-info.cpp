@@ -854,91 +854,89 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 			break;
 		}
 
-		ss << q->powerUsage;
 		std::string s;
-		ss >> s;
+		std::string damageStr = "Damage: ";
+		std::string accuracyStr = "Accuracy: ";
+		std::string pierceStr = "Pierce: ";
+		std::string critHullStr = "Hull Crit: ";
+		std::string critShieldStr = "Shield Crit: ";
+
+		s = floatToString(q->powerUsage);
 		s_text->outTextXY(x + 160, y + 128, "Power usage: " + s);
-		ss.clear();
 		s.clear();
-		ss << q->ActivationCost;
-		ss >> s;
+
+		s = floatToString(q->ActivationCost);
 		int count = 0;
 		s_text->outTextXY(x + 320, y + 128, "Activation Cost: " + s);
-		ss.clear();
 		s.clear();
-		ss << q->baseDamage;
-		ss >> s;
-		s_text->outTextXY(x + 25, y + 174 + 36 * count, "Base Damage: " + s);
-		ss.clear();
+
+		s = floatToString(q->baseDamage);
+		damageStr += s;
 		s.clear();
+
+		auto weaponTextDamageType = q->damageType;
+		switch (weaponTextDamageType)
+		{
+		case physical:
+			s = "physical (";
+			damageStr += " " + s;
+			break;
+		case energy:
+			s = "energy (";
+			damageStr += " " + s;
+			break;
+		default:
+			break;
+		}
+		s.clear();
+
+		s = floatToString(q->damageMaxCells);
+		damageStr += s + " cells, ";
+		s.clear();
+		s = floatToString((q->damageLosePerCell)*100);
+		damageStr += "-" + s + "%)";
+		s.clear();
+		s_text->outTextXY(x + 25, y + 190 + 36 * count, damageStr);
 		count++;
-		ss << q->baseAccuracy;
-		ss >> s;
-		s_text->outTextXY(x + 25, y + 174 + 36 * count, "Base Accuracy: " + s);
-		ss.clear();
+
+		s = floatToString(q->baseAccuracy);
+		accuracyStr += s + " (";
 		s.clear();
+		s = floatToString(q->accuracyMaxCells);
+		accuracyStr += s + " cells, ";
+		s.clear();
+		s = floatToString((q->accuracyLosePerCell)*100);
+		accuracyStr += "-" + s + "%)";
+		s.clear();
+		s_text->outTextXY(x + 25, y + 190 + 36 * count, accuracyStr);
 		count++;
-		ss << q->damageLosePerCell;
-		ss >> s;
-		s_text->outTextXY(x + 25, y + 174 + 36 * count, "Damage Loss: " + s);
-		ss.clear();
+
+		s = floatToString(q->armorPierce[0]);
+		pierceStr += s + "/";
 		s.clear();
+		s = floatToString(q->armorPierce[1]);
+		pierceStr += s + " (Hull/Shield)";
+		s.clear();
+		s_text->outTextXY(x + 25, y + 190 + 36 * count, pierceStr);
 		count++;
-		ss << q->damageMaxCells;
-		ss >> s;
-		s_text->outTextXY(x + 25, y + 174 + 36 * count, "Effective Damage: " + s);
-		ss.clear();
+
+		s = floatToString((q->critChanceHull)*100);
+		critHullStr += s + "% (";
 		s.clear();
+		s = floatToString((q->critDamageHull)*100);
+		critHullStr += s + "% damage) -> ";
+		s.clear();
+		s_text->outTextXY(x + 25, y + 190 + 36 * count, critHullStr);
 		count++;
-		ss << q->accuracyLosePerCell;
-		ss >> s;
-		s_text->outTextXY(x + 25, y + 174 + 36 * count, "Accuracy Loss: " + s);
-		ss.clear();
+
+		s = floatToString((q->critChanceShield) * 100);
+		critShieldStr += s + "% (";
 		s.clear();
+		s = floatToString((q->critDamageShield)*100);
+		critShieldStr += s + "% damage) -> ";
+		s.clear();
+		s_text->outTextXY(x + 25, y + 190 + 36 * count, critShieldStr);
 		count++;
-		ss << q->accuracyMaxCells;
-		ss >> s;
-		s_text->outTextXY(x + 25, y + 174 + 36 * count, "Effective Accuracy: " + s);
-		ss.clear();
-		s.clear();
-		count++;
-		int countSec = 0;
-		ss << q->armorPierce[0];
-		ss >> s;
-		s_text->outTextXY(x + 200, y + 174 + 36 * countSec, "Hull Pierce: " + s);
-		ss.clear();
-		s.clear();
-		countSec++;
-		ss << q->armorPierce[1];
-		ss >> s;
-		s_text->outTextXY(x + 200, y + 174 + 36 * countSec, "Shield Pierce: " + s);
-		ss.clear();
-		s.clear();
-		countSec++;
-		ss << (q->critChanceHull)*100;
-		ss >> s;
-		s_text->outTextXY(x + 200, y + 174 + 36 * countSec, "Hull Crit Chance: " + s + "%");
-		ss.clear();
-		s.clear();
-		countSec++;
-		ss << q->critDamageHull;
-		ss >> s;
-		s_text->outTextXY(x + 200, y + 174 + 36 * countSec, "Hull Crit Damage: " + s);
-		ss.clear();
-		s.clear();
-		countSec++;
-		ss << (q->critChanceShield)*100;
-		ss >> s;
-		s_text->outTextXY(x + 200, y + 174 + 36 * countSec, "Shield Crit Chance: " + s + "%");
-		ss.clear();
-		s.clear();
-		countSec++;
-		ss << q->critDamageShield;
-		ss >> s;
-		s_text->outTextXY(x + 200, y + 174 + 36 * countSec, "Shield Crit Damage: " + s);
-		ss.clear();
-		s.clear();
-		countSec++;
 
 	}
 		break;

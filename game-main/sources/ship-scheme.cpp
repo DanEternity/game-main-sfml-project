@@ -270,23 +270,24 @@ void ShipScheme::schemeDebug()
 	w->descLines.push_back("First mass production human kinetic space weapon");
 	w->slot = slot_MainWeapon;
 	w->type = moduleTypeWeapon;
+	w->subType = class_MedGauss;
 	w->lvl = 1;
 	w->rare = 1;
 	w->powerUsage = 3;
 	w->ActivationCost = 1;
+	w->damageType = physical;
 	w->baseDamage = 10;
 	w->baseAccuracy = 70;
-	w->damageLosePerCell = 1;
+	w->damageLosePerCell = 0.1f;
 	w->damageMaxCells = 5;
-	w->accuracyLosePerCell = 20;
+	w->accuracyLosePerCell = 0.286f;
 	w->accuracyMaxCells = 3;
-	w->damageType = physical;
 	w->armorPierce[0] = 10;
 	w->armorPierce[1] = 5;
-	w->critChanceHull = 5;
-	w->critDamageHull = 20;
-	w->critChanceShield = 0;
-	w->critDamageShield = 20;
+	w->critChanceHull = 0.05f;
+	w->critDamageHull = 2.f;
+	w->critChanceShield = 0.f;
+	w->critDamageShield = 2.f;
 	
 	setModule(w, 0);
 
@@ -297,23 +298,24 @@ void ShipScheme::schemeDebug()
 	w->descLines.push_back("First prototype of human plasma space weapon");
 	w->slot = slot_MainWeapon;
 	w->type = moduleTypeWeapon;
+	w->subType = class_HeavyPlasmaCannon;
 	w->lvl = 1;
 	w->rare = 1;
 	w->powerUsage = 3;
 	w->ActivationCost = 2;
+	w->damageType = energy;
 	w->baseDamage = 30;
 	w->baseAccuracy = 100;
-	w->damageLosePerCell = 10;
+	w->damageLosePerCell = 0.333f;
 	w->damageMaxCells = 3;
-	w->accuracyLosePerCell = 10;
+	w->accuracyLosePerCell = 0.1f;
 	w->accuracyMaxCells = 3;
-	w->damageType = energy;
 	w->armorPierce[0] = 5;
 	w->armorPierce[1] = 15;
-	w->critChanceHull = 1;
-	w->critDamageHull = 60;
-	w->critChanceShield = 20;
-	w->critDamageShield = 80;
+	w->critChanceHull = 0.01f;
+	w->critDamageHull = 2.f;
+	w->critChanceShield = 0.2f;
+	w->critDamageShield = 2.667f;
 	
 	setModule(w, 1);
 }

@@ -5,6 +5,7 @@
 #include "modules.h"
 #include "wnd-utils.h"
 #include "ui-base-elements.h"
+#include "utility.h"
 #include <sstream>
 
 void DrawModuleInfoBox(ModuleItem * module, int x, int y);
