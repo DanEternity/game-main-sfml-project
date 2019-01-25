@@ -118,6 +118,20 @@ void GameLoader::Init()
 	addResource(&UI_rightDown, base + "adventure_ui/rightDown.png");
 	addResource(&UI_leftTop, base + "adventure_ui/not_found.png");
 	addResource(&UI_rightTop, base + "adventure_ui/not_found.png");
+	addResource(&UI_adv_btns[0][0], base + "adventure_ui/btnShip.png");
+	addResource(&UI_adv_btns[0][1], base + "adventure_ui/btnShip.png");
+	addResource(&UI_adv_btns[0][2], base + "adventure_ui/btnShip.png");
+	addResource(&UI_adv_btns[1][0], base + "adventure_ui/btnChar.png");
+	addResource(&UI_adv_btns[1][1], base + "adventure_ui/btnChar.png");
+	addResource(&UI_adv_btns[1][2], base + "adventure_ui/btnChar.png");
+	addResource(&UI_adv_btns[2][0], base + "adventure_ui/btnMap.png");
+	addResource(&UI_adv_btns[2][1], base + "adventure_ui/btnMap.png");
+	addResource(&UI_adv_btns[2][2], base + "adventure_ui/btnMap.png");
+	addResource(&UI_adv_btns[3][0], base + "adventure_ui/btnLog.png");
+	addResource(&UI_adv_btns[3][1], base + "adventure_ui/btnLog.png");
+	addResource(&UI_adv_btns[3][2], base + "adventure_ui/btnLog.png");
+
+	addResource(&UI_adv_window_bg, base + "adventure_ui/windowBG.png");
 
 	/* Post Init */
 

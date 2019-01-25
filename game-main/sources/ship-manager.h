@@ -15,7 +15,14 @@ class ShipStorage
 {
 public:
 	std::vector<BaseItem*> items;
-
+	int rows; // y
+	int columns; // x
+	int size;
+	int freeSpace;
+	void create(int size);
+	void addItem(BaseItem * item);
+	void addItem(BaseItem * item, int cellID, bool raiseErrorOnBlockedCell);
+	void removeItem(int id, bool callDelete = false);
 };
 class ShipManager
 {

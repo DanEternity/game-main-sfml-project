@@ -306,3 +306,92 @@ void ShipManager::debug()
 	
 }
 
+void ShipStorage::create(int p_size)
+{
+	size = p_size;
+	items.assign(size, nullptr);
+	freeSpace = size;
+}
+
+void ShipStorage::addItem(BaseItem * item)
+{
+	if (item == NULL)
+	{
+		Log("Error! Item was NULL");
+		return;
+	}
+
+	if (freeSpace == 0)
+	{
+		Log("Error! Not enough space in storage");
+		return;
+	}
+	int i = 0;
+	while (items[i] != nullptr && i < items.size()) i++;
+
+	if (i == items.size())
+	{
+		Log("Failure! Storage data corrupted");
+		return;
+	}
+	
+	freeSpace--;
+
+	items[i] = item;
+}
+
+void ShipStorage::addItem(BaseItem * item, int cellID, bool flag)
+{
+	if (item == NULL)
+	{
+		Log("Error! Item was NULL");
+		return;
+	}
+
+	if (cellID > items.size() - 1)
+	{
+		Log("Error! Cell Id > max storage size");
+		return;
+	}
+	
+	if (freeSpace == 0)
+	{
+		Log("Error! Not enough space in storage");
+		return;
+	}
+
+	if (items[cellID] != NULL)
+	{
+		if (flag)
+		{
+			Log("Warning! Required cell not empty");
+			return;
+		}
+		else
+		{
+			addItem(item);
+		}
+	}
+	else
+		items[cellID] = item;
+}
+
+void ShipStorage::removeItem(int id, bool callDelete)
+{
+	if (id > items.size() - 1)
+	{
+		Log("Error! Cell Id > max storage size");
+		return;
+	}
+
+	if (items[id] == NULL)
+	{
+		Log("Error! Item not found!");
+		return;
+	}
+
+	if (callDelete)
+		delete(items[id]);
+
+	items[id] = NULL;
+}

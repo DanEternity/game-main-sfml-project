@@ -17,7 +17,7 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
-
+#include <stack>
 
 
 class UI_ObjectImage;
@@ -45,7 +45,15 @@ struct AMZone
 enum AMState
 {
 	AMNone,
-	AMNormal
+	AMNormal,
+	AMShip,
+	AMLab,
+	AMCrew,
+	AMCraft,
+	AMStorage,
+	AMStats,
+	AMHangar,
+	AMEvent
 };
 
 class ZoneObject
@@ -82,11 +90,16 @@ public:
 	AMState state;
 	AMContextStatus context;
 	
-
+	std::stack<AMState> stack; // 
 
 private:
 	void initUI();
+	
 	void processBaseState();
+	void processShipWindowMain();
+	void processShipWindowShip();
+	void processShipWindowStorage();
+
 	void drawMainUI();
 
 	bool initEventRequired = true;
@@ -112,6 +125,7 @@ private:
 	bool controlsShipMovement = true; // ship can move (disabled when other window open)
 	bool controlsMainButtons = true; // buttons in main screen can be pressed, updated etc...
 	bool controlsWorldScrolling = true; // 
+	bool controlsKeyboardWindowSwitch = true; // can open/close windows wia keyboard buttons
 
 	/* main screen ui elements */
 	bool UI_initialized = false;
@@ -134,6 +148,8 @@ private:
 	UI_ObjectImage * fuelBar;
 
 	UI_ObjectImage * shipImage;
+
+	UI_ObjectImage * windowBG;
 
 	UI_Controller * mainScreenUIController;
 

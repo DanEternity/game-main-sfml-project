@@ -53,7 +53,17 @@ void AdventureManager::Update()
 	case AMNormal:
 		// primary state
 		// can move, open windows, interact, etc...
-		
+		break;
+	case AMShip:
+	case AMLab:
+	case AMCrew:
+	case AMCraft:
+	case AMStorage:
+	case AMStats:
+	case AMHangar:
+		processShipWindowMain();
+		break;
+	case AMEvent:
 		break;
 	default:
 		break;
@@ -83,7 +93,29 @@ void AdventureManager::initUI()
 	rightTopElem->LoadFromSprite(UI_rightTop);
 	rightTopElem->setPosition(resolution_w - rightTopElem->getSize().first, 0);
 
+	btnShip = new UI_ObjectImage(); // 0
+	btnShip->LoadFromSprite(UI_adv_btns[0][0]);
+	btnShip->setPosition(resolution_w - 10 - 64, resolution_h - 10 - 64);
 
+	btnMenu = new UI_ObjectImage();
+	btnMenu->LoadFromSprite(UI_adv_btns[0][0]);
+	btnMenu->setPosition(resolution_w - 10 - 64, 0);
+
+	btnMap = new UI_ObjectImage(); // 2
+	btnMap->LoadFromSprite(UI_adv_btns[2][0]);
+	btnMap->setPosition(resolution_w - 8 - 48, resolution_h - 10 - 64 - 48 - 48 - 10 - 10);
+
+	btnCharacters = new UI_ObjectImage(); // 1
+	btnCharacters->LoadFromSprite(UI_adv_btns[1][0]);
+	btnCharacters->setPosition(resolution_w - 8 - 48, resolution_h - 10 - 64 - 48 - 10);
+
+	btnLog = new UI_ObjectImage(); // 3
+	btnLog->LoadFromSprite(UI_adv_btns[3][0]);
+	btnLog->setPosition(resolution_w - 8 - 48, resolution_h - 10 - 64 - 48 - 48 - 10 - 10 - 58);
+
+	windowBG = new UI_ObjectImage();
+	windowBG->LoadFromSprite(UI_adv_window_bg);
+	windowBG->setPosition(resolution_w / 2 - 1300 / 2, resolution_h / 2 - 735 / 2);
 
 	UI_text * text = new UI_text(fontArial);
 
@@ -109,12 +141,16 @@ void AdventureManager::processBaseState()
 	float dt = g_mgr->deltaTime();
 	
 	// debug;;;
-	if (0)
+	if (1)
 	{
-		testScroller->Update();
+		/*testScroller->Update();
 		testScroller->draw();
 		mapScale = 1.f + testScroller->getValue();
-		DrawModuleInfoBox(gd->scheme->slots[3].m, 20, 20);
+		DrawModuleInfoBox(gd->scheme->slots[3].m, 20, 20);*/
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+		{
+			gd->scriptSystem->execute(0);
+		}
 	}
 
 	// end;;;
@@ -144,6 +180,14 @@ void AdventureManager::processBaseState()
 			camY -= dt * 200.f;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 			camY += dt * 200.f;
+	}
+
+	if (controlsKeyboardWindowSwitch)
+	{
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			state = AMShip;
+		}
 	}
 	// draw bg? LUL 
 	// no...
@@ -177,12 +221,52 @@ void AdventureManager::processBaseState()
 	drawMainUI();
 }
 
+void AdventureManager::processShipWindowMain()
+{
+	// draw window;
+	windowBG->draw();
+	// draw buttons;
+	switch (state) // specific buttons and functions;
+	{
+	case AMShip:
+		break;
+	case AMLab:
+		break;
+	case AMCrew:
+		break;
+	case AMCraft:
+		break;
+	case AMStorage:
+		// 
+		break;
+	case AMStats:
+		break;
+	case AMHangar:
+		break;
+	default:
+		break;
+	}
+}
+
+void AdventureManager::processShipWindowShip()
+{
+}
+
+void AdventureManager::processShipWindowStorage()
+{
+}
+
 void AdventureManager::drawMainUI()
 {
 	leftTopElem->draw();
 	leftDownElem->draw();
 	rightDownElem->draw();
 	rightTopElem->draw();
+
+	btnShip->draw();
+	btnLog->draw();
+	btnCharacters->draw();
+	btnMap->draw();
 }
 
 void AdventureManager::InitLevel(QGlobalEvent q)
@@ -220,6 +304,22 @@ void AdventureManager::InitLevel(bool debug)
 	testScroller->setPosition(1500, 80);
 
 	state = AMNormal;
+
+	ActionScriptDebugText * qq = new ActionScriptDebugText();
+	qq->next = 1;
+	qq->str = "Script test";
+	qq->final = false;
+	//qq->type = script_action;
+	//qq->acType = ACType_debugText;
+
+	int id = gd->scriptSystem->addLine(qq);
+
+	qq = new ActionScriptDebugText();
+	qq->final = true;
+	qq->str = "Script test 2";
+	
+	gd->scriptSystem->addElement(id, qq);
+
 }
 
 AMContextStatus::AMContextStatus()

@@ -40,4 +40,8 @@ public:
 	float HullStructureStability[4]; // сопротивляемость критическому урону(УРОНУ, а не шансу крита)
 	float ShieldStructureStability[4]; // тоже самое, но для щита
 
+	float CurrentHull;
+	float CurrentShield;
+	
+
 };

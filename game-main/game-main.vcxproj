@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sources\action-script.cpp" />
     <ClCompile Include="sources\adventure-main.cpp" />
     <ClCompile Include="sources\base-manager.cpp" />
     <ClCompile Include="sources\base-ui.cpp" />
@@ -171,6 +172,8 @@
     <ClCompile Include="sources\lib\RichText.cpp" />
     <ClCompile Include="sources\module-info.cpp" />
     <ClCompile Include="sources\modules.cpp" />
+    <ClCompile Include="sources\script-conditions.cpp" />
+    <ClCompile Include="sources\script-system.cpp" />
     <ClCompile Include="sources\ship-manager.cpp" />
     <ClCompile Include="sources\ship-scheme.cpp" />
     <ClCompile Include="sources\ship.cpp" />
@@ -185,12 +188,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="sources\action-script.h" />
     <ClInclude Include="sources\adventure-logbook.h" />
     <ClInclude Include="sources\adventure-main.h" />
     <ClInclude Include="sources\base-manager.h" />
+    <ClInclude Include="sources\base-script.h" />
     <ClInclude Include="sources\base-ui.h" />
     <ClInclude Include="sources\character-manager.h" />
     <ClInclude Include="sources\characters.h" />
+    <ClInclude Include="sources\choose-script.h" />
     <ClInclude Include="sources\consts.h" />
     <ClInclude Include="sources\custom-types.h" />
     <ClInclude Include="sources\debug.h" />
@@ -207,6 +213,7 @@
     <ClInclude Include="sources\module-info.h" />
     <ClInclude Include="sources\modules.h" />
     <ClInclude Include="sources\quests.h" />
+    <ClInclude Include="sources\script-conditions.h" />
     <ClInclude Include="sources\script-system.h" />
     <ClInclude Include="sources\ship-manager.h" />
     <ClInclude Include="sources\ship.h" />

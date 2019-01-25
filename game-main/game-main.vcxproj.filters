@@ -141,6 +141,15 @@
     <ClCompile Include="sources\utility.cpp">
       <Filter>utility</Filter>
     </ClCompile>
+    <ClCompile Include="sources\script-conditions.cpp">
+      <Filter>scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\script-system.cpp">
+      <Filter>scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\action-script.cpp">
+      <Filter>scripts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\global-manager.h">
@@ -256,6 +265,18 @@
     </ClInclude>
     <ClInclude Include="sources\utility.h">
       <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\base-script.h">
+      <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\choose-script.h">
+      <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\script-conditions.h">
+      <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\action-script.h">
+      <Filter>scripts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

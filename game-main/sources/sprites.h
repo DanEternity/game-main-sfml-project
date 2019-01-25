@@ -25,3 +25,6 @@ extern sf::Sprite * UI_leftDown;
 extern sf::Sprite * UI_rightTop;
 extern sf::Sprite * UI_rightDown;
 
+extern sf::Sprite * UI_adv_btns[40][3];
+
+extern sf::Sprite * UI_adv_window_bg;
