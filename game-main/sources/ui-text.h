@@ -19,6 +19,7 @@
 class UI_text : public BaseUIElem
 {
 public:
+	UI_text();
 	UI_text(sf::Font * fontPointer);
 	sf::Font * font;
 	sfe::RichText * textStream;

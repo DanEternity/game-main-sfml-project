@@ -153,6 +153,8 @@ private:
 
 	UI_Controller * mainScreenUIController;
 
+	UI_TextObject * textObject;
+	
 };
 
 

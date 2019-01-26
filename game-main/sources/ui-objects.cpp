@@ -1,5 +1,7 @@
 #include "ui-objects.h"
 
+std::vector<UI_ScrollerObject *> UI_ScrollerEventRegTable;
+
 UI_ObjectImage::UI_ObjectImage()
 {
 }
@@ -117,6 +119,10 @@ UI_MultiObject::UI_MultiObject(int x, int y)
 
 	p_sprite = new sf::Sprite();
 
+}
+
+UI_MultiObject::UI_MultiObject()
+{
 }
 
 void UI_ScrollerObject::draw()
@@ -249,20 +255,145 @@ float UI_ScrollerObject::getValue()
 
 void UI_ScrollerObject::setupController()
 {
-	scroller_ctrl->AddElement(button);
-	scroller_ctrl->RegisterEvent(0, onHoverBegin, &UI_ScrollerPrivateEventHandler);
-	scroller_ctrl->RegisterEvent(0, onHoverEnd, &UI_ScrollerPrivateEventHandler);
-	scroller_ctrl->RegisterEvent(0, onPress, &UI_ScrollerPrivateEventHandler);
-	scroller_ctrl->RegisterEvent(0, onRelease, &UI_ScrollerPrivateEventHandler);
-	UI_ScrollerPrivateEventRegister(this);
+	int t = scroller_ctrl->AddElement(button);
+	scroller_ctrl->RegisterEvent(t, onHoverBegin, &UI_ScrollerPrivateEventHandler);
+	scroller_ctrl->RegisterEvent(t, onHoverEnd, &UI_ScrollerPrivateEventHandler);
+	scroller_ctrl->RegisterEvent(t, onPress, &UI_ScrollerPrivateEventHandler);
+	scroller_ctrl->RegisterEvent(t, onRelease, &UI_ScrollerPrivateEventHandler);
+	
+	button->localID = UI_ScrollerPrivateEventRegister(this);
 }
 
-void UI_ScrollerPrivateEventRegister(UI_ScrollerObject * target)
+int UI_ScrollerPrivateEventRegister(UI_ScrollerObject * target)
 {
 	UI_ScrollerEventRegTable.push_back(target);
+	return UI_ScrollerEventRegTable.size() - 1;
 }
 
 void UI_ScrollerPrivateEventHandler(UIEventData * data)
 {
-	UI_ScrollerEventRegTable[data->objectID]->HandleEvent(data);
+	UI_ScrollerEventRegTable[data->ref->localID]->HandleEvent(data);
+}
+
+UI_TextLineObject::UI_TextLineObject()
+{
+}
+
+void UI_TextLineObject::draw()
+{
+	p_canvas->draw(*textStream);
+	if (!staticText)
+		textStream->clear();
+
+//	p_canvas->draw(*p_sprite);
+}
+
+void UI_TextLineObject::setPosition(int x, int y)
+{
+	BaseUIElem::setPosition(x, y);
+	//p_sprite->setPosition(x, y);
+	textStream->setPosition(x, y);
+}
+
+void UI_TextLineObject::setSize(int width, int heigh)
+{
+	BaseUIElem::setSize(width, heigh);
+}
+
+void UI_TextLineObject::setTexture(sf::RenderTexture * texture)
+{
+	p_canvas = texture;
+}
+
+void UI_TextLineObject::setCanvas(sf::RenderTexture * canvas)
+{
+	p_canvas = canvas;
+}
+
+UI_TextObject::UI_TextObject()
+{
+}
+
+void UI_TextObject::draw()
+{
+	if (rebuildImage)
+	{
+		buildTexture();
+		const sf::Texture& tex = p_canvas->getTexture();
+		p_sprite->setTexture(tex);
+		p_sprite->setTextureRect(sf::IntRect(0, p_h, p_w, -p_h));
+	}
+
+	g_wnd->draw(*p_sprite);
+	p_Scroller->draw();
+}
+
+void UI_TextObject::setPosition(int x, int y)
+{
+	BaseUIElem::setPosition(x, y);
+	p_sprite->setPosition(x, y);
+	p_Scroller->setPosition(x + p_w, y + 4);
+}
+
+void UI_TextObject::setSize(int width, int heigh)
+{
+	BaseUIElem::setSize(width, heigh);
+}
+
+void UI_TextObject::init(sf::Font * font, int x, int y)
+{
+	p_Scroller = new UI_ScrollerObject();
+	p_text = new UI_TextLineObject();
+	//p_canvas = new sf::RenderTexture();
+
+	p_text->font = font; 
+	p_text->textStream->setFont(*font);
+	p_text->setColor(sf::Color::White);
+	p_Scroller->Create();
+
+	p_canvas = new sf::RenderTexture();
+	if (!p_canvas->create(x, y))
+	{
+		// error
+	}
+
+	p_w = x;
+	p_h = y;
+
+	p_sprite = new sf::Sprite();
+	
+	p_text->setCanvas(p_canvas);
+
+	p_Scroller->setPosition(x, 0 + 4);
+
+}
+
+void UI_TextObject::buildTexture()
+{
+	baseY = -1 * p_Scroller->getValue() * std::max(0, CalcHeight() - p_h + lineSpacing + topIndent + 4);
+	p_canvas->clear();
+
+	int q = topIndent;
+
+	for (int i(0); i < lines.size(); i++)
+	{
+		p_text->textStream->setPosition(leftIndent, q + baseY);
+		*(p_text->textStream) << lines[i];
+		p_text->draw();
+		p_text->textStream->clear();
+		q += lineSpacing;
+	}
+
+}
+
+void UI_TextObject::update()
+{
+	p_Scroller->Update();
+}
+
+int UI_TextObject::CalcHeight()
+{
+	if (lines.size() == 0)
+		return 0;
+	return topIndent + (lines.size() - 1) * lineSpacing;
 }

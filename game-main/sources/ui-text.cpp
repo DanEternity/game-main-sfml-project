@@ -1,5 +1,10 @@
 #include "ui-text.h"
 
+UI_text::UI_text()
+{
+	textStream = new sfe::RichText();
+}
+
 UI_text::UI_text(sf::Font * fontPointer)
 {
 	textStream = new sfe::RichText(*fontPointer);

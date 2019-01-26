@@ -8,6 +8,7 @@
 #include "ui-text.h"
 #include "game-enviroment.h"
 #include "sprites.h"
+#include <algorithm>
 
 class UI_Controller;
 
@@ -40,9 +41,26 @@ protected:
 	sf::Sprite * p_sprite;
 };
 
+class UI_TextLineObject : public UI_text
+{
+public:
+	UI_TextLineObject();
+	virtual void draw();
+	virtual void setPosition(int x, int y);
+	virtual void setSize(int width, int heigh); // text size cant be set by this function
+												// use setCharSize
+	void setTexture(sf::RenderTexture * texture);
+	void setCanvas(sf::RenderTexture * canvas);
+protected:
+	sf::RenderTexture * p_canvas;
+	//sf::Sprite * p_sprite;
+};
+
 class UI_MultiObject : public BaseUIElem
 {
 public:
+	UI_MultiObject(int x, int y);
+	UI_MultiObject();
 	virtual void draw();
 	virtual void setPosition(int x, int y);
 	virtual void setSize(int width, int heigh);
@@ -54,7 +72,7 @@ public:
 	std::vector<BaseUIElem * > p_list;
 	bool instantDraw = true;
 
-	UI_MultiObject(int x, int y);
+	
 protected:
 	sf::RenderTexture * p_canvas;
 	sf::Sprite * p_sprite;
@@ -98,8 +116,40 @@ private:
 	
 };
 
-static std::vector<UI_ScrollerObject *> UI_ScrollerEventRegTable;
-void UI_ScrollerPrivateEventRegister(UI_ScrollerObject * target);
+extern std::vector<UI_ScrollerObject *> UI_ScrollerEventRegTable;
+int UI_ScrollerPrivateEventRegister(UI_ScrollerObject * target);
 void UI_ScrollerPrivateEventHandler(UIEventData * data);
+
+class UI_TextObject : public UI_MultiObject
+{
+public:
+	UI_TextObject();
+	virtual void draw();
+	virtual void setPosition(int x, int y);
+	virtual void setSize(int width, int heigh);
+
+	std::vector<std::string> lines; // text to output
+
+	bool rebuildImage = true;
+
+	int topIndent = 4;
+	int leftIndent = 4;
+	int lineSpacing = 24;
+	int charSize = 16;
+	int baseY = 0;
+
+	void init(sf::Font * font, int x, int y);
+	void buildTexture();
+	void update();
+protected:
+	UI_ScrollerObject * p_Scroller;
+	UI_TextLineObject * p_text;
+	sf::Sprite * p_sprite;
+
+	int CalcHeight();
+	//int 
+	bool useScroller = false;
+
+};
 
 #endif // !UI_OBJECTS

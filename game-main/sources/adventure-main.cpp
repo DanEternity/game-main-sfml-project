@@ -134,6 +134,37 @@ void AdventureManager::initUI()
 
 	UI_Controller * mainScreenUIController;
 */
+
+	/* test */
+
+	textObject = new UI_TextObject();
+	textObject->init(fontArial, 400, 400);
+	textObject->lineSpacing = 32;
+	textObject->lines.push_back("ANDREY P1");
+	textObject->lines.push_back("ANDREY P2");
+	textObject->lines.push_back("ANDREY P3");
+	textObject->lines.push_back("ANDREY P4");
+	textObject->lines.push_back("ANDREY P5");
+	textObject->lines.push_back("ANDREY P6");
+	textObject->lines.push_back("ANDREY P7");
+	textObject->lines.push_back("ANDREY P8");
+	textObject->lines.push_back("ANDREY P1");
+	textObject->lines.push_back("ANDREY P2");
+	textObject->lines.push_back("ANDREY P3");
+	textObject->lines.push_back("ANDREY P4");
+	textObject->lines.push_back("ANDREY P5");
+	textObject->lines.push_back("ANDREY P6");
+	textObject->lines.push_back("ANDREY P7");
+	textObject->lines.push_back("ANDREY P8");
+	textObject->lines.push_back("ANDREY P1");
+	textObject->lines.push_back("ANDREY P2");
+	textObject->lines.push_back("ANDREY P3");
+	textObject->lines.push_back("ANDREY P4");
+	/*textObject->lines.push_back("ANDREY P5");
+	textObject->lines.push_back("ANDREY P6");
+	textObject->lines.push_back("ANDREY P7");
+	textObject->lines.push_back("ANDREY P8");*/
+	textObject->setPosition(800, 400);
 }
 
 void AdventureManager::processBaseState()
@@ -143,14 +174,18 @@ void AdventureManager::processBaseState()
 	// debug;;;
 	if (1)
 	{
-		/*testScroller->Update();
+		testScroller->Update();
 		testScroller->draw();
-		mapScale = 1.f + testScroller->getValue();
+		/*mapScale = 1.f + testScroller->getValue();
 		DrawModuleInfoBox(gd->scheme->slots[3].m, 20, 20);*/
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 		{
 			gd->scriptSystem->execute(0);
 		}
+
+		textObject->update();
+		textObject->rebuildImage = true;
+		textObject->draw();
 	}
 
 	// end;;;
@@ -300,7 +335,7 @@ void AdventureManager::InitLevel(bool debug)
 	camY = 900 / 2;
 
 	testScroller = new UI_ScrollerObject();
-	testScroller->Create();
+	//testScroller->Create();
 	testScroller->setPosition(1500, 80);
 
 	state = AMNormal;
