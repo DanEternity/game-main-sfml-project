@@ -418,7 +418,7 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 						count++;
 					}
 					break;
-				case StatHyperDriveFuelCost:
+				case StatHyperDriveFuelEfficiency:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
@@ -426,9 +426,9 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 						ss << e.f1;
 						ss >> s;
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive fuel cost +" + s);
+							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive fuel efficiency +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive fuel cost " + s);
+							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive fuel efficiency " + s);
 						count++;
 					}
 					if (abs(e.f2) > 0.00001f)
@@ -438,9 +438,9 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 						ss << (e.f2 - 0) * 100;
 						ss >> s;
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive fuel cost +" + s + "%");
+							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive fuel efficiency +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive cost " + s + "%");
+							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive fuel efficiency " + s + "%");
 						count++;
 					}
 					break;
