@@ -13,6 +13,24 @@ enum ConditionType
 	condition_shield, // f1
 	condition_fuel, // f1
 	condition_fuel_percent, // f1
+	condition_power_supply, //f1
+	condition_power_use, //f1
+	condition_action_points, //f1
+	condition_evasion, //f1
+	condition_mobility, //f1
+	condition_stealth, //f1
+	condition_stealth_tier, //f1
+	condition_sensor_power, //f1
+	condition_sensor_tier, //f1
+	condition_hyper_drive_speed, //f1
+	condition_hyper_drive_tier, //f1
+	condition_hyper_drive_fuel_efficiency, //f1
+	condition_hull_reg, //f1
+	condition_shield_reg, //f1
+	condition_missile_def, //f1
+	condition_missile_def_tier, //f1
+	condition_hull_structure_stability, //f1
+	condition_shield_structure_stability, //f1
 };
 
 enum ConditionParam
@@ -51,5 +69,29 @@ public:
 
 	/* sub functions */
 	void checkAND();
+	void checkOR();
 	void checkHull();
+	void checkShield();
+	void checkFuel();
+	void checkHullPercent();
+	void checkShieldPercent();
+	void checkFuelPercent();
+	void checkPowerSupply();
+	void checkPowerUse();
+	void checkActionPoints();
+	void checkEvasion();
+	void checkMobility();
+	void checkStealth();
+	void checkStealthTier();
+	void checkSensorPower();
+	void checkSensorTier();
+	void checkHyperDriveSpeed();
+	void checkHyperDriveTier();
+	void checkHyperDriveFuelEfficiency();
+	void checkHullReg();
+	void checkShieldReg();
+	void checkMissileDef();
+	void checkMissileDefTier();
+	void checkHullStructureStability();
+	void checkShieldStructureStability();
 };

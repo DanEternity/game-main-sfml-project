@@ -59,7 +59,7 @@ void ShipScheme::schemeDebug()
 	SensorTier = 0; 
 	HyperDriveSpeed = 0;  
 	HyperDriveTier = 0; 
-	HyperDriveFuelCost = 0;
+	HyperDriveFuelEfficiency = 0;
 	Hull = 1000; 
 	HullResist[0] = 40; 
 	HullResist[1] = 15;
@@ -192,7 +192,7 @@ void ShipScheme::schemeDebug()
 	eff.f1 = 1; // +X
 	eff.f2 = 0; // +X%
 	p->effects.push_back(eff);
-	eff.subType = StatHyperDriveFuelCost;
+	eff.subType = StatHyperDriveFuelEfficiency;
 	eff.f1 = 100; // +X
 	eff.f2 = 0; // +X%
 	p->effects.push_back(eff);
@@ -218,7 +218,7 @@ void ShipScheme::schemeDebug()
 	eff.f1 = 0; // +X
 	eff.f2 = 0.1f; // +X%
 	p->effects.push_back(eff);
-	eff.subType = StatHyperDriveFuelCost;
+	eff.subType = StatHyperDriveFuelEfficiency;
 	eff.f1 = 0; // +X
 	eff.f2 = 0.1f; // +X%
 	p->effects.push_back(eff);

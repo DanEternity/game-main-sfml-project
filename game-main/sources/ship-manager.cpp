@@ -15,7 +15,7 @@ void ShipManager::clearStats()
 	 ship->SensorTier[1] = 0; // уровень сенсоров
 	 ship->HyperDriveSpeed[1] = 0; // мод. скорости движения корабля (хз особо на игру не влияет, но где-то может быть важным. Ускоряет передвижение корабля по миру)
 	 ship->HyperDriveTier[1] = 0; // класс гипердвигателя (определяет возможность путешествия в некоторые узлы
-	 ship->HyperDriveFuelCost[1] = 0; // стоимость прыжка / или модификатор стоимости прыжка (скорее всего второе)
+	 ship->HyperDriveFuelEfficiency[1] = 0; // стоимость прыжка / или модификатор стоимости прыжка (скорее всего второе)
 	 ship->Hull[1] = 0; // прочность корпуса
 	 
 	 ship->HullReg[1] = 0; // хотя реген корпуса может показаться бредом, некоторые враги вполне могут использовать это
@@ -45,7 +45,7 @@ void ShipManager::clearStats()
 	 ship->SensorTier[2] = 1; // уровень сенсоров
 	 ship->HyperDriveSpeed[2] = 1; // мод. скорости движения корабля (хз особо на игру не влияет, но где-то может быть важным. Ускоряет передвижение корабля по миру)
 	 ship->HyperDriveTier[2] = 1; // класс гипердвигателя (определяет возможность путешествия в некоторые узлы
-	 ship->HyperDriveFuelCost[2] = 1; // стоимость прыжка / или модификатор стоимости прыжка (скорее всего второе)
+	 ship->HyperDriveFuelEfficiency[2] = 1; // стоимость прыжка / или модификатор стоимости прыжка (скорее всего второе)
 	 ship->Hull[2] = 1; // прочность корпуса
 
 	 ship->HullReg[2] = 1; // хотя реген корпуса может показаться бредом, некоторые враги вполне могут использовать это
@@ -75,7 +75,7 @@ void ShipManager::clearStats()
 	 ship->SensorTier[3] = 0; // уровень сенсоров
 	 ship->HyperDriveSpeed[3] = 0; // мод. скорости движения корабля (хз особо на игру не влияет, но где-то может быть важным. Ускоряет передвижение корабля по миру)
 	 ship->HyperDriveTier[3] = 0; // класс гипердвигателя (определяет возможность путешествия в некоторые узлы
-	 ship->HyperDriveFuelCost[3] = 0; // стоимость прыжка / или модификатор стоимости прыжка (скорее всего второе)
+	 ship->HyperDriveFuelEfficiency[3] = 0; // стоимость прыжка / или модификатор стоимости прыжка (скорее всего второе)
 	 ship->Hull[3] = 0; // прочность корпуса
 
 	 ship->HullReg[3] = 0; // хотя реген корпуса может показаться бредом, некоторые враги вполне могут использовать это
@@ -127,7 +127,7 @@ void ShipManager::updateStats()
 	ship->SensorTier[3] = (ship->SensorTier[0] + ship->SensorTier[1]) * ship->SensorTier[2]; 
 	ship->HyperDriveSpeed[3] = (ship->HyperDriveSpeed[0] + ship->HyperDriveSpeed[1]) * ship->HyperDriveSpeed[2]; 
 	ship->HyperDriveTier[3] = (ship->HyperDriveTier[0] + ship->HyperDriveTier[1]) * ship->HyperDriveTier[2]; 
-	ship->HyperDriveFuelCost[3] = (ship->HyperDriveFuelCost[0] + ship->HyperDriveFuelCost[1]) * ship->HyperDriveFuelCost[2]; 
+	ship->HyperDriveFuelEfficiency[3] = (ship->HyperDriveFuelEfficiency[0] + ship->HyperDriveFuelEfficiency[1]) * ship->HyperDriveFuelEfficiency[2]; 
 	ship->Hull[3] = (ship->Hull[0] + ship->Hull[1]) * ship->Hull[2]; // прочность корпуса
 	for (int i(0); i < ArmorTypesCount; i++)
 	{
@@ -220,9 +220,9 @@ void ShipManager::applyModuleStatEffect(LocalEffect * effect)
 		ship->HyperDriveTier[QMod] += effect->f1;
 		ship->HyperDriveTier[QModPercent] += effect->f2;
 		break;
-	case StatHyperDriveFuelCost:
-		ship->HyperDriveFuelCost[QMod] += effect->f1;
-		ship->HyperDriveFuelCost[QModPercent] += effect->f2;
+	case StatHyperDriveFuelEfficiency:
+		ship->HyperDriveFuelEfficiency[QMod] += effect->f1;
+		ship->HyperDriveFuelEfficiency[QModPercent] += effect->f2;
 		break;
 	case StatHull:
 		ship->Hull[QMod] += effect->f1;
@@ -285,7 +285,7 @@ void ShipManager::init(ShipScheme * qScheme)
 	ship->SensorTier[0] = scheme->SensorTier; // уровень сенсоров
 	ship->HyperDriveSpeed[0] = scheme->HyperDriveSpeed; // мод. скорости движения корабля (хз особо на игру не влияет, но где-то может быть важным. Ускоряет передвижение корабля по миру)
 	ship->HyperDriveTier[0] = scheme->HyperDriveTier; // класс гипердвигателя (определяет возможность путешествия в некоторые узлы
-	ship->HyperDriveFuelCost[0] = scheme->HyperDriveFuelCost; // стоимость прыжка / или модификатор стоимости прыжка (скорее всего второе)
+	ship->HyperDriveFuelEfficiency[0] = scheme->HyperDriveFuelEfficiency; // стоимость прыжка / или модификатор стоимости прыжка (скорее всего второе)
 	ship->Hull[0] = scheme->Hull; // прочность корпуса
 	for (int i(0); i < ArmorTypesCount; i++)
 	{
