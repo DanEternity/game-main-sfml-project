@@ -79,6 +79,12 @@ struct AMContextStatus
 	AMContextStatus();
 };
 
+enum InternalEventResponse
+{
+	InternalEventResponse_unspecified,
+	InternalEventResponse_simpleOk,
+};
+
 class AdventureManager : public BaseManager
 {
 public:
@@ -92,6 +98,8 @@ public:
 	
 	std::stack<AMState> stack; // 
 
+	void internalEvent(InternalEventResponse group, int param1, int param2);
+
 private:
 	void initUI();
 	
@@ -101,11 +109,19 @@ private:
 	void processShipWindowStorage();
 
 	void drawMainUI();
-
+	void checkScriptBlock();
+	void updateScriptData();
+	void processScript();
 	bool initEventRequired = true;
+
+	void processTextScript();
 
 	void InitLevel(QGlobalEvent q);
 	void InitLevel(bool debug = true);
+
+	/* script data */
+	ScriptType scriptEventType;
+
 
 	/* map data */
 
@@ -114,13 +130,15 @@ private:
 	
 	float mapScale = 1;
 	float camX, camY; // ship coordinates;
+	bool scriptDataUpdated = false;
 
 	/* UI and testing*/
 
 	UI_ScrollerObject * testScroller;
 
 	/* Controls flags */
-
+	bool scriptEvent = false;
+	bool gamePause = false;
 	bool controlsDebug = true; //
 	bool controlsShipMovement = true; // ship can move (disabled when other window open)
 	bool controlsMainButtons = true; // buttons in main screen can be pressed, updated etc...
@@ -154,9 +172,13 @@ private:
 	UI_Controller * mainScreenUIController;
 
 	UI_TextObject * textObject;
+
+	UI_TextObject * scriptText; // used in script events
+	UI_ObjectImage * scriptOkButton; // used to handle event
+	UI_Controller * scriptTextController;
 	
 };
 
-
+void scriptUIEventHandler(UIEventData * q);
 
 #endif // !ADVENTURE_MANAGER

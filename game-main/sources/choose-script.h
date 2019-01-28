@@ -3,6 +3,13 @@
 #include "base-script.h"
 #include "script-conditions.h"
 
+struct ContextChooseScript
+{
+	std::vector<bool> selectAvailable;
+	//std::vector<bool> selectVisible;
+	// result section
+	int choose;
+};
 
 class ChooseScript : public TextScript
 {

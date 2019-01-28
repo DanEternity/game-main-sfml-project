@@ -8,6 +8,7 @@
 #include "ui-text.h"
 #include "game-enviroment.h"
 #include "sprites.h"
+#include "text-converter.h"
 #include <algorithm>
 
 class UI_Controller;
@@ -129,6 +130,7 @@ public:
 	virtual void setSize(int width, int heigh);
 
 	std::vector<std::string> lines; // text to output
+	std::vector<void *> values; // values;
 
 	bool rebuildImage = true;
 

@@ -378,7 +378,10 @@ void UI_TextObject::buildTexture()
 	for (int i(0); i < lines.size(); i++)
 	{
 		p_text->textStream->setPosition(leftIndent, q + baseY);
-		*(p_text->textStream) << lines[i];
+		//*(p_text->textStream) << lines[i];
+		*p_text->textStream << sf::Color::White << sf::Text::Style::Regular;
+
+		RichStringParse(p_text->textStream, lines[i], values);
 		p_text->draw();
 		p_text->textStream->clear();
 		q += lineSpacing;
