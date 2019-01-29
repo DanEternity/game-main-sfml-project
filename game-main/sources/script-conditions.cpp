@@ -86,8 +86,11 @@ void ConditionRef::check()
 	case condition_hull_structure_stability:
 		checkHullStructureStability();
 		break;
-	case condition_shield_structure_stability:
-		checkShieldStructureStability();
+	case condition_hull_resistance:
+		checkHullResistance();
+		break;
+	case condition_shield_resistance:
+		checkShieldResistance();
 		break;
 	default:
 		break;
@@ -305,5 +308,17 @@ void ConditionRef::checkHullStructureStability()
 void ConditionRef::checkShieldStructureStability()
 {
 	float x = gd->mainShip->ShieldStructureStability[3]; //
+	result = checkWithParamf1(x);
+}
+
+void ConditionRef::checkHullResistance()
+{
+	float x = gd->mainShip->HullResist[i1][3]; //
+	result = checkWithParamf1(x);
+}
+
+void ConditionRef::checkShieldResistance()
+{
+	float x = gd->mainShip->ShieldResist[i1][3]; //
 	result = checkWithParamf1(x);
 }

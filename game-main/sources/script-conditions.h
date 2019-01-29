@@ -31,6 +31,8 @@ enum ConditionType
 	condition_missile_def_tier, //f1
 	condition_hull_structure_stability, //f1
 	condition_shield_structure_stability, //f1
+	condition_hull_resistance, //f1
+	condition_shield_resistance, //f1
 };
 
 enum ConditionParam
@@ -94,4 +96,6 @@ public:
 	void checkMissileDefTier();
 	void checkHullStructureStability();
 	void checkShieldStructureStability();
+	void checkHullResistance();
+	void checkShieldResistance();
 };
