@@ -141,8 +141,8 @@ enum ModuleWepSubClass
 
 enum DamageType
 {
-	damage_null,
-	physical,
+	damage_null = -1,
+	physical = 0,
 	energy
 };
 
