@@ -179,6 +179,7 @@
     <ClCompile Include="sources\ship.cpp" />
     <ClCompile Include="sources\space-battle-manager.cpp" />
     <ClCompile Include="sources\sprites.cpp" />
+    <ClCompile Include="sources\text-converter.cpp" />
     <ClCompile Include="sources\ui-base-elements.cpp" />
     <ClCompile Include="sources\ui-controller.cpp" />
     <ClCompile Include="sources\ui-objects.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="sources\space-battle-manager.h" />
     <ClInclude Include="sources\sprites.h" />
     <ClInclude Include="sources\star-map-navigator.h" />
+    <ClInclude Include="sources\text-converter.h" />
     <ClInclude Include="sources\ui-base-elements.h" />
     <ClInclude Include="sources\ui-controller.h" />
     <ClInclude Include="sources\ui-objects.h" />

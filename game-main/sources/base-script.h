@@ -21,7 +21,7 @@ public:
 	int next;
 };
 
-class TextScript : BaseScript
+class TextScript : public BaseScript
 {
 public:
 	TextScript() { type = script_text; }

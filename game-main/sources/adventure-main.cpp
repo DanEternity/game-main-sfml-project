@@ -68,10 +68,34 @@ void AdventureManager::Update()
 	default:
 		break;
 	}
+
+	if (!gamePause)
+	{
+		gd->scriptSystem->update();
+		checkScriptBlock();
+
+		if (scriptEvent)
+			processScript();
+	}
+
 }
 
 void AdventureManager::Destroy()
 {
+}
+
+void AdventureManager::internalEvent(InternalEventResponse group, int param1, int param2)
+{
+	switch (group)
+	{
+	case InternalEventResponse_unspecified:
+		break;
+	case InternalEventResponse_simpleOk:
+		gd->scriptSystem->externalEvent();
+		break;
+	default:
+		break;
+	}
 }
 
 void AdventureManager::initUI()
@@ -136,7 +160,7 @@ void AdventureManager::initUI()
 */
 
 	/* test */
-
+/*
 	textObject = new UI_TextObject();
 	textObject->init(fontArial, 400, 400);
 	textObject->lineSpacing = 32;
@@ -163,8 +187,21 @@ void AdventureManager::initUI()
 	/*textObject->lines.push_back("ANDREY P5");
 	textObject->lines.push_back("ANDREY P6");
 	textObject->lines.push_back("ANDREY P7");
-	textObject->lines.push_back("ANDREY P8");*/
-	textObject->setPosition(800, 400);
+	textObject->lines.push_back("ANDREY P8");
+	textObject->setPosition(800, 400);*/
+
+	scriptText = new UI_TextObject();
+	scriptText->init(fontArial, 400, 400);
+	scriptText->lineSpacing = 32;
+	scriptText->setPosition(resolution_w / 2 - 200, resolution_h / 2 - 200);
+
+	scriptOkButton = new UI_ObjectImage(1); // used to handle event
+	scriptOkButton->LoadFromSprite(UI_rightTop);
+	scriptOkButton->setPosition(resolution_w / 2 - 200, resolution_h / 2 + 420);
+
+	scriptTextController = new UI_Controller();
+	scriptTextController->AddElement(scriptOkButton);
+	scriptTextController->RegisterEvent(0, onRelease, scriptUIEventHandler);
 }
 
 void AdventureManager::processBaseState()
@@ -178,14 +215,14 @@ void AdventureManager::processBaseState()
 		testScroller->draw();
 		/*mapScale = 1.f + testScroller->getValue();
 		DrawModuleInfoBox(gd->scheme->slots[3].m, 20, 20);*/
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !scriptEvent)
 		{
-			gd->scriptSystem->execute(0);
+			gd->scriptSystem->execute(1);
 		}
 
-		textObject->update();
-		textObject->rebuildImage = true;
-		textObject->draw();
+		//textObject->update();
+		//textObject->rebuildImage = true;
+		//textObject->draw();
 	}
 
 	// end;;;
@@ -304,6 +341,83 @@ void AdventureManager::drawMainUI()
 	btnMap->draw();
 }
 
+void AdventureManager::checkScriptBlock()
+{
+	if (gd->scriptSystem->getState() == scriptSystemState_blocked)
+	{
+		controlsShipMovement = false; // ship can move (disabled when other window open)
+		controlsMainButtons = false; // buttons in main screen can be pressed, updated etc...
+		controlsWorldScrolling = false; // 
+		controlsKeyboardWindowSwitch = false; // can open/close windows wia keyboard buttons
+		scriptEvent = true;
+		updateScriptData();
+	}
+	else
+	{
+		controlsShipMovement = true; // ship can move (disabled when other window open)
+		controlsMainButtons = true; // buttons in main screen can be pressed, updated etc...
+		controlsWorldScrolling = true; // 
+		controlsKeyboardWindowSwitch = true; // can open/close windows wia keyboard buttons
+		scriptEvent = false;
+		scriptDataUpdated = false;
+	}
+}
+
+void AdventureManager::updateScriptData()
+{
+	auto q = gd->scriptSystem->getCurrentElement();
+	scriptEventType = q->type;
+
+	switch (scriptEventType)
+	{
+	case script_base:
+		Log("Error! cant handle this type! (Base)");
+		break;
+	case script_text:
+	{
+		scriptText->lines.clear();
+		auto t = static_cast<TextScript*>(q);
+		scriptText->lines = t->text;
+		scriptText->rebuildImage = true;
+	}
+		break;
+	case script_choose:
+		break;
+	case script_action:
+		break;
+	default:
+		break;
+	}
+
+}
+
+void AdventureManager::processScript()
+{
+	switch (scriptEventType)
+	{
+	case script_base:
+		// invalid
+		break;
+	case script_text:
+		processTextScript();
+		break;
+	case script_choose:
+		break;
+	case script_action:
+		break;
+	default:
+		break;
+	}
+}
+
+void AdventureManager::processTextScript()
+{
+	scriptTextController->Update();
+	scriptText->update();
+	scriptText->draw();
+	scriptOkButton->draw();
+}
+
 void AdventureManager::InitLevel(QGlobalEvent q)
 {
 }
@@ -355,6 +469,21 @@ void AdventureManager::InitLevel(bool debug)
 	
 	gd->scriptSystem->addElement(id, qq);
 
+	TextScript * q2 = new TextScript;
+	q2->next = 1;
+	q2->text.push_back("@[color:$FF00FFFF]@[style:italic+bold+underlined]Test line 1");
+	q2->text.push_back("@[color:#200#250#100#255]Test @[color:#100#150#250#255]line 2");
+	q2->final = false;
+
+	id = gd->scriptSystem->addLine(q2);
+
+	q2 = new TextScript;
+	q2->next = 0;
+	q2->text.push_back("Test line 3");
+	q2->text.push_back("Test line 4");
+	q2->final = true;
+
+	gd->scriptSystem->addElement(id, q2);
 }
 
 AMContextStatus::AMContextStatus()
@@ -364,4 +493,25 @@ AMContextStatus::AMContextStatus()
 	i1 = 0;
 	i2 = 0;
 	v0 = nullptr;
+}
+
+void scriptUIEventHandler(UIEventData * q)
+{
+	auto t = q->eventType;
+
+	switch (t)
+	{
+	case onPress:
+		break;
+	case onRelease:
+		if (q->ref->localID == 1)
+			g_adv->internalEvent(InternalEventResponse_simpleOk, 0, 0);
+		break;
+	case onHoverBegin:
+		break;
+	case onHoverEnd:
+		break;
+	default:
+		break;
+	}
 }

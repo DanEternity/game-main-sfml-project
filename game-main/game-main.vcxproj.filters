@@ -150,6 +150,9 @@
     <ClCompile Include="sources\action-script.cpp">
       <Filter>scripts</Filter>
     </ClCompile>
+    <ClCompile Include="sources\text-converter.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\global-manager.h">
@@ -277,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="sources\action-script.h">
       <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\text-converter.h">
+      <Filter>utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
