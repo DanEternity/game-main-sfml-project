@@ -93,7 +93,7 @@ public:
 	void HandleEvent(UIEventData * e);
 	void Update();
 	float getValue(); 
-
+	void resetBtnPosition();
 	UI_ObjectImage * button;
 	UI_ObjectImage * area;
 
@@ -143,6 +143,8 @@ public:
 	void init(sf::Font * font, int x, int y);
 	void buildTexture();
 	void update();
+	void resetScroller();
+	void setCharSize(int size);
 protected:
 	UI_ScrollerObject * p_Scroller;
 	UI_TextLineObject * p_text;

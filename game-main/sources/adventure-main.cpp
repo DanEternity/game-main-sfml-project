@@ -33,8 +33,11 @@ void AdventureManager::Init()
 		break;
 	}
 
-	initUI();
-	UI_initialized = true;
+	if (!UI_initialized)
+	{
+		initUI();
+		UI_initialized = true;
+	}
 
 	levelInitRequired = false;
 	Log("Level initialized... starting main game...");
@@ -379,6 +382,9 @@ void AdventureManager::updateScriptData()
 		auto t = static_cast<TextScript*>(q);
 		scriptText->lines = t->text;
 		scriptText->rebuildImage = true;
+		if (p_last_command != q)
+			scriptText->resetScroller();
+		p_last_command = q;
 	}
 		break;
 	case script_choose:
@@ -471,8 +477,10 @@ void AdventureManager::InitLevel(bool debug)
 
 	TextScript * q2 = new TextScript;
 	q2->next = 1;
-	q2->text.push_back("@[color:$FF00FFFF]@[style:italic+bold+underlined]Test line 1");
+	q2->text.push_back("@[color:green]@[style:italic+bold+underlined]Test line 1");
 	q2->text.push_back("@[color:#200#250#100#255]Test @[color:#100#150#250#255]line 2");
+	for (int i(0); i<100; i++)
+		q2->text.push_back("@[color:#200#250#100#255]Test @[color:#100#150#250#255]line " + std::to_string(i));
 	q2->final = false;
 
 	id = gd->scriptSystem->addLine(q2);

@@ -243,14 +243,21 @@ void UI_ScrollerObject::Update()
 		}
 		auto m = scroller_ctrl->getMouseXY();
 		int y = std::max(area->getPosition().second + 3, std::min(m.y - p_old_btn_y, p_area_size_y - p_bt_size_y - 3 + area->getPosition().second));
+
 		button->setPosition(button->getPosition().first, y);
-		buttonHeigh = (float(y) - area->getPosition().second + 3) / (p_area_size_y - p_bt_size_y - 3);
+		buttonHeigh = (float(y) - float(area->getPosition().second + 3)) / (float(p_area_size_y - p_bt_size_y - 6));
 	}
 }
 
 float UI_ScrollerObject::getValue()
 {
 	return buttonHeigh;
+}
+
+void UI_ScrollerObject::resetBtnPosition()
+{
+	button->setPosition(button->getPosition().first, area->getPosition().second + 3);
+	buttonHeigh = 0;
 }
 
 void UI_ScrollerObject::setupController()
@@ -325,7 +332,8 @@ void UI_TextObject::draw()
 	}
 
 	g_wnd->draw(*p_sprite);
-	p_Scroller->draw();
+	if (useScroller)
+		p_Scroller->draw();
 }
 
 void UI_TextObject::setPosition(int x, int y)
@@ -371,6 +379,12 @@ void UI_TextObject::init(sf::Font * font, int x, int y)
 void UI_TextObject::buildTexture()
 {
 	baseY = -1 * p_Scroller->getValue() * std::max(0, CalcHeight() - p_h + lineSpacing + topIndent + 4);
+
+	if (CalcHeight() - p_h + lineSpacing + topIndent + 4 < 0)
+		useScroller = false;
+	else
+		useScroller = true;
+
 	p_canvas->clear();
 
 	int q = topIndent;
@@ -392,6 +406,16 @@ void UI_TextObject::buildTexture()
 void UI_TextObject::update()
 {
 	p_Scroller->Update();
+}
+
+void UI_TextObject::resetScroller()
+{
+	p_Scroller->resetBtnPosition();
+}
+
+void UI_TextObject::setCharSize(int size)
+{
+	p_text->setCharacterSize(size);
 }
 
 int UI_TextObject::CalcHeight()

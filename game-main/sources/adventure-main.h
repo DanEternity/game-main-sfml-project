@@ -121,11 +121,11 @@ private:
 
 	/* script data */
 	ScriptType scriptEventType;
-
+	BaseScript * p_last_command;
 
 	/* map data */
 
-	std::vector<AMObject> mapObjects;;
+	std::vector<AMObject> mapObjects;
 	std::vector<AMZone> mapZones;
 	
 	float mapScale = 1;
