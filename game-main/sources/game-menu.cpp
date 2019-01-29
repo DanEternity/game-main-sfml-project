@@ -156,7 +156,7 @@ void GameMenu::Init()
 		ui_ctrl_ng->RegisterEvent(i, onRelease, &menuEventHandler_gameSetup);
 	}
 
-	/*testModule = new SystemModuleItem();
+	testModule = new SystemModuleItem();
 	SystemModuleItem * p = static_cast<SystemModuleItem*>(testModule); 
 	LocalEffect eff;
 	p->nameLine = "Prototype";
@@ -183,7 +183,9 @@ void GameMenu::Init()
 	eff.f1 = 15; // +X
 	eff.f2 = 0; // +X%
 	p->effects.push_back(eff);
-	*/
+	
+
+	/*
 	testModule = new WeaponModuleItem();
 	WeaponModuleItem * w = static_cast<WeaponModuleItem*>(testModule);
 	//w = new WeaponModuleItem(); 
@@ -210,6 +212,7 @@ void GameMenu::Init()
 	w->critDamageHull = 2.f;
 	w->critChanceShield = 0.2f;
 	w->critDamageShield = 2.667f;
+	*/
 
 	levelInitRequired = false;
 }

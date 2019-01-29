@@ -122,6 +122,11 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 		std::string s;
 		ss >> s;
 		s_text->outTextXY(x + 160, y + 128, "Power usage: " + s);
+
+		mod_eff_desc_text = new UI_TextObject();
+		mod_eff_desc_text->init(fontArial, 400, 400);
+		mod_eff_desc_text->lineSpacing = 36;
+
 		//s_text->setColor(sf::Color(92,92,255,255));
 		int count = 0;
 		for (int i(0); i < q->effects.size(); i++)
@@ -136,338 +141,260 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Energy production +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Energy production +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Energy production " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Energy production " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Energy production +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Energy production +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Energy production " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Energy production " + s + "%");
 					}
 					break;
 				case StatPowerUse:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Energy consumption +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:red]Energy consumption +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Energy consumption " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:green]Energy consumption " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Energy consumptiom +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:red]Energy consumption +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Energy consumption " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:green]Energy consumption " + s + "%");
 					}
 					break;
 				case StatActionPoints:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Action points +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Action points +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Action points " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Action points " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Action points +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Action points +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Action points " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Action points " + s + "%");
 					}
 					break;
 				case StatEvasion:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Evasion +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Evasion +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Evasion " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Evasion " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Evasion +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Evasion +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Evasion " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Evasion " + s + "%");
 					}
 					break;
 				case StatMobility:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Mobility +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Mobility +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Mobility " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Mobility " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Mobility +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Mobility +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Mobility " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Mobility " + s + "%");
 					}
 					break;
 				case StatStealth:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Stealth +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Stealth +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Stealth " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Stealth " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Stealth +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Stealth +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Stealth " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Stealth " + s + "%");
 					}
 					break;
 				case StatStealthTier:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Stealth tier +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Stealth tier +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Stealth tier " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Stealth tier " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Stealth tier +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Stealth tier +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Stealth tier " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Stealth tier " + s + "%");
 					}
 					break;
 				case StatSensorPower:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Sensor power +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Sensor power +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Stealth power " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Sensor power " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Stealth power +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Sensor power +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Stealth power " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Sensor power " + s + "%");
 					}
 					break;
 				case StatSensorTier:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Sensor tier +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Sensor tier +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Stealth tier " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Sensor tier " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Stealth tier +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Sensor tier +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Stealth tier " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Sensor tier " + s + "%");
 					}
 					break;
 				case StatHyperDriveSpeed:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive speed +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Hyperdrive speed +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive speed " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Hyperdrive speed " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive speed +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Hyperdrive speed +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive speed " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Hyperdrive speed " + s + "%");
 					}
 					break;
 				case StatHyperDriveTier:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive tier +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Hyperdrive tier +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive tier " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Hyperdrive tier " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive tier +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Hyperdrive tier +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive tier " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Hyperdrive tier " + s + "%");
 					}
 					break;
 				case StatHyperDriveFuelEfficiency:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive fuel efficiency +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]HD Efficiency +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive fuel efficiency " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]HD Efficiency " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive fuel efficiency +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]HD Efficiency +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hyperdrive fuel efficiency " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]HD Efficiency " + s + "%");
 					}
 					break;
 				case StatHull:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Hull +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Hull " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Hull +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Hull " + s + "%");
 					}
 					break;
 				case StatHullResist:
@@ -476,10 +403,10 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 					switch (e.i1)
 					{
 					case physical:
-						armType = "Physical";
+						armType = "physical";
 						break;
 					case energy:
-						armType = "Energy";
+						armType = "energy";
 						break;
 					default:
 						break;
@@ -487,26 +414,20 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull " + armType + " Resist +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Hull " + armType + " resistance +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull " + armType + " Resist " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Hull " + armType + " resistance " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
-						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull " + armType + " Resist +" + s + "%");
+						s = floatToString((e.f2 - 0) * 100);
+						if (e.f1 > 0)
+							mod_eff_desc_text->lines.push_back("@[color:green]Hull " + armType + " resistance +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull " + armType + " Resist " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Hull " + armType + " resistance " + s + "%");
 					}
 					break;
 				}
@@ -514,52 +435,40 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull Regeneration +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Hull Reg +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull Regeneration " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Hull Reg " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull Regeneration +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Hull Reg +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull Regeneration " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Hull Reg " + s + "%");
 					}
 					break;
 				case StatShield:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Shield +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Shield " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Shield +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Shield " + s + "%");
 					}
 					break;
 				case StatShieldResist:
@@ -568,10 +477,10 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 					switch (e.i1)
 					{
 					case physical:
-						armType = "Physical";
+						armType = "physical";
 						break;
 					case energy:
-						armType = "Energy";
+						armType = "energy";
 						break;
 					default:
 						break;
@@ -579,26 +488,20 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield " + armType + " Resist +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Shield " + armType + " resistance +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield " + armType + " Resist " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Shield " + armType + " resistance " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
-						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield " + armType + " Resist +" + s + "%");
+						s = floatToString((e.f2 - 0) * 100);
+						if (e.f1 > 0)
+							mod_eff_desc_text->lines.push_back("@[color:green]Shield " + armType + " resistance +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield " + armType + " Resist " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Shield " + armType + " resistance " + s + "%");
 					}
 					break;
 				}
@@ -606,130 +509,100 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield Regeneration +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Shield Reg +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield Regeneration " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Shield Reg " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield Regeneration +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Shield Reg +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield Regeneration " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Shield Reg " + s + "%");
 					}
 					break;
 				case StatMissileDefense:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Missle Defence Power +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Missile Defence +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Missle Defence Power " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Missile Defence " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Missle Defence Power +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Missile Defence +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield Defence Power " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Missile Defence " + s + "%");
 					}
 					break;
 				case StatMissileDefenseTier:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Missle Defence Tier +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Missile Defence Tier +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Missle Defence Tier " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Missile Defence Tier " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Missle Defence Tier +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Missile Defence Tier +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield Defence Tier " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Missile Defence Tier " + s + "%");
 					}
 					break;
 				case StatHullStructureStability:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull Critical Damage Resistance +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Hull Crit Resistance +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull Critical Damage Resistance " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Hull Crit Resistance " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull Critical Damage Resistance +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Hull Crit Resistance +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Hull Critical Damage Resistance " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Hull Crit Resistance " + s + "%");
 					}
 					break;
 				case StatShieldStructureStability:
 					if (abs(e.f1) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << e.f1;
-						ss >> s;
+						s = floatToString(e.f1);
 						if (e.f1 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield Critical Damage Resistance +" + s);
+							mod_eff_desc_text->lines.push_back("@[color:green]Shield Crit Resistance +" + s);
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield Critical Damage Resistance " + s);
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Shield Crit Resistance " + s);
 					}
 					if (abs(e.f2) > 0.00001f)
 					{
 						s.clear();
-						ss.clear();
-						ss << (e.f2 - 0) * 100;
-						ss >> s;
+						s = floatToString((e.f2 - 0) * 100);
 						if (e.f2 > 0)
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield Critical Damage Resistance +" + s + "%");
+							mod_eff_desc_text->lines.push_back("@[color:green]Shield Crit Resistance +" + s + "%");
 						else
-							s_text->outTextXY(x + 25, y + 174 + 36 * count, "Shield Critical Damage Resistance " + s + "%");
-						count++;
+							mod_eff_desc_text->lines.push_back("@[color:red]Shield Crit Resistance " + s + "%");
 					}
 					break;
 				default:
@@ -737,6 +610,11 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 				}
 			}
 		}
+
+		mod_eff_desc_text->setPosition(25, 190);
+		mod_eff_desc_text->update();
+		mod_eff_desc_text->draw();
+		
 	}
 	break;
 	case moduleTypeWeapon:
@@ -889,6 +767,10 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 			break;
 		}
 		s.clear();
+
+		wpn_text = new UI_TextObject();
+		wpn_text->init(fontArial, 400, 400);
+		wpn_text->lineSpacing = 36;
 
 		s = floatToString(q->damageMaxCells);
 		damageStr += s + " cells, ";
