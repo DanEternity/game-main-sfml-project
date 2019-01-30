@@ -223,6 +223,10 @@ void AdventureManager::processBaseState()
 			gd->scriptSystem->execute(1);
 		}
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+		{
+			g_mgr->setCurLevel(3);
+		}
 		//textObject->update();
 		//textObject->rebuildImage = true;
 		//textObject->draw();

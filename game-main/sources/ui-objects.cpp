@@ -385,7 +385,8 @@ void UI_TextObject::buildTexture()
 	else
 		useScroller = true;
 
-	p_canvas->clear();
+	//p_canvas->clear();
+	p_canvas->clear(sf::Color(0, 0, 0, 0));
 
 	int q = topIndent;
 

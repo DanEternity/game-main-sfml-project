@@ -133,6 +133,10 @@ void GameLoader::Init()
 
 	addResource(&UI_adv_window_bg, base + "adventure_ui/windowBG.png");
 
+	/* Backgrounds Landing */
+
+	addResource(&UI_background[0], base + "landing_ui/bg/1.png");
+
 	/* Post Init */
 
 	levelInitRequired = false; // init completed

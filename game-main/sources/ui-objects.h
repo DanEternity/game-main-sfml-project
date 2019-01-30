@@ -12,6 +12,7 @@
 #include <algorithm>
 
 class UI_Controller;
+class UI_text;
 
 class UI_ObjectImage : public UI_Image
 {

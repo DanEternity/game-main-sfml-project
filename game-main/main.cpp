@@ -15,6 +15,7 @@
 #include "sources\game-loader.h"
 #include "sources\game-menu.h"
 #include "sources\adventure-main.h"
+#include "sources\landing-main.h"
 
 void init();
 void debug();
@@ -69,10 +70,12 @@ void init()
 	g_loader = new GameLoader();
 	g_menu = new GameMenu();
 	g_adv = new AdventureManager();
+	g_land = new LandingManager();
 
 	g_mgr->addLevel(g_loader);
 	g_mgr->addLevel(g_menu);
 	g_mgr->addLevel(g_adv);
+	g_mgr->addLevel(g_land);
 
 	g_wnd->setFramerateLimit(120);
 
