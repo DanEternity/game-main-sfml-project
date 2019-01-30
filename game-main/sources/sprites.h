@@ -30,5 +30,8 @@ extern sf::Sprite * UI_adv_btns[40][3];
 extern sf::Sprite * UI_adv_window_bg;
 
 /* Backgrounds Landing */
-
 extern sf::Sprite * UI_background[1];
+
+/* Landing Sprites */
+extern sf::Sprite * UI_PointsMap;
+extern sf::Sprite * UI_Point;

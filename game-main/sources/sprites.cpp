@@ -21,5 +21,8 @@ sf::Sprite * UI_adv_btns[40][3];
 sf::Sprite * UI_adv_window_bg;
 
 /* Backgrounds Landing */
-
 sf::Sprite * UI_background[1];
+
+/* Landing Sprites */
+sf::Sprite * UI_PointsMap;
+sf::Sprite * UI_Point;

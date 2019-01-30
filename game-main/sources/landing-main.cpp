@@ -1,4 +1,6 @@
 #include "landing-main.h"
+#include <cstdlib>
+#include <ctime>
 
 void LandingManager::Update()
 {
@@ -49,6 +51,13 @@ void LandingManager::setValue(int id_val, int val)
 void LandingManager::DrawMap()
 {
 	mainBG->draw();
+	PointsMap->draw();
+
+	for (LMPoint point : map)
+	{
+		if (point.visible)
+			point.PointsUI->draw();
+	}
 }
 
 void LandingManager::InitUI()
@@ -66,7 +75,32 @@ void LandingManager::InitUI()
 
 void LandingManager::debug()
 {
+	PointsMap = new UI_ObjectImage();
+	PointsMap->LoadFromSprite(UI_PointsMap);
+	PointsMap->setPosition(200, 100);
 
+	CreateLMPoints();
+
+	for (int i(0); i < map.size(); i++)
+	{
+		map[i].PointsUI = new UI_ObjectImage();
+		map[i].PointsUI->LoadFromSprite(UI_Point);
+		map[i].PointsUI->setPosition(map[i].x, map[i].y);
+	}
+}
+
+void LandingManager::CreateLMPoints()
+{
+	//srand(time(NULL));
+	int PointCount = 2;
+	LMPoint temp;
+	temp.x = 500;
+	temp.y = 350;
+	temp.visible = true;
+	map.push_back(temp);
+	temp.x = 600;
+	temp.y = 350;
+	map.push_back(temp);
 }
 
 void UIEventHandle(UIEventData * data)

@@ -137,6 +137,11 @@ void GameLoader::Init()
 
 	addResource(&UI_background[0], base + "landing_ui/bg/1.png");
 
+	/* Landing Sprites */
+
+	addResource(&UI_PointsMap, base + "landing_ui/PointsMap.png");
+	addResource(&UI_Point, base + "landing_ui/Point.png");
+
 	/* Post Init */
 
 	levelInitRequired = false; // init completed
