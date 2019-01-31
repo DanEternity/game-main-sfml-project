@@ -28,5 +28,9 @@ sf::Sprite * UI_adv_marker_info;
 sf::Sprite * ship_sprites[20];
 
 /* Backgrounds Landing */
-
 sf::Sprite * UI_background[1];
+
+/* Landing Sprites */
+sf::Sprite * UI_PointsMap;
+sf::Sprite * UI_Point;
+sf::Sprite * UI_lineElement;

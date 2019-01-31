@@ -37,5 +37,9 @@ extern sf::Sprite * UI_adv_marker_info;
 extern sf::Sprite * ship_sprites[20];
 
 /* Backgrounds Landing */
-
 extern sf::Sprite * UI_background[1];
+
+/* Landing Sprites */
+extern sf::Sprite * UI_PointsMap;
+extern sf::Sprite * UI_Point;
+extern sf::Sprite * UI_lineElement;

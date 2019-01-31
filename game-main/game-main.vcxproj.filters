@@ -153,6 +153,9 @@
     <ClCompile Include="sources\text-converter.cpp">
       <Filter>utility</Filter>
     </ClCompile>
+    <ClCompile Include="sources\ui-line.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\global-manager.h">
@@ -283,6 +286,9 @@
     </ClInclude>
     <ClInclude Include="sources\text-converter.h">
       <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\ui-line.h">
+      <Filter>ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

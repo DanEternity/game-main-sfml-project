@@ -31,6 +31,8 @@ struct LMPoint
 	int script_id;
 	LMPointType type;
 	std::vector<int> connections;
+	bool visible;
+	UI_ObjectImage * PointsUI;
 };
 
 class LandingManager : public BaseManager
@@ -46,10 +48,13 @@ public:
 
 	void setValue(int id_val, int val);
 
+	std::vector<LMPoint> map;
+
 private:
 	// local variables goes here
 
 	bool debugMode = true;
+	std::vector<LMPoint> PointsList;
 
 	void DrawMap();
 	void InitUI();
@@ -58,11 +63,14 @@ private:
 
 	bool UI_Initialized = false;
 
-	std::vector<LMPoint> map;
+	
+
+	void CreateLMPoints();
 
 	/* ui elements */
 
 	UI_ObjectImage * mainBG;
+	UI_ObjectImage * PointsMap;
 	UI_Controller * baseUI_Controller;
 };
 
