@@ -48,6 +48,8 @@ public:
 
 	void setValue(int id_val, int val);
 
+	std::vector<LMPoint> map;
+
 private:
 	// local variables goes here
 
@@ -61,7 +63,7 @@ private:
 
 	bool UI_Initialized = false;
 
-	std::vector<LMPoint> map;
+	
 
 	void CreateLMPoints();
 

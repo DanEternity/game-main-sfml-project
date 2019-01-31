@@ -141,6 +141,7 @@ void GameLoader::Init()
 
 	addResource(&UI_PointsMap, base + "landing_ui/PointsMap.png");
 	addResource(&UI_Point, base + "landing_ui/Point.png");
+	addResource(&UI_lineElement, base + "landing_ui/lineElement.png");
 
 	/* Post Init */
 

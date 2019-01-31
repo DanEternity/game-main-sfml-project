@@ -35,3 +35,4 @@ extern sf::Sprite * UI_background[1];
 /* Landing Sprites */
 extern sf::Sprite * UI_PointsMap;
 extern sf::Sprite * UI_Point;
+extern sf::Sprite * UI_lineElement;

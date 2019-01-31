@@ -26,3 +26,4 @@ sf::Sprite * UI_background[1];
 /* Landing Sprites */
 sf::Sprite * UI_PointsMap;
 sf::Sprite * UI_Point;
+sf::Sprite * UI_lineElement;
