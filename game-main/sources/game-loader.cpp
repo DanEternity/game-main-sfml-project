@@ -132,6 +132,9 @@ void GameLoader::Init()
 	addResource(&UI_adv_btns[3][2], base + "adventure_ui/btnLog.png");
 
 	addResource(&UI_adv_window_bg, base + "adventure_ui/windowBG.png");
+	addResource(&UI_adv_marker_base, base + "adventure_ui/marker_base_cyan.png");
+	addResource(&UI_adv_marker_info, base + "adventure_ui/marker_info.png");
+	addResource(&ship_sprites[0], base + "adventure_ui/Ship1.png");
 
 	/* Backgrounds Landing */
 

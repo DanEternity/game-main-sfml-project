@@ -99,7 +99,7 @@ public:
 	UI_ObjectImage * area;
 
 	bool autoSizeButton = false;
-	
+	void setBtnSize(int x, int y);
 
 private:
 	int p_bt_size_x;

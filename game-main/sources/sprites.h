@@ -29,6 +29,13 @@ extern sf::Sprite * UI_adv_btns[40][3];
 
 extern sf::Sprite * UI_adv_window_bg;
 
+extern sf::Sprite * UI_adv_marker_base;
+extern sf::Sprite * UI_adv_marker_info;
+
+/* ships */
+
+extern sf::Sprite * ship_sprites[20];
+
 /* Backgrounds Landing */
 
 extern sf::Sprite * UI_background[1];

@@ -19,6 +19,8 @@
 #include <cmath>
 #include <stack>
 
+const float zoneInteractionDistance2 = 150*150;
+#define dist2d(x, y, a, b) (x - a) * (x - a) + (y - b) * (y - b)
 
 class UI_ObjectImage;
 class UI_ScrollerObject;
@@ -30,6 +32,7 @@ struct AMObject
 	float scaleX = 1, scaleY = 1;
 	float sizeX = 1, sizeY = 1;
 	float rotation = 0;
+	
 };
 
 struct AMZone
@@ -40,6 +43,18 @@ struct AMZone
 
 	int level;
 	int danger;
+
+	bool instaActivation;
+	bool visited;
+	bool completed;
+	bool active;
+
+	AMZone()
+	{
+		instaActivation = false;
+		visited = false;
+		active = true;
+	}
 };
 
 enum AMState
@@ -107,7 +122,10 @@ private:
 	void processShipWindowMain();
 	void processShipWindowShip();
 	void processShipWindowStorage();
+	void processWorldInteractions();
 
+	void drawShip();
+	void drawMarkerInfo(int x, int y);
 	void drawMainUI();
 	void checkScriptBlock();
 	void updateScriptData();
@@ -118,6 +136,7 @@ private:
 
 	void InitLevel(QGlobalEvent q);
 	void InitLevel(bool debug = true);
+	
 
 	/* script data */
 	ScriptType scriptEventType;
@@ -131,6 +150,7 @@ private:
 	float mapScale = 1;
 	float camX, camY; // ship coordinates;
 	bool scriptDataUpdated = false;
+	int zoneId = -1;
 
 	/* UI and testing*/
 

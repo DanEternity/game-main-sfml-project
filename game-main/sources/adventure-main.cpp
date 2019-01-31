@@ -47,6 +47,7 @@ void AdventureManager::Update()
 {
 
 	processBaseState(); // DRAW BASE MAP
+	drawShip();
 
 	switch (state)
 	{
@@ -56,6 +57,7 @@ void AdventureManager::Update()
 	case AMNormal:
 		// primary state
 		// can move, open windows, interact, etc...
+		processWorldInteractions();
 		break;
 	case AMShip:
 	case AMLab:
@@ -214,14 +216,14 @@ void AdventureManager::processBaseState()
 	// debug;;;
 	if (1)
 	{
-		testScroller->Update();
-		testScroller->draw();
+		//testScroller->Update();
+		//testScroller->draw();
 		/*mapScale = 1.f + testScroller->getValue();
 		DrawModuleInfoBox(gd->scheme->slots[3].m, 20, 20);*/
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !scriptEvent)
-		{
-			gd->scriptSystem->execute(1);
-		}
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !scriptEvent)
+		//{
+		//	gd->scriptSystem->execute(1);
+		//}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 		{
@@ -259,6 +261,13 @@ void AdventureManager::processBaseState()
 			camY -= dt * 200.f;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 			camY += dt * 200.f;
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && zoneId != -1)
+		{
+			mapZones[zoneId].visited = true;
+			mapZones[zoneId].active = false;
+			gd->scriptSystem->execute(mapZones[zoneId].scriptData);
+		}
 	}
 
 	if (controlsKeyboardWindowSwitch)
@@ -292,6 +301,23 @@ void AdventureManager::processBaseState()
 		mapObjects[i].model->setPosition(mq.x, mq.y);
 		mapObjects[i].model->sprite()->setRotation(mapObjects[i].rotation);
 		mapObjects[i].model->draw();
+	}
+
+	for (int i(0); i < mapZones.size(); i++)
+	{
+		auto md = mapZones[i];
+		if (!mapZones[i].active)
+			continue;
+		if (!(md.x + 200 > cl.x && md.x - 200 < cr.x && md.y + 200 > cl.y &&  md.y - 200 < cr.y)) // условие
+			continue;
+
+		sf::Vector2f q = { mapZones[i].x,mapZones[i].y };
+		sf::Vector2f mq = (q - cl) / mapScale;
+
+		mapZones[i].marker->setScale(1.f / mapScale, 1.f / mapScale);
+		mapZones[i].marker->setPosition(mq.x, mq.y);
+		//mapZones[i].marker->sprite()->setRotation(mapZones[i].rotation);
+		mapZones[i].marker->draw();
 	}
 
 	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
@@ -333,6 +359,50 @@ void AdventureManager::processShipWindowShip()
 
 void AdventureManager::processShipWindowStorage()
 {
+}
+
+void AdventureManager::processWorldInteractions()
+{
+	zoneId = -1;
+	for (int i(0); i < mapZones.size(); i++)
+		if (mapZones[i].active && dist2d(camX, camY, mapZones[i].x, mapZones[i].x) < zoneInteractionDistance2)
+		{
+			// in range
+
+			if (mapZones[i].instaActivation)
+			{
+				zoneId = i;
+				// activate();
+			}
+			else
+			{
+				//draw();
+				drawMarkerInfo(resolution_w / 2, resolution_h / 2 - 400);
+				zoneId = i;
+			}
+			
+
+			break; // doesn't need to check other points;
+		}
+
+}
+
+void AdventureManager::drawShip()
+{
+	// debug
+
+	ship_sprites[0]->setPosition(resolution_w / 2 - 32, resolution_h / 2 - 32);
+	g_wnd->draw(*ship_sprites[0]);
+}
+
+void AdventureManager::drawMarkerInfo(int x, int y)
+{
+
+	UI_adv_marker_info->setPosition(x, y);
+	g_wnd->draw(*UI_adv_marker_info);
+
+
+
 }
 
 void AdventureManager::drawMainUI()
@@ -483,7 +553,7 @@ void AdventureManager::InitLevel(bool debug)
 	q2->next = 1;
 	q2->text.push_back("@[color:green]@[style:italic+bold+underlined]Test line 1");
 	q2->text.push_back("@[color:#200#250#100#255]Test @[color:#100#150#250#255]line 2");
-	for (int i(0); i<100; i++)
+	for (int i(0); i<20; i++)
 		q2->text.push_back("@[color:#200#250#100#255]Test @[color:#100#150#250#255]line " + std::to_string(i));
 	q2->final = false;
 
@@ -496,6 +566,22 @@ void AdventureManager::InitLevel(bool debug)
 	q2->final = true;
 
 	gd->scriptSystem->addElement(id, q2);
+
+	AMZone buff2 = AMZone();
+
+	// 1
+	buff2.x = 500;
+	buff2.y = 500;
+
+	buff2.marker = new UI_ObjectImage(1);
+	buff2.marker->LoadFromSprite(UI_adv_marker_base);
+	buff2.marker->sprite()->setOrigin({ 128, 128 });
+	buff2.level = 1;
+	buff2.danger = 2;
+	buff2.scriptData = 1;
+	buff2.instaActivation = false;
+	mapZones.push_back(buff2);
+
 }
 
 AMContextStatus::AMContextStatus()
