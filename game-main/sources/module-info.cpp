@@ -424,7 +424,7 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 					{
 						s.clear();
 						s = floatToString((e.f2 - 0) * 100);
-						if (e.f1 > 0)
+						if (e.f2 > 0)
 							mod_eff_desc_text->lines.push_back("@[color:green]Hull " + armType + " resistance +" + s + "%");
 						else
 							mod_eff_desc_text->lines.push_back("@[color:red]Hull " + armType + " resistance " + s + "%");
@@ -498,7 +498,7 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 					{
 						s.clear();
 						s = floatToString((e.f2 - 0) * 100);
-						if (e.f1 > 0)
+						if (e.f2 > 0)
 							mod_eff_desc_text->lines.push_back("@[color:green]Shield " + armType + " resistance +" + s + "%");
 						else
 							mod_eff_desc_text->lines.push_back("@[color:red]Shield " + armType + " resistance " + s + "%");
