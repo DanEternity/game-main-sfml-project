@@ -146,3 +146,7 @@ enum DamageType
 	energy
 };
 
+struct LandModeGameData
+{
+
+};

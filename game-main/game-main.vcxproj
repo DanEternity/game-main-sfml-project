@@ -182,6 +182,7 @@
     <ClCompile Include="sources\text-converter.cpp" />
     <ClCompile Include="sources\ui-base-elements.cpp" />
     <ClCompile Include="sources\ui-controller.cpp" />
+    <ClCompile Include="sources\ui-line.cpp" />
     <ClCompile Include="sources\ui-objects.cpp" />
     <ClCompile Include="sources\ui-text.cpp" />
     <ClCompile Include="sources\utility.cpp" />
@@ -226,6 +227,7 @@
     <ClInclude Include="sources\text-converter.h" />
     <ClInclude Include="sources\ui-base-elements.h" />
     <ClInclude Include="sources\ui-controller.h" />
+    <ClInclude Include="sources\ui-line.h" />
     <ClInclude Include="sources\ui-objects.h" />
     <ClInclude Include="sources\ui-text.h" />
     <ClInclude Include="sources\utility.h" />

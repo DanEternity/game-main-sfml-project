@@ -260,6 +260,13 @@ void UI_ScrollerObject::resetBtnPosition()
 	buttonHeigh = 0;
 }
 
+void UI_ScrollerObject::setBtnSize(int x, int y)
+{
+	p_bt_size_x = x;
+	p_bt_size_y = y;
+	button->setSize(x, y);
+}
+
 void UI_ScrollerObject::setupController()
 {
 	int t = scroller_ctrl->AddElement(button);
@@ -385,7 +392,8 @@ void UI_TextObject::buildTexture()
 	else
 		useScroller = true;
 
-	p_canvas->clear();
+	//p_canvas->clear();
+	p_canvas->clear(sf::Color(0, 0, 0, 0));
 
 	int q = topIndent;
 
@@ -405,6 +413,14 @@ void UI_TextObject::buildTexture()
 
 void UI_TextObject::update()
 {
+	float yy = p_canvas->getSize().y;
+	float sz = CalcHeight();
+	
+	if (abs(sz) > 0.5f)
+	{
+		yy = yy / (CalcHeight());
+		p_Scroller->setBtnSize(p_Scroller->button->getSize().first, yy * p_canvas->getSize().y);
+	}
 	p_Scroller->Update();
 }
 

@@ -12,6 +12,7 @@
 #include <algorithm>
 
 class UI_Controller;
+class UI_text;
 
 class UI_ObjectImage : public UI_Image
 {
@@ -98,7 +99,7 @@ public:
 	UI_ObjectImage * area;
 
 	bool autoSizeButton = false;
-	
+	void setBtnSize(int x, int y);
 
 private:
 	int p_bt_size_x;

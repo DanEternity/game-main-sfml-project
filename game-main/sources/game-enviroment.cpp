@@ -5,6 +5,7 @@ GlobalManager * g_mgr; // Global manager pointer
 GameLoader * g_loader; // Game loader pointer
 GameMenu * g_menu; // GameMenu manager pointer
 AdventureManager * g_adv; // Adventure manager pointer
+LandingManager * g_land; // landing pointer
 
 //std::vector<sf::Texture *> textures;
 

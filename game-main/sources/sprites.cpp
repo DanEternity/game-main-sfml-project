@@ -19,3 +19,18 @@ sf::Sprite * UI_rightDown;
 sf::Sprite * UI_adv_btns[40][3];
 
 sf::Sprite * UI_adv_window_bg;
+
+sf::Sprite * UI_adv_marker_base;
+sf::Sprite * UI_adv_marker_info;
+
+/* ships */
+
+sf::Sprite * ship_sprites[20];
+
+/* Backgrounds Landing */
+sf::Sprite * UI_background[1];
+
+/* Landing Sprites */
+sf::Sprite * UI_PointsMap;
+sf::Sprite * UI_Point;
+sf::Sprite * UI_lineElement;
