@@ -124,8 +124,9 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 		s_text->outTextXY(x + 160, y + 128, "Power usage: " + s);
 
 		mod_eff_desc_text = new UI_TextObject();
-		mod_eff_desc_text->init(fontArial, 400, 400);
-		mod_eff_desc_text->lineSpacing = 36;
+		mod_eff_desc_text->init(fontArial, 480, 270);
+		mod_eff_desc_text->setCharSize(16);
+		mod_eff_desc_text->lineSpacing = 30;
 
 		//s_text->setColor(sf::Color(92,92,255,255));
 		int count = 0;
@@ -424,7 +425,7 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 					{
 						s.clear();
 						s = floatToString((e.f2 - 0) * 100);
-						if (e.f1 > 0)
+						if (e.f2 > 0)
 							mod_eff_desc_text->lines.push_back("@[color:green]Hull " + armType + " resistance +" + s + "%");
 						else
 							mod_eff_desc_text->lines.push_back("@[color:red]Hull " + armType + " resistance " + s + "%");
@@ -498,7 +499,7 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 					{
 						s.clear();
 						s = floatToString((e.f2 - 0) * 100);
-						if (e.f1 > 0)
+						if (e.f2 > 0)
 							mod_eff_desc_text->lines.push_back("@[color:green]Shield " + armType + " resistance +" + s + "%");
 						else
 							mod_eff_desc_text->lines.push_back("@[color:red]Shield " + armType + " resistance " + s + "%");
@@ -611,7 +612,7 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 			}
 		}
 
-		mod_eff_desc_text->setPosition(25, 190);
+		mod_eff_desc_text->setPosition(x + 25, y + 174);
 		mod_eff_desc_text->update();
 		mod_eff_desc_text->draw();
 		

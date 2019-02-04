@@ -146,7 +146,7 @@ void AdventureManager::initUI()
 	windowBG->LoadFromSprite(UI_adv_window_bg);
 	windowBG->setPosition(resolution_w / 2 - 1300 / 2, resolution_h / 2 - 735 / 2);
 
-	UI_text * text = new UI_text(fontArial);
+	text = new UI_text(fontArial);
 
 	// here
 
@@ -416,8 +416,9 @@ void AdventureManager::processWorldInteractions()
 			else
 			{
 				//draw();
-				drawMarkerInfo(resolution_w / 2, resolution_h / 2 - 400);
 				zoneId = i;
+				drawMarkerInfo(resolution_w / 2, resolution_h / 2 - 400);
+				
 			}
 			
 
@@ -439,6 +440,21 @@ void AdventureManager::drawMarkerInfo(int x, int y)
 
 	UI_adv_marker_info->setPosition(x, y);
 	g_wnd->draw(*UI_adv_marker_info);
+
+	text->setCharacterSize(40);
+	text->setColor(sf::Color::White);
+	text->outTextXY(x + 25, y + 2, "Voidstorm");
+
+	text->setCharacterSize(30);
+	text->outTextXY(x + 22, y + 44, "O");
+	text->outTextXY(x + 160, y + 60, "Level: " + std::to_string(mapZones[zoneId].level));
+	text->outTextXY(x + 160, y + 120, "Danger: " + std::to_string(mapZones[zoneId].danger));
+
+	text->setCharacterSize(25);
+	text->outTextXY(x + 25, y + 180, "Voidstorm, that only remains");
+
+	text->setCharacterSize(20);
+	text->outTextXY(x + 25, y + 328, "Press Space to interact...");
 
 
 
