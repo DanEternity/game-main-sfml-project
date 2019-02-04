@@ -16,6 +16,7 @@ sf::Sprite * UI_leftDown;
 sf::Sprite * UI_rightTop;
 sf::Sprite * UI_rightDown;
 
+sf::Sprite * UI_adv_element[15];
 sf::Sprite * UI_adv_btns[40][3];
 
 sf::Sprite * UI_adv_window_bg;

@@ -122,6 +122,42 @@ void AdventureManager::initUI()
 	rightTopElem->LoadFromSprite(UI_rightTop);
 	rightTopElem->setPosition(resolution_w - rightTopElem->getSize().first, 0);
 
+	UIShipRightElem = new UI_ObjectImage();
+	UIShipRightElem->LoadFromSprite(UI_adv_element[0]);
+	UIShipRightElem->setPosition(resolution_w /2 + 415, resolution_h /2 - 350);
+
+	UIShipSchemeElem = new UI_ObjectImage();
+	UIShipSchemeElem->LoadFromSprite(UI_adv_element[1]);
+	UIShipSchemeElem->setPosition(resolution_w / 2 - 635, resolution_h / 2 - 350);
+
+	btnShipFull = new UI_ObjectImage();
+	btnShipFull->LoadFromSprite(UI_adv_btns[4][0]);
+	btnShipFull->setPosition(resolution_w / 2 - 600, resolution_h / 2 + 285);
+
+	btnLabFull = new UI_ObjectImage();
+	btnLabFull->LoadFromSprite(UI_adv_btns[5][0]);
+	btnLabFull->setPosition(resolution_w / 2 - 420, resolution_h / 2 + 285);
+
+	btnCrewFull = new UI_ObjectImage();
+	btnCrewFull->LoadFromSprite(UI_adv_btns[6][0]);
+	btnCrewFull->setPosition(resolution_w / 2 - 240, resolution_h / 2 + 285);
+
+	btnCraftFull = new UI_ObjectImage();
+	btnCraftFull->LoadFromSprite(UI_adv_btns[7][0]);
+	btnCraftFull->setPosition(resolution_w / 2 - 60, resolution_h / 2 + 285);
+
+	btnStorageFull = new UI_ObjectImage();
+	btnStorageFull->LoadFromSprite(UI_adv_btns[8][0]);
+	btnStorageFull->setPosition(resolution_w / 2 + 120, resolution_h / 2 + 285);
+
+	btnStatsFull = new UI_ObjectImage();
+	btnStatsFull->LoadFromSprite(UI_adv_btns[9][0]);
+	btnStatsFull->setPosition(resolution_w / 2 + 300, resolution_h / 2 + 285);
+
+	btnHangarFull = new UI_ObjectImage();
+	btnHangarFull->LoadFromSprite(UI_adv_btns[10][0]);
+	btnHangarFull->setPosition(resolution_w / 2 + 480, resolution_h / 2 + 285);
+
 	btnShip = new UI_ObjectImage(); // 0
 	btnShip->LoadFromSprite(UI_adv_btns[0][0]);
 	btnShip->setPosition(resolution_w - 10 - 64, resolution_h - 10 - 64);
@@ -366,6 +402,37 @@ void AdventureManager::processShipWindowMain()
 
 void AdventureManager::processShipWindowShip()
 {
+	UIShipRightElem->draw();
+	UIShipSchemeElem->draw();
+	btnShipFull->draw();
+	btnLabFull->draw();
+	btnCrewFull->draw();
+	btnCraftFull->draw();
+	btnStorageFull->draw();
+	btnStatsFull->draw();
+	btnHangarFull->draw();
+
+	text->setCharacterSize(30);
+	text->setColor(sf::Color::White);
+	text->outTextXY(resolution_w / 2 + 477, resolution_h / 2 - 350, "Eternity");
+
+	text->setCharacterSize(15);
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 300, "Hull: " + floatToString(gd->mainShip->CurrentHull) + "/" + floatToString(gd->mainShip->Hull[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 275, "Shield: " + floatToString(gd->mainShip->CurrentShield) + "/" + floatToString(gd->mainShip->Shield[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 250, "Fuel: " + floatToString(gd->mainShip->CurrentFuel) + "/" + floatToString(gd->mainShip->Fuel[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 225, "Power (Used/Max): " + floatToString(gd->mainShip->PowerUse[3]) + "/" + floatToString(gd->mainShip->PowerSupply[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 200, "Action points: " + floatToString(gd->mainShip->ActionPoints[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 175, "Evasion: " + floatToString(gd->mainShip->Evasion[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 150, "Mobility: " + floatToString(gd->mainShip->Mobility[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 125, "Stealth: " + floatToString(gd->mainShip->Stealth[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 100, "Sensor Power: " + floatToString(gd->mainShip->SensorPower[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 75, "Hyper Speed: " + floatToString(gd->mainShip->HyperDriveSpeed[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 50, "HD Efficiency: " + floatToString(gd->mainShip->HyperDriveFuelEfficiency[3]) + "%");
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 25, "Missile Defence: " + floatToString(gd->mainShip->MissileDefense[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 , "Hull Structure: " + floatToString(gd->mainShip->HullStructureStability[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 + 25, "Shield Structure: " + floatToString(gd->mainShip->ShieldStructureStability[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 + 50, "Hull Resist: " + floatToString(gd->mainShip->HullResist[0][3]) + "/" + floatToString(gd->mainShip->HullResist[1][3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 + 75, "Shield Resist: " + floatToString(gd->mainShip->ShieldResist[0][3]) + "/" + floatToString(gd->mainShip->ShieldResist[1][3]));
 	//gd->mainShip->Hull[3];
 }
 
@@ -432,7 +499,9 @@ void AdventureManager::drawShip()
 	// debug
 
 	ship_sprites[0]->setPosition(resolution_w / 2 - 32, resolution_h / 2 - 32);
+	
 	g_wnd->draw(*ship_sprites[0]);
+	
 }
 
 void AdventureManager::drawMarkerInfo(int x, int y)

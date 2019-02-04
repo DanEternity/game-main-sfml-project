@@ -182,11 +182,21 @@ private:
 
 	UI_text * text;
 
+	UI_ObjectImage * UIShipRightElem;
+	UI_ObjectImage * UIShipSchemeElem;
+
 	UI_ObjectImage * btnShip;
 	UI_ObjectImage * btnCharacters;
 	UI_ObjectImage * btnMap;
 	UI_ObjectImage * btnLog;
 	UI_ObjectImage * btnMenu;
+	UI_ObjectImage * btnShipFull;
+	UI_ObjectImage * btnLabFull;
+	UI_ObjectImage * btnCrewFull;
+	UI_ObjectImage * btnCraftFull;
+	UI_ObjectImage * btnStorageFull;
+	UI_ObjectImage * btnStatsFull;
+	UI_ObjectImage * btnHangarFull;
 
 	UI_ObjectImage * hullBar;
 	UI_ObjectImage * ShieldBar;

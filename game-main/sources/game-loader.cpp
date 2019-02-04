@@ -118,6 +118,10 @@ void GameLoader::Init()
 	addResource(&UI_rightDown, base + "adventure_ui/rightDown.png");
 	addResource(&UI_leftTop, base + "adventure_ui/not_found.png");
 	addResource(&UI_rightTop, base + "adventure_ui/not_found.png");
+
+	addResource(&UI_adv_element[0], base + "adventure_ui/element_ship_background_right.png");
+	addResource(&UI_adv_element[1], base + "adventure_ui/element_ship_background_scheme.png");
+
 	addResource(&UI_adv_btns[0][0], base + "adventure_ui/btnShip.png");
 	addResource(&UI_adv_btns[0][1], base + "adventure_ui/btnShip.png");
 	addResource(&UI_adv_btns[0][2], base + "adventure_ui/btnShip.png");
@@ -130,6 +134,27 @@ void GameLoader::Init()
 	addResource(&UI_adv_btns[3][0], base + "adventure_ui/btnLog.png");
 	addResource(&UI_adv_btns[3][1], base + "adventure_ui/btnLog.png");
 	addResource(&UI_adv_btns[3][2], base + "adventure_ui/btnLog.png");
+	addResource(&UI_adv_btns[4][0], base + "adventure_ui/btnShipFull.png");
+	addResource(&UI_adv_btns[4][1], base + "adventure_ui/btnShipFull.png");
+	addResource(&UI_adv_btns[4][2], base + "adventure_ui/btnShipFull.png");
+	addResource(&UI_adv_btns[5][0], base + "adventure_ui/btnLabFull.png");
+	addResource(&UI_adv_btns[5][1], base + "adventure_ui/btnLabFull.png");
+	addResource(&UI_adv_btns[5][2], base + "adventure_ui/btnLabFull.png");
+	addResource(&UI_adv_btns[6][0], base + "adventure_ui/btnCrewFull.png");
+	addResource(&UI_adv_btns[6][1], base + "adventure_ui/btnCrewFull.png");
+	addResource(&UI_adv_btns[6][2], base + "adventure_ui/btnCrewFull.png");
+	addResource(&UI_adv_btns[7][0], base + "adventure_ui/btnCraftFull.png");
+	addResource(&UI_adv_btns[7][1], base + "adventure_ui/btnCraftFull.png");
+	addResource(&UI_adv_btns[7][2], base + "adventure_ui/btnCraftFull.png");
+	addResource(&UI_adv_btns[8][0], base + "adventure_ui/btnStorageFull.png");
+	addResource(&UI_adv_btns[8][1], base + "adventure_ui/btnStorageFull.png");
+	addResource(&UI_adv_btns[8][2], base + "adventure_ui/btnStorageFull.png");
+	addResource(&UI_adv_btns[9][0], base + "adventure_ui/btnStatsFull.png");
+	addResource(&UI_adv_btns[9][1], base + "adventure_ui/btnStatsFull.png");
+	addResource(&UI_adv_btns[9][2], base + "adventure_ui/btnStatsFull.png");
+	addResource(&UI_adv_btns[10][0], base + "adventure_ui/btnHangarFull.png");
+	addResource(&UI_adv_btns[10][1], base + "adventure_ui/btnHangarFull.png");
+	addResource(&UI_adv_btns[10][2], base + "adventure_ui/btnHangarFull.png");
 
 	addResource(&UI_adv_window_bg, base + "adventure_ui/windowBG.png");
 	addResource(&UI_adv_marker_base, base + "adventure_ui/marker_base_cyan.png");
