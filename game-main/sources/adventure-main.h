@@ -117,12 +117,19 @@ public:
 
 private:
 	void initUI();
-	
 	void processBaseState();
-	void processShipWindowMain();
-	void processShipWindowShip();
-	void processShipWindowStorage();
 	void processWorldInteractions();
+
+	/* ship window */
+	void processShipWindowMain();
+	void processShipWindowShip(); // Ship window
+	void processShipWindowStorage();
+	void processShipWindowLab();
+	void processShipWindowCrew();
+	void processShipWindowCraft();
+	void processShipWindowStats();
+	void processShipWindowHangar();
+	void processShipWindowButtons(); // draw buttons
 
 	void drawShip();
 	void drawMarkerInfo(int x, int y);
@@ -196,6 +203,21 @@ private:
 	UI_TextObject * scriptText; // used in script events
 	UI_ObjectImage * scriptOkButton; // used to handle event
 	UI_Controller * scriptTextController;
+
+	UI_ObjectImage * shipWndBtns[12]; // shipWndBtns[btnShip]->draw();
+
+	enum p_shipWndBtns
+	{
+		qbtnShip,
+		qbtnLab,
+		qbtnCrew,
+		qbtnCraft,
+		qbtnStorage,
+		qbtnStats,
+		qbtnHangar,
+		qbtnClose,
+		qbtnHelp,
+	};
 	
 };
 

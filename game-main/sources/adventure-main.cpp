@@ -148,6 +148,8 @@ void AdventureManager::initUI()
 
 	UI_text * text = new UI_text(fontArial);
 
+	// here
+
 /*
 	UI_ObjectImage * btnShip;
 	UI_ObjectImage * btnCharacters;
@@ -330,35 +332,72 @@ void AdventureManager::processShipWindowMain()
 {
 	// draw window;
 	windowBG->draw();
+	processShipWindowButtons();
 	// draw buttons;
 	switch (state) // specific buttons and functions;
 	{
 	case AMShip:
+		processShipWindowShip();
 		break;
 	case AMLab:
+		processShipWindowLab();
 		break;
 	case AMCrew:
+		processShipWindowCrew();
 		break;
 	case AMCraft:
+		processShipWindowCraft();
 		break;
 	case AMStorage:
-		// 
+		processShipWindowStorage();
 		break;
 	case AMStats:
+		processShipWindowStats();
 		break;
 	case AMHangar:
+		processShipWindowHangar();
 		break;
 	default:
+		Log("Error! Wrong manager state");
+		state = AMNormal;
 		break;
 	}
 }
 
 void AdventureManager::processShipWindowShip()
 {
+	//gd->mainShip->Hull[3];
 }
 
 void AdventureManager::processShipWindowStorage()
 {
+}
+
+void AdventureManager::processShipWindowLab()
+{
+}
+
+void AdventureManager::processShipWindowCrew()
+{
+}
+
+void AdventureManager::processShipWindowCraft()
+{
+}
+
+void AdventureManager::processShipWindowStats()
+{
+}
+
+void AdventureManager::processShipWindowHangar()
+{
+}
+
+void AdventureManager::processShipWindowButtons()
+{
+	for (int i(0); i < 8; i++)
+		if (shipWndBtns[i] != NULL)
+			shipWndBtns[i]->draw();
 }
 
 void AdventureManager::processWorldInteractions()
