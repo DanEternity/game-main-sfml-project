@@ -368,7 +368,7 @@ void AdventureManager::processShipWindowMain()
 {
 	// draw window;
 	windowBG->draw();
-	processShipWindowButtons();
+	//processShipWindowButtons();
 	// draw buttons;
 	switch (state) // specific buttons and functions;
 	{
@@ -433,7 +433,19 @@ void AdventureManager::processShipWindowShip()
 	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 + 25, "Shield Structure: " + floatToString(gd->mainShip->ShieldStructureStability[3]));
 	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 + 50, "Hull Resist: " + floatToString(gd->mainShip->HullResist[0][3]) + "/" + floatToString(gd->mainShip->HullResist[1][3]));
 	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 + 75, "Shield Resist: " + floatToString(gd->mainShip->ShieldResist[0][3]) + "/" + floatToString(gd->mainShip->ShieldResist[1][3]));
-	//gd->mainShip->Hull[3];
+
+	for (int i(0); i < gd->scheme->slots.size(); i++)
+	{
+		auto sl = gd->scheme->slots[i];
+		UI_adv_module_slots[sl.s]->setPosition(sl.x + resolution_w / 2 - 600, sl.y + resolution_h / 2 - 300);
+		g_wnd->draw(*UI_adv_module_slots[sl.s]);
+		if (sl.m != NULL)
+		{
+			sl.m->image->setPosition(sl.x + resolution_w / 2 - 600 + 2, sl.y + resolution_h / 2 - 300 + 2);
+			sl.m->image->draw();
+		}
+	}
+
 }
 
 void AdventureManager::processShipWindowStorage()

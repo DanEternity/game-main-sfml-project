@@ -161,6 +161,16 @@ void GameLoader::Init()
 	addResource(&UI_adv_marker_info, base + "adventure_ui/marker_info.png");
 	addResource(&ship_sprites[0], base + "adventure_ui/Ship1.png");
 
+	addResource(&UI_adv_module_slots[slot_Core], base + "adventure_ui/s/slotCore.png");
+	addResource(&UI_adv_module_slots[slot_Engine], base + "adventure_ui/s/slotEngine.png");
+	addResource(&UI_adv_module_slots[slot_HyperDrive], base + "adventure_ui/s/slotHD.png");
+	addResource(&UI_adv_module_slots[slot_System], base + "adventure_ui/s/slotSystem.png");
+	addResource(&UI_adv_module_slots[slot_Universal], base + "adventure_ui/s/slotUniversal.png");
+	addResource(&UI_adv_module_slots[slot_MainWeapon], base + "adventure_ui/s/slotWep.png");
+	addResource(&UI_adv_module_slots[slot_SubWeapon], base + "adventure_ui/s/slotWepSub.png");
+
+	addResource(&UI_module_unknown, base + "m/module_unknown.png");
+
 	/* Backgrounds Landing */
 
 	addResource(&UI_background[0], base + "landing_ui/bg/1.png");

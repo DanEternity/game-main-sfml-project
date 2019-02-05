@@ -33,6 +33,8 @@ extern sf::Sprite * UI_adv_window_bg;
 extern sf::Sprite * UI_adv_marker_base;
 extern sf::Sprite * UI_adv_marker_info;
 
+extern sf::Sprite * UI_adv_module_slots[8];
+extern sf::Sprite * UI_module_unknown;
 /* ships */
 
 extern sf::Sprite * ship_sprites[20];

@@ -46,6 +46,11 @@ void ShipScheme::schemeDebug()
 	slots[6].s = slot_Universal;
 	slots[7].s = slot_Universal;
 
+	for (int i(0); i < 8; i++) // position setup
+	{
+		slots[i].x = i * 75;
+	}
+
 	powerProduced = 0;
 	powerUsed = 0;
 	powerFree = 0;
@@ -68,6 +73,7 @@ void ShipScheme::schemeDebug()
 	ShieldResist[0] = 0; 
 	ShieldResist[1] = 0;
 	ShieldReg = 0;
+	Fuel = 100;
 
 	MissileDefense = 0; 
 	MissileDefenseTier = 0; 
@@ -78,7 +84,9 @@ void ShipScheme::schemeDebug()
 	WeaponModuleItem * w;
 
 	p->nameLine = "Sample";
-	p->image = NULL;
+	//p->image = NULL;
+	p->image = new UI_ObjectImage();
+	p->image->LoadFromSprite(UI_module_unknown);
 	p->descLines.push_back("Sample description");
 	p->slot = slot_Universal;
 	p->type = moduleTypeSys;
@@ -102,7 +110,8 @@ void ShipScheme::schemeDebug()
 	p = new SystemModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
 								// только создать новый объект через new
 	p->nameLine = "Click";
-	p->image = NULL;
+	p->image = new UI_ObjectImage();
+	p->image->LoadFromSprite(UI_module_unknown);
 	p->descLines.push_back("Base sensor");
 	p->slot = slot_Universal;
 	p->type = moduleTypeSys;
@@ -125,7 +134,8 @@ void ShipScheme::schemeDebug()
 	p = new SystemModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
 								// только создать новый объект через new
 	p->nameLine = "Prototype";
-	p->image = NULL;
+	p->image = new UI_ObjectImage();
+	p->image->LoadFromSprite(UI_module_unknown);
 	p->descLines.push_back("Shield generator prototype");
 	p->slot = slot_Universal;
 	p->type = moduleTypeSys;
@@ -154,7 +164,8 @@ void ShipScheme::schemeDebug()
 	p = new SystemModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
 								// только создать новый объект через new
 	p->nameLine = "Atom-300";
-	p->image = NULL;
+	p->image = new UI_ObjectImage();
+	p->image->LoadFromSprite(UI_module_unknown);
 	p->descLines.push_back("First gen nuclear reactor");
 	p->slot = slot_Core;
 	p->type = moduleTypeSys;
@@ -176,7 +187,8 @@ void ShipScheme::schemeDebug()
 	p = new SystemModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
 								// только создать новый объект через new
 	p->nameLine = "Jump-prototype";
-	p->image = NULL;
+	p->image = new UI_ObjectImage();
+	p->image->LoadFromSprite(UI_module_unknown);
 	p->descLines.push_back("Hyper drive core prototype");
 	p->slot = slot_HyperDrive;
 	p->type = moduleTypeSys;
@@ -202,7 +214,8 @@ void ShipScheme::schemeDebug()
 	p = new SystemModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
 								// только создать новый объект через new
 	p->nameLine = "Alice";
-	p->image = NULL;
+	p->image = new UI_ObjectImage();
+	p->image->LoadFromSprite(UI_module_unknown);
 	p->descLines.push_back("Space ship's system prototype");
 	p->slot = slot_System;
 	p->type = moduleTypeSys;
@@ -244,7 +257,8 @@ void ShipScheme::schemeDebug()
 	p = new SystemModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
 								// только создать новый объект через new
 	p->nameLine = "Tigr";
-	p->image = NULL;
+	p->image = new UI_ObjectImage();
+	p->image->LoadFromSprite(UI_module_unknown);
 	p->descLines.push_back("First mass production human space engine");
 	p->slot = slot_Engine;
 	p->type = moduleTypeSys;
@@ -266,7 +280,8 @@ void ShipScheme::schemeDebug()
 	w = new WeaponModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
 								// только создать новый объект через new
 	w->nameLine = "Gauss-weapon";
-	w->image = NULL;
+	w->image = new UI_ObjectImage();
+	w->image->LoadFromSprite(UI_module_unknown);
 	w->descLines.push_back("First mass production human kinetic space weapon");
 	w->slot = slot_MainWeapon;
 	w->type = moduleTypeWeapon;
@@ -294,7 +309,8 @@ void ShipScheme::schemeDebug()
 	w = new WeaponModuleItem(); // и так далее // объ€вл€ть p второй раз не нужно
 								// только создать новый объект через new
 	w->nameLine = "Plasma-weapon prototype";
-	w->image = NULL;
+	w->image = new UI_ObjectImage();
+	w->image->LoadFromSprite(UI_module_unknown);
 	w->descLines.push_back("First prototype of human plasma space weapon");
 	w->slot = slot_MainWeapon;
 	w->type = moduleTypeWeapon;

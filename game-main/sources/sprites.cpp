@@ -24,6 +24,9 @@ sf::Sprite * UI_adv_window_bg;
 sf::Sprite * UI_adv_marker_base;
 sf::Sprite * UI_adv_marker_info;
 
+sf::Sprite * UI_adv_module_slots[8];
+
+sf::Sprite * UI_module_unknown;
 /* ships */
 
 sf::Sprite * ship_sprites[20];

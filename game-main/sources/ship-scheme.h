@@ -54,6 +54,7 @@ public:
 	float ShieldResist[ArmorTypesCount]; // защита щита 
 	float ShieldReg; // регенерация щита
 
+	float Fuel; // топливо
 	float MissileDefense; // рейтинг системы ПРО
 	float MissileDefenseTier; // уровень системы ПРО
 	float HullStructureStability; // сопротивляемость критическому урону(УРОНУ, а не шансу крита)
