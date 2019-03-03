@@ -35,6 +35,7 @@ extern sf::Sprite * UI_adv_marker_info;
 
 extern sf::Sprite * UI_adv_module_slots[8];
 extern sf::Sprite * UI_module_unknown;
+extern sf::Sprite * UI_image_cell_empty;
 /* ships */
 
 extern sf::Sprite * ship_sprites[20];

@@ -170,6 +170,8 @@ void GameLoader::Init()
 	addResource(&UI_adv_module_slots[slot_SubWeapon], base + "adventure_ui/s/slotWepSub.png");
 
 	addResource(&UI_module_unknown, base + "m/module_unknown.png");
+	addResource(&UI_image_cell_empty, base + "adventure_ui/storage/slot.png");
+
 
 	/* Backgrounds Landing */
 

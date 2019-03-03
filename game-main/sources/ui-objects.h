@@ -157,4 +157,29 @@ protected:
 
 };
 
+class UI_TableObject : public UI_MultiObject
+{
+public:
+	UI_TableObject(int x, int y);
+	virtual void draw();
+	virtual void setPosition(int x, int y);
+	virtual void setSize(int width, int heigh);
+
+	void update();
+	
+
+	int topIndent = 4;
+	int leftIndent = 4;
+	int ySpace = 64+8;
+	int xSpace = 64+8;
+	float sizeX = 0;
+	float sizeY = 0;
+	int baseY = 0;
+	int columns = 8;
+
+private:
+	UI_ScrollerObject * p_Scroller;
+	void create(int x, int y);
+};
+
 #endif // !UI_OBJECTS

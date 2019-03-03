@@ -316,9 +316,18 @@ void ShipManager::init(ShipScheme * qScheme)
 	ship->CurrentShield = ship->Shield[0];
 
 	ship->Hull[3] = ship->Hull[0];
+
+	storage = new ShipStorage();
+	storage->create(scheme->storageSize);
+	storage->setPosition(resolution_w / 2 + storageTableBaseX, resolution_h / 2 + storageTableBaseY );
 }
 
 void ShipManager::debug()
+{
+	
+}
+
+ShipStorage::ShipStorage()
 {
 	
 }
@@ -328,6 +337,17 @@ void ShipStorage::create(int p_size)
 	size = p_size;
 	items.assign(size, nullptr);
 	freeSpace = size;
+	p_obj = new UI_TableObject(sx, sy);
+
+	p_obj->p_list.assign(p_size, nullptr);
+
+	for (int i(0); i < p_size; i++)
+	{
+		UI_ObjectImage * qq = new UI_ObjectImage;
+		qq->LoadFromSprite(UI_image_cell_empty);
+		p_obj->p_list[i] = qq;
+	}
+
 }
 
 void ShipStorage::addItem(BaseItem * item)
@@ -391,6 +411,34 @@ void ShipStorage::addItem(BaseItem * item, int cellID, bool flag)
 	}
 	else
 		items[cellID] = item;
+}
+
+void ShipStorage::update()
+{
+	for (int i(0); i < items.size(); i++)
+	{
+		if (items[i] != NULL)
+			static_cast<UI_ObjectImage *>(p_obj->p_list[i])->LoadFromSprite(items[i]->image->sprite());
+		else
+			static_cast<UI_ObjectImage *>(p_obj->p_list[i])->LoadFromSprite(UI_image_cell_empty);
+	}
+}
+
+void ShipStorage::draw()
+{
+
+	p_obj->update();
+
+	// bg_image->draw();
+
+	p_obj->draw();
+
+
+}
+
+void ShipStorage::setPosition(int x, int y)
+{
+	p_obj->setPosition(x, y);
 }
 
 void ShipStorage::removeItem(int id, bool callDelete)
