@@ -46,10 +46,29 @@ void ShipScheme::schemeDebug()
 	slots[6].s = slot_Universal;
 	slots[7].s = slot_Universal;
 
-	for (int i(0); i < 8; i++) // position setup
-	{
-		slots[i].x = i * 75;
-	}
+	// position setup
+	
+	float dx = 175;
+	float dy = 175;
+
+	slots[0].x = 125;
+	slots[0].y = 75;
+	slots[6].x = 125 + dx;
+	slots[6].y = 75;
+	slots[1].x = 125;
+	slots[1].y = 75 + dy;
+	slots[7].x = 125 + dx;
+	slots[7].y = 75 + dy;
+
+	slots[2].x = 125 + 7*dx/4;
+	slots[2].y = 75 + dy/2;
+	slots[4].x = 125 + 5*dx/2;
+	slots[4].y = 75;
+	slots[3].x = 125 + 5*dx/2;
+	slots[3].y = 75 + dy;
+	slots[5].x = 125 + 3*dx;
+	slots[5].y = 75 + dy/2;
+	
 
 	powerProduced = 0;
 	powerUsed = 0;
