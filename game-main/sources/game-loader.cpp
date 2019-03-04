@@ -112,7 +112,10 @@ void GameLoader::Init()
 	/* adenture ui textures */
 
 	tex_name.push_back(base + "adventure_ui/InfoBoxBG1.png");
-	sprite_pointer.push_back(&itemInfoBoxBackground);
+	sprite_pointer.push_back(&itemInfoBoxBackground[0]);
+	addResource(&itemInfoBoxBackground[1], base + "adventure_ui/InfoBoxBG1TOP.png");
+	addResource(&itemInfoBoxBackground[2], base + "adventure_ui/InfoBoxBG1MID.png");
+	addResource(&itemInfoBoxBackground[3], base + "adventure_ui/InfoBoxBG1BOT.png");
 
 	addResource(&UI_leftDown, base + "adventure_ui/leftDown.png");
 	addResource(&UI_rightDown, base + "adventure_ui/rightDown.png");
