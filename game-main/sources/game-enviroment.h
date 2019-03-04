@@ -45,6 +45,9 @@ extern int resolution_h; // y
 
 extern int testValue;
 
+extern int storageTableBaseX;
+extern int storageTableBaseY;
+
 
 /* Game information */
 

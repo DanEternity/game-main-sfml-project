@@ -184,6 +184,8 @@ void AdventureManager::initUI()
 
 	text = new UI_text(fontArial);
 
+	//gd->storage->setPosition(resolution_w / 2 - 900 / 2, resolution_h / 2 - 450 / 2);
+
 	// here
 
 /*
@@ -245,6 +247,9 @@ void AdventureManager::initUI()
 	scriptTextController = new UI_Controller();
 	scriptTextController->AddElement(scriptOkButton);
 	scriptTextController->RegisterEvent(0, onRelease, scriptUIEventHandler);
+
+
+	gd->storage = gd->shipManager->storage;
 }
 
 void AdventureManager::processBaseState()
@@ -267,6 +272,7 @@ void AdventureManager::processBaseState()
 		{
 			g_mgr->setCurLevel(3);
 		}
+
 		//textObject->update();
 		//textObject->rebuildImage = true;
 		//textObject->draw();
@@ -312,8 +318,11 @@ void AdventureManager::processBaseState()
 	{
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			state = AMShip;
+		//	state = AMShip;
+			state = AMStorage;
 		}
+
+		
 	}
 	// draw bg? LUL 
 	// no...
@@ -450,6 +459,8 @@ void AdventureManager::processShipWindowShip()
 
 void AdventureManager::processShipWindowStorage()
 {
+	gd->storage->update();
+	gd->storage->draw();
 }
 
 void AdventureManager::processShipWindowLab()

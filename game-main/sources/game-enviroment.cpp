@@ -20,6 +20,9 @@ int testValue = 0;
 
 bool gameRun = true;
 
+int storageTableBaseX = -100;
+int storageTableBaseY = -350;
+
 /* Game constants */
 
 //const int HullResistN = 2;
