@@ -216,6 +216,14 @@ void GameMenu::Init()
 	eff.f1 = 0; // +X
 	eff.f2 = 0.1f; // +X%
 	p->effects.push_back(eff);
+	eff.subType = StatShield;
+	eff.f1 = 0; // +X
+	eff.f2 = 0.1f; // +X%
+	p->effects.push_back(eff);  //test
+	eff.subType = StatShield;
+	eff.f1 = 0; // +X
+	eff.f2 = 0.1f; // +X%
+	p->effects.push_back(eff); //test
 	eff.subType = StatMissileDefense;
 	eff.f1 = 20; // +X
 	eff.f2 = 0; // +X%

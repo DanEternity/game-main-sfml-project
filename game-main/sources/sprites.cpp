@@ -8,7 +8,7 @@ sf::Sprite * menu_btsOnClick[15]; // onclick
 sf::Sprite * scroller_base_400;
 sf::Sprite * scroller_btn_v1[3];
 
-sf::Sprite * itemInfoBoxBackground;
+sf::Sprite * itemInfoBoxBackground[4];
 
 /* adventure ui */
 sf::Sprite * UI_leftTop;

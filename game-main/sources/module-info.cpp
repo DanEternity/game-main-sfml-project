@@ -8,8 +8,9 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 		return;
 	}
 
-	itemInfoBoxBackground->setPosition(x, y);
-	g_wnd->draw(*itemInfoBoxBackground);
+	itemInfoBoxBackground[1]->setPosition(x, y);
+	g_wnd->draw(*itemInfoBoxBackground[1]);
+
 	wpn_text->lines.clear();
 	mod_eff_desc_text->lines.clear();
 
@@ -610,6 +611,17 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 				}
 			}
 		}
+
+		int linescount = mod_eff_desc_text->lines.size();
+
+		for (int i = 0; i < linescount; i++)
+		{
+			itemInfoBoxBackground[2]->setPosition(x, y + 172 + 30 * i);
+			g_wnd->draw(*itemInfoBoxBackground[2]);
+		}
+
+		itemInfoBoxBackground[3]->setPosition(x, y + 172 + 30 * linescount);
+		g_wnd->draw(*itemInfoBoxBackground[3]);
 
 		mod_eff_desc_text->setPosition(x + 25, y + 174);
 		mod_eff_desc_text->update();
