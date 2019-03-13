@@ -10,6 +10,8 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 
 	itemInfoBoxBackground->setPosition(x, y);
 	g_wnd->draw(*itemInfoBoxBackground);
+	wpn_text->lines.clear();
+	mod_eff_desc_text->lines.clear();
 
 	switch (module->type)
 	{
@@ -123,10 +125,7 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 		ss >> s;
 		s_text->outTextXY(x + 160, y + 128, "Power usage: " + s);
 
-		mod_eff_desc_text = new UI_TextObject();
-		mod_eff_desc_text->init(fontArial, 480, 270);
-		mod_eff_desc_text->setCharSize(16);
-		mod_eff_desc_text->lineSpacing = 30;
+
 
 		//s_text->setColor(sf::Color(92,92,255,255));
 		int count = 0;
@@ -769,9 +768,7 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 		}
 		s.clear();
 
-		wpn_text = new UI_TextObject();
-		wpn_text->init(fontArial, 400, 400);
-		wpn_text->lineSpacing = 36;
+
 
 		s = floatToString(q->damageMaxCells);
 		damageStr += s + " cells, ";
