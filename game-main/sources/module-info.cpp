@@ -780,7 +780,16 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 		}
 		s.clear();
 
+		int linescount = 6;
 
+		for (int i = 0; i < linescount; i++)
+		{
+			itemInfoBoxBackground[2]->setPosition(x, y + 172 + 30 * i);
+			g_wnd->draw(*itemInfoBoxBackground[2]);
+		}
+
+		itemInfoBoxBackground[3]->setPosition(x, y + 172 + 30 * linescount);
+		g_wnd->draw(*itemInfoBoxBackground[3]);
 
 		s = floatToString(q->damageMaxCells);
 		damageStr += s + " cells, ";
@@ -829,6 +838,8 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 		s.clear();
 		s_text->outTextXY(x + 25, y + 190 + 36 * count, critShieldStr);
 		count++;
+
+		
 
 	}
 		break;
