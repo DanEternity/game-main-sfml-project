@@ -27,6 +27,7 @@ void ShipManager::clearStats()
 	 }
 	 ship->ShieldReg[1] = 0; // регенерация щита
 
+	 ship->Fuel[1] = 0;
 	 ship->MissileDefense[1] = 0; // рейтинг системы ПРО
 	 ship->MissileDefenseTier[1] = 0; // уровень системы ПРО
 	 ship->HullStructureStability[1] = 0; // сопротивляемость критическому урону(УРОНУ, а не шансу крита)
@@ -56,7 +57,7 @@ void ShipManager::clearStats()
 		 ship->ShieldResist[i][2] = 1; // защита щита 
 	 }
 	 ship->ShieldReg[2] = 1; // регенерация щита
-
+	 ship->Fuel[2] = 1;
 	 ship->MissileDefense[2] = 1; // рейтинг системы ПРО
 	 ship->MissileDefenseTier[2] = 1; // уровень системы ПРО
 	 ship->HullStructureStability[2] = 1; // сопротивляемость критическому урону(УРОНУ, а не шансу крита)
@@ -86,7 +87,7 @@ void ShipManager::clearStats()
 		 ship->ShieldResist[i][3] = 0; // защита щита 
 	 }
 	 ship->ShieldReg[3] = 0; // регенерация щита
-
+	 ship->Fuel[3] = 0;
 	 ship->MissileDefense[3] = 0; // рейтинг системы ПРО
 	 ship->MissileDefenseTier[3] = 0; // уровень системы ПРО
 	 ship->HullStructureStability[3] = 0; // сопротивляемость критическому урону(УРОНУ, а не шансу крита)
@@ -97,6 +98,9 @@ void ShipManager::clearStats()
 void ShipManager::updateStats()
 {
 	Log("Updating ship values... ");
+	
+	ship->HullPercent = ship->CurrentHull / ship->Hull[3];
+
 	/* Nullify all stats */
 	clearStats();
 
@@ -134,6 +138,7 @@ void ShipManager::updateStats()
 		ship->HullResist[i][3] = (ship->HullResist[i][0] + ship->HullResist[i][1]) * ship->HullResist[i][2]; // защита корпуса
 		ship->ShieldResist[i][3] = (ship->ShieldResist[i][0] + ship->ShieldResist[i][1]) * ship->ShieldResist[i][2]; // защита щита 
 	}
+	ship->Fuel[3] = (ship->Fuel[0] + ship->Fuel[1]) * ship->Fuel[2];
 	ship->HullReg[3] = (ship->HullReg[0] + ship->HullReg[1]) * ship->HullReg[2]; 
 	ship->Shield[3] = (ship->Shield[0] + ship->Shield[1]) * ship->Shield[2]; // емкость щита
 	ship->ShieldReg[3] = (ship->ShieldReg[0] + ship->ShieldReg[1]) * ship->ShieldReg[2]; // регенерация щита
@@ -146,6 +151,7 @@ void ShipManager::updateStats()
 	ship->ShieldStructureStability[3] = (ship->ShieldStructureStability[0] + ship->ShieldStructureStability[1]) 
 		* ship->ShieldStructureStability[2]; // тоже самое, но для щита
 
+	ship->CurrentHull = ship->Hull[3] * ship->HullPercent;
 }
 
 void ShipManager::applyEffect(LocalEffect * effect)
@@ -264,6 +270,10 @@ void ShipManager::applyModuleStatEffect(LocalEffect * effect)
 		ship->ShieldStructureStability[QMod] += effect->f1;
 		ship->ShieldStructureStability[QModPercent] += effect->f2;
 		break;
+	case StatFuel:
+		ship->Fuel[QMod] += effect->f1;
+		ship->Fuel[QModPercent] += effect->f2;
+		break;
 	default: 
 		Log("Error! Wrong type of module stat.");
 		break;
@@ -299,9 +309,25 @@ void ShipManager::init(ShipScheme * qScheme)
 	ship->MissileDefenseTier[0] = scheme->MissileDefenseTier; // уровень системы ПРО
 	ship->HullStructureStability[0] = scheme->HullStructureStability; // сопротивляемость критическому урону(УРОНУ, а не шансу крита)
 	ship->ShieldStructureStability[0] = scheme->ShieldStructureStability; // тоже самое, но для щита
+	ship->Fuel[0] = scheme->Fuel;
+
+	ship->CurrentHull = ship->Hull[0];
+	ship->CurrentFuel = ship->Fuel[0];
+	ship->CurrentShield = ship->Shield[0];
+
+	ship->Hull[3] = ship->Hull[0];
+
+	storage = new ShipStorage();
+	storage->create(scheme->storageSize);
+	storage->setPosition(resolution_w / 2 + storageTableBaseX, resolution_h / 2 + storageTableBaseY );
 }
 
 void ShipManager::debug()
+{
+	
+}
+
+ShipStorage::ShipStorage()
 {
 	
 }
@@ -311,6 +337,17 @@ void ShipStorage::create(int p_size)
 	size = p_size;
 	items.assign(size, nullptr);
 	freeSpace = size;
+	p_obj = new UI_TableObject(sx, sy);
+
+	p_obj->p_list.assign(p_size, nullptr);
+
+	for (int i(0); i < p_size; i++)
+	{
+		UI_ObjectImage * qq = new UI_ObjectImage;
+		qq->LoadFromSprite(UI_image_cell_empty);
+		p_obj->p_list[i] = qq;
+	}
+
 }
 
 void ShipStorage::addItem(BaseItem * item)
@@ -374,6 +411,34 @@ void ShipStorage::addItem(BaseItem * item, int cellID, bool flag)
 	}
 	else
 		items[cellID] = item;
+}
+
+void ShipStorage::update()
+{
+	for (int i(0); i < items.size(); i++)
+	{
+		if (items[i] != NULL)
+			static_cast<UI_ObjectImage *>(p_obj->p_list[i])->LoadFromSprite(items[i]->image->sprite());
+		else
+			static_cast<UI_ObjectImage *>(p_obj->p_list[i])->LoadFromSprite(UI_image_cell_empty);
+	}
+}
+
+void ShipStorage::draw()
+{
+
+	p_obj->update();
+
+	// bg_image->draw();
+
+	p_obj->draw();
+
+
+}
+
+void ShipStorage::setPosition(int x, int y)
+{
+	p_obj->setPosition(x, y);
 }
 
 void ShipStorage::removeItem(int id, bool callDelete)

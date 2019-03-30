@@ -30,7 +30,8 @@ enum ModuleStatSubType
 	StatMissileDefense, // рейтинг системы ПРО
 	StatMissileDefenseTier, // уровень системы ПРО
 	StatHullStructureStability, // сопротивляемость критическому урону(УРОНУ, а не шансу крита)
-	StatShieldStructureStability // тоже самое, но для щита
+	StatShieldStructureStability, // тоже самое, но для щита
+	StatFuel, // топливо
 };
 
 struct LocalEffect

@@ -8,8 +8,11 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 		return;
 	}
 
-	itemInfoBoxBackground->setPosition(x, y);
-	g_wnd->draw(*itemInfoBoxBackground);
+	itemInfoBoxBackground[1]->setPosition(x, y);
+	g_wnd->draw(*itemInfoBoxBackground[1]);
+
+	wpn_text->lines.clear();
+	mod_eff_desc_text->lines.clear();
 
 	switch (module->type)
 	{
@@ -123,9 +126,7 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 		ss >> s;
 		s_text->outTextXY(x + 160, y + 128, "Power usage: " + s);
 
-		mod_eff_desc_text = new UI_TextObject();
-		mod_eff_desc_text->init(fontArial, 400, 400);
-		mod_eff_desc_text->lineSpacing = 36;
+
 
 		//s_text->setColor(sf::Color(92,92,255,255));
 		int count = 0;
@@ -424,7 +425,7 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 					{
 						s.clear();
 						s = floatToString((e.f2 - 0) * 100);
-						if (e.f1 > 0)
+						if (e.f2 > 0)
 							mod_eff_desc_text->lines.push_back("@[color:green]Hull " + armType + " resistance +" + s + "%");
 						else
 							mod_eff_desc_text->lines.push_back("@[color:red]Hull " + armType + " resistance " + s + "%");
@@ -498,7 +499,7 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 					{
 						s.clear();
 						s = floatToString((e.f2 - 0) * 100);
-						if (e.f1 > 0)
+						if (e.f2 > 0)
 							mod_eff_desc_text->lines.push_back("@[color:green]Shield " + armType + " resistance +" + s + "%");
 						else
 							mod_eff_desc_text->lines.push_back("@[color:red]Shield " + armType + " resistance " + s + "%");
@@ -611,7 +612,18 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 			}
 		}
 
-		mod_eff_desc_text->setPosition(25, 190);
+		int linescount = mod_eff_desc_text->lines.size();
+
+		for (int i = 0; i < linescount; i++)
+		{
+			itemInfoBoxBackground[2]->setPosition(x, y + 172 + 30 * i);
+			g_wnd->draw(*itemInfoBoxBackground[2]);
+		}
+
+		itemInfoBoxBackground[3]->setPosition(x, y + 172 + 30 * linescount);
+		g_wnd->draw(*itemInfoBoxBackground[3]);
+
+		mod_eff_desc_text->setPosition(x + 25, y + 174);
 		mod_eff_desc_text->update();
 		mod_eff_desc_text->draw();
 		
@@ -768,9 +780,16 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 		}
 		s.clear();
 
-		wpn_text = new UI_TextObject();
-		wpn_text->init(fontArial, 400, 400);
-		wpn_text->lineSpacing = 36;
+		int linescount = 6;
+
+		for (int i = 0; i < linescount; i++)
+		{
+			itemInfoBoxBackground[2]->setPosition(x, y + 172 + 30 * i);
+			g_wnd->draw(*itemInfoBoxBackground[2]);
+		}
+
+		itemInfoBoxBackground[3]->setPosition(x, y + 172 + 30 * linescount);
+		g_wnd->draw(*itemInfoBoxBackground[3]);
 
 		s = floatToString(q->damageMaxCells);
 		damageStr += s + " cells, ";
@@ -819,6 +838,8 @@ void DrawModuleInfoBox(ModuleItem * module, int x, int y)
 		s.clear();
 		s_text->outTextXY(x + 25, y + 190 + 36 * count, critShieldStr);
 		count++;
+
+		
 
 	}
 		break;

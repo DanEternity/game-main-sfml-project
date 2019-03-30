@@ -54,10 +54,13 @@ public:
 	float ShieldResist[ArmorTypesCount]; // защита щита 
 	float ShieldReg; // регенерация щита
 
+	float Fuel; // топливо
 	float MissileDefense; // рейтинг системы ПРО
 	float MissileDefenseTier; // уровень системы ПРО
 	float HullStructureStability; // сопротивляемость критическому урону(УРОНУ, а не шансу крита)
 	float ShieldStructureStability; // тоже самое, но для щита
+
+	int storageSize = 64; // размер хранилища (в слотах)
 
 	void create(int scremeID);
 	bool checkSlotComp(ModuleItem * module, int slot_id);

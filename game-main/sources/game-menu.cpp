@@ -156,7 +156,7 @@ void GameMenu::Init()
 		ui_ctrl_ng->RegisterEvent(i, onRelease, &menuEventHandler_gameSetup);
 	}
 
-	testModule = new SystemModuleItem();
+	/*testModule = new SystemModuleItem();
 	SystemModuleItem * p = static_cast<SystemModuleItem*>(testModule); 
 	LocalEffect eff;
 	p->nameLine = "Prototype";
@@ -182,10 +182,60 @@ void GameMenu::Init()
 	eff.i1 = 1;
 	eff.f1 = 15; // +X
 	eff.f2 = 0; // +X%
-	p->effects.push_back(eff);
-	
+	p->effects.push_back(eff);*/
 
 	/*
+	testModule = new SystemModuleItem();
+	SystemModuleItem * p = static_cast<SystemModuleItem*>(testModule);
+	LocalEffect eff;
+	p->nameLine = "Alice";
+	p->image = NULL;
+	p->descLines.push_back("Space ship's system prototype");
+	p->slot = slot_System;
+	p->type = moduleTypeSys;
+	p->lvl = 1;
+	p->rare = 1;
+	p->powerUsage = 2;
+	eff.type = ModuleStat; // do not change
+	eff.subType = StatHyperDriveSpeed;
+	eff.f1 = 0; // +X
+	eff.f2 = 0.02f; // +X%
+	p->effects.push_back(eff);
+	eff.subType = StatPowerSupply;
+	eff.f1 = 0; // +X
+	eff.f2 = 0.1f; // +X%
+	p->effects.push_back(eff);
+	eff.subType = StatHyperDriveFuelEfficiency;
+	eff.f1 = 0; // +X
+	eff.f2 = 0.1f; // +X%
+	p->effects.push_back(eff);
+	eff.subType = StatSensorPower;
+	eff.f1 = 0; // +X
+	eff.f2 = 0.1f; // +X%
+	p->effects.push_back(eff);
+	eff.subType = StatShield;
+	eff.f1 = 0; // +X
+	eff.f2 = 0.1f; // +X%
+	p->effects.push_back(eff);
+	eff.subType = StatShield;
+	eff.f1 = 0; // +X
+	eff.f2 = 0.1f; // +X%
+	p->effects.push_back(eff);  //test
+	eff.subType = StatShield;
+	eff.f1 = 0; // +X
+	eff.f2 = 0.1f; // +X%
+	p->effects.push_back(eff); //test
+	eff.subType = StatMissileDefense;
+	eff.f1 = 20; // +X
+	eff.f2 = 0; // +X%
+	p->effects.push_back(eff);
+	eff.subType = StatMissileDefenseTier;
+	eff.f1 = 1; // +X
+	eff.f2 = 0; // +X%
+	p->effects.push_back(eff);
+	*/
+
+	
 	testModule = new WeaponModuleItem();
 	WeaponModuleItem * w = static_cast<WeaponModuleItem*>(testModule);
 	//w = new WeaponModuleItem(); 
@@ -212,7 +262,7 @@ void GameMenu::Init()
 	w->critDamageHull = 2.f;
 	w->critChanceShield = 0.2f;
 	w->critDamageShield = 2.667f;
-	*/
+	
 
 	levelInitRequired = false;
 }

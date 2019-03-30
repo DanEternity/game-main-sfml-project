@@ -112,12 +112,19 @@ void GameLoader::Init()
 	/* adenture ui textures */
 
 	tex_name.push_back(base + "adventure_ui/InfoBoxBG1.png");
-	sprite_pointer.push_back(&itemInfoBoxBackground);
+	sprite_pointer.push_back(&itemInfoBoxBackground[0]);
+	addResource(&itemInfoBoxBackground[1], base + "adventure_ui/InfoBoxBG1TOP.png");
+	addResource(&itemInfoBoxBackground[2], base + "adventure_ui/InfoBoxBG1MID.png");
+	addResource(&itemInfoBoxBackground[3], base + "adventure_ui/InfoBoxBG1BOT.png");
 
 	addResource(&UI_leftDown, base + "adventure_ui/leftDown.png");
 	addResource(&UI_rightDown, base + "adventure_ui/rightDown.png");
 	addResource(&UI_leftTop, base + "adventure_ui/not_found.png");
 	addResource(&UI_rightTop, base + "adventure_ui/not_found.png");
+
+	addResource(&UI_adv_element[0], base + "adventure_ui/element_ship_background_right.png");
+	addResource(&UI_adv_element[1], base + "adventure_ui/element_ship_background_scheme.png");
+
 	addResource(&UI_adv_btns[0][0], base + "adventure_ui/btnShip.png");
 	addResource(&UI_adv_btns[0][1], base + "adventure_ui/btnShip.png");
 	addResource(&UI_adv_btns[0][2], base + "adventure_ui/btnShip.png");
@@ -130,8 +137,44 @@ void GameLoader::Init()
 	addResource(&UI_adv_btns[3][0], base + "adventure_ui/btnLog.png");
 	addResource(&UI_adv_btns[3][1], base + "adventure_ui/btnLog.png");
 	addResource(&UI_adv_btns[3][2], base + "adventure_ui/btnLog.png");
+	addResource(&UI_adv_btns[4][0], base + "adventure_ui/btnShipFull.png");
+	addResource(&UI_adv_btns[4][1], base + "adventure_ui/btnShipFull.png");
+	addResource(&UI_adv_btns[4][2], base + "adventure_ui/btnShipFull.png");
+	addResource(&UI_adv_btns[5][0], base + "adventure_ui/btnLabFull.png");
+	addResource(&UI_adv_btns[5][1], base + "adventure_ui/btnLabFull.png");
+	addResource(&UI_adv_btns[5][2], base + "adventure_ui/btnLabFull.png");
+	addResource(&UI_adv_btns[6][0], base + "adventure_ui/btnCrewFull.png");
+	addResource(&UI_adv_btns[6][1], base + "adventure_ui/btnCrewFull.png");
+	addResource(&UI_adv_btns[6][2], base + "adventure_ui/btnCrewFull.png");
+	addResource(&UI_adv_btns[7][0], base + "adventure_ui/btnCraftFull.png");
+	addResource(&UI_adv_btns[7][1], base + "adventure_ui/btnCraftFull.png");
+	addResource(&UI_adv_btns[7][2], base + "adventure_ui/btnCraftFull.png");
+	addResource(&UI_adv_btns[8][0], base + "adventure_ui/btnStorageFull.png");
+	addResource(&UI_adv_btns[8][1], base + "adventure_ui/btnStorageFull.png");
+	addResource(&UI_adv_btns[8][2], base + "adventure_ui/btnStorageFull.png");
+	addResource(&UI_adv_btns[9][0], base + "adventure_ui/btnStatsFull.png");
+	addResource(&UI_adv_btns[9][1], base + "adventure_ui/btnStatsFull.png");
+	addResource(&UI_adv_btns[9][2], base + "adventure_ui/btnStatsFull.png");
+	addResource(&UI_adv_btns[10][0], base + "adventure_ui/btnHangarFull.png");
+	addResource(&UI_adv_btns[10][1], base + "adventure_ui/btnHangarFull.png");
+	addResource(&UI_adv_btns[10][2], base + "adventure_ui/btnHangarFull.png");
 
 	addResource(&UI_adv_window_bg, base + "adventure_ui/windowBG.png");
+	addResource(&UI_adv_marker_base, base + "adventure_ui/marker_base_cyan.png");
+	addResource(&UI_adv_marker_info, base + "adventure_ui/marker_info.png");
+	addResource(&ship_sprites[0], base + "adventure_ui/Ship1.png");
+
+	addResource(&UI_adv_module_slots[slot_Core], base + "adventure_ui/s/slotCore.png");
+	addResource(&UI_adv_module_slots[slot_Engine], base + "adventure_ui/s/slotEngine.png");
+	addResource(&UI_adv_module_slots[slot_HyperDrive], base + "adventure_ui/s/slotHD.png");
+	addResource(&UI_adv_module_slots[slot_System], base + "adventure_ui/s/slotSystem.png");
+	addResource(&UI_adv_module_slots[slot_Universal], base + "adventure_ui/s/slotUniversal.png");
+	addResource(&UI_adv_module_slots[slot_MainWeapon], base + "adventure_ui/s/slotWep.png");
+	addResource(&UI_adv_module_slots[slot_SubWeapon], base + "adventure_ui/s/slotWepSub.png");
+
+	addResource(&UI_module_unknown, base + "m/module_unknown.png");
+	addResource(&UI_image_cell_empty, base + "adventure_ui/storage/slot.png");
+
 
 	/* Backgrounds Landing */
 

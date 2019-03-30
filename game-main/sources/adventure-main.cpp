@@ -47,6 +47,7 @@ void AdventureManager::Update()
 {
 
 	processBaseState(); // DRAW BASE MAP
+	drawShip();
 
 	switch (state)
 	{
@@ -56,6 +57,7 @@ void AdventureManager::Update()
 	case AMNormal:
 		// primary state
 		// can move, open windows, interact, etc...
+		processWorldInteractions();
 		break;
 	case AMShip:
 	case AMLab:
@@ -120,6 +122,42 @@ void AdventureManager::initUI()
 	rightTopElem->LoadFromSprite(UI_rightTop);
 	rightTopElem->setPosition(resolution_w - rightTopElem->getSize().first, 0);
 
+	UIShipRightElem = new UI_ObjectImage();
+	UIShipRightElem->LoadFromSprite(UI_adv_element[0]);
+	UIShipRightElem->setPosition(resolution_w /2 + 415, resolution_h /2 - 350);
+
+	UIShipSchemeElem = new UI_ObjectImage();
+	UIShipSchemeElem->LoadFromSprite(UI_adv_element[1]);
+	UIShipSchemeElem->setPosition(resolution_w / 2 - 635, resolution_h / 2 - 350);
+
+	btnShipFull = new UI_ObjectImage();
+	btnShipFull->LoadFromSprite(UI_adv_btns[4][0]);
+	btnShipFull->setPosition(resolution_w / 2 - 600, resolution_h / 2 + 285);
+
+	btnLabFull = new UI_ObjectImage();
+	btnLabFull->LoadFromSprite(UI_adv_btns[5][0]);
+	btnLabFull->setPosition(resolution_w / 2 - 420, resolution_h / 2 + 285);
+
+	btnCrewFull = new UI_ObjectImage();
+	btnCrewFull->LoadFromSprite(UI_adv_btns[6][0]);
+	btnCrewFull->setPosition(resolution_w / 2 - 240, resolution_h / 2 + 285);
+
+	btnCraftFull = new UI_ObjectImage();
+	btnCraftFull->LoadFromSprite(UI_adv_btns[7][0]);
+	btnCraftFull->setPosition(resolution_w / 2 - 60, resolution_h / 2 + 285);
+
+	btnStorageFull = new UI_ObjectImage();
+	btnStorageFull->LoadFromSprite(UI_adv_btns[8][0]);
+	btnStorageFull->setPosition(resolution_w / 2 + 120, resolution_h / 2 + 285);
+
+	btnStatsFull = new UI_ObjectImage();
+	btnStatsFull->LoadFromSprite(UI_adv_btns[9][0]);
+	btnStatsFull->setPosition(resolution_w / 2 + 300, resolution_h / 2 + 285);
+
+	btnHangarFull = new UI_ObjectImage();
+	btnHangarFull->LoadFromSprite(UI_adv_btns[10][0]);
+	btnHangarFull->setPosition(resolution_w / 2 + 480, resolution_h / 2 + 285);
+
 	btnShip = new UI_ObjectImage(); // 0
 	btnShip->LoadFromSprite(UI_adv_btns[0][0]);
 	btnShip->setPosition(resolution_w - 10 - 64, resolution_h - 10 - 64);
@@ -144,7 +182,11 @@ void AdventureManager::initUI()
 	windowBG->LoadFromSprite(UI_adv_window_bg);
 	windowBG->setPosition(resolution_w / 2 - 1300 / 2, resolution_h / 2 - 735 / 2);
 
-	UI_text * text = new UI_text(fontArial);
+	text = new UI_text(fontArial);
+
+	//gd->storage->setPosition(resolution_w / 2 - 900 / 2, resolution_h / 2 - 450 / 2);
+
+	// here
 
 /*
 	UI_ObjectImage * btnShip;
@@ -205,6 +247,9 @@ void AdventureManager::initUI()
 	scriptTextController = new UI_Controller();
 	scriptTextController->AddElement(scriptOkButton);
 	scriptTextController->RegisterEvent(0, onRelease, scriptUIEventHandler);
+
+
+	gd->storage = gd->shipManager->storage;
 }
 
 void AdventureManager::processBaseState()
@@ -214,19 +259,20 @@ void AdventureManager::processBaseState()
 	// debug;;;
 	if (1)
 	{
-		testScroller->Update();
-		testScroller->draw();
+		//testScroller->Update();
+		//testScroller->draw();
 		/*mapScale = 1.f + testScroller->getValue();
 		DrawModuleInfoBox(gd->scheme->slots[3].m, 20, 20);*/
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !scriptEvent)
-		{
-			gd->scriptSystem->execute(1);
-		}
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !scriptEvent)
+		//{
+		//	gd->scriptSystem->execute(1);
+		//}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 		{
 			g_mgr->setCurLevel(3);
 		}
+
 		//textObject->update();
 		//textObject->rebuildImage = true;
 		//textObject->draw();
@@ -259,14 +305,24 @@ void AdventureManager::processBaseState()
 			camY -= dt * 200.f;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 			camY += dt * 200.f;
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && zoneId != -1)
+		{
+			mapZones[zoneId].visited = true;
+			mapZones[zoneId].active = false;
+			gd->scriptSystem->execute(mapZones[zoneId].scriptData);
+		}
 	}
 
 	if (controlsKeyboardWindowSwitch)
 	{
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			state = AMShip;
+		//	state = AMShip;
+			state = AMStorage;
 		}
+
+		
 	}
 	// draw bg? LUL 
 	// no...
@@ -294,6 +350,23 @@ void AdventureManager::processBaseState()
 		mapObjects[i].model->draw();
 	}
 
+	for (int i(0); i < mapZones.size(); i++)
+	{
+		auto md = mapZones[i];
+		if (!mapZones[i].active)
+			continue;
+		if (!(md.x + 200 > cl.x && md.x - 200 < cr.x && md.y + 200 > cl.y &&  md.y - 200 < cr.y)) // условие
+			continue;
+
+		sf::Vector2f q = { mapZones[i].x,mapZones[i].y };
+		sf::Vector2f mq = (q - cl) / mapScale;
+
+		mapZones[i].marker->setScale(1.f / mapScale, 1.f / mapScale);
+		mapZones[i].marker->setPosition(mq.x, mq.y);
+		//mapZones[i].marker->sprite()->setRotation(mapZones[i].rotation);
+		mapZones[i].marker->draw();
+	}
+
 	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	//	Log(std::to_string(ObjectCount));
 
@@ -304,35 +377,179 @@ void AdventureManager::processShipWindowMain()
 {
 	// draw window;
 	windowBG->draw();
+	//processShipWindowButtons();
 	// draw buttons;
 	switch (state) // specific buttons and functions;
 	{
 	case AMShip:
+		processShipWindowShip();
 		break;
 	case AMLab:
+		processShipWindowLab();
 		break;
 	case AMCrew:
+		processShipWindowCrew();
 		break;
 	case AMCraft:
+		processShipWindowCraft();
 		break;
 	case AMStorage:
-		// 
+		processShipWindowStorage();
 		break;
 	case AMStats:
+		processShipWindowStats();
 		break;
 	case AMHangar:
+		processShipWindowHangar();
 		break;
 	default:
+		Log("Error! Wrong manager state");
+		state = AMNormal;
 		break;
 	}
 }
 
 void AdventureManager::processShipWindowShip()
 {
+	UIShipRightElem->draw();
+	UIShipSchemeElem->draw();
+	btnShipFull->draw();
+	btnLabFull->draw();
+	btnCrewFull->draw();
+	btnCraftFull->draw();
+	btnStorageFull->draw();
+	btnStatsFull->draw();
+	btnHangarFull->draw();
+
+	text->setCharacterSize(30);
+	text->setColor(sf::Color::White);
+	text->outTextXY(resolution_w / 2 + 477, resolution_h / 2 - 350, "Eternity");
+
+	text->setCharacterSize(15);
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 300, "Hull: " + floatToString(gd->mainShip->CurrentHull) + "/" + floatToString(gd->mainShip->Hull[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 275, "Shield: " + floatToString(gd->mainShip->CurrentShield) + "/" + floatToString(gd->mainShip->Shield[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 250, "Fuel: " + floatToString(gd->mainShip->CurrentFuel) + "/" + floatToString(gd->mainShip->Fuel[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 225, "Power (Used/Max): " + floatToString(gd->mainShip->PowerUse[3]) + "/" + floatToString(gd->mainShip->PowerSupply[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 200, "Action points: " + floatToString(gd->mainShip->ActionPoints[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 175, "Evasion: " + floatToString(gd->mainShip->Evasion[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 150, "Mobility: " + floatToString(gd->mainShip->Mobility[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 125, "Stealth: " + floatToString(gd->mainShip->Stealth[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 100, "Sensor Power: " + floatToString(gd->mainShip->SensorPower[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 75, "Hyper Speed: " + floatToString(gd->mainShip->HyperDriveSpeed[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 50, "HD Efficiency: " + floatToString(gd->mainShip->HyperDriveFuelEfficiency[3]) + "%");
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 - 25, "Missile Defence: " + floatToString(gd->mainShip->MissileDefense[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 , "Hull Structure: " + floatToString(gd->mainShip->HullStructureStability[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 + 25, "Shield Structure: " + floatToString(gd->mainShip->ShieldStructureStability[3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 + 50, "Hull Resist: " + floatToString(gd->mainShip->HullResist[0][3]) + "/" + floatToString(gd->mainShip->HullResist[1][3]));
+	text->outTextXY(resolution_w / 2 + 425, resolution_h / 2 + 75, "Shield Resist: " + floatToString(gd->mainShip->ShieldResist[0][3]) + "/" + floatToString(gd->mainShip->ShieldResist[1][3]));
+
+	for (int i(0); i < gd->scheme->slots.size(); i++)
+	{
+		auto sl = gd->scheme->slots[i];
+		UI_adv_module_slots[sl.s]->setPosition(sl.x + resolution_w / 2 - 600, sl.y + resolution_h / 2 - 300);
+		g_wnd->draw(*UI_adv_module_slots[sl.s]);
+		if (sl.m != NULL)
+		{
+			sl.m->image->setPosition(sl.x + resolution_w / 2 - 600 + 2, sl.y + resolution_h / 2 - 300 + 2);
+			sl.m->image->draw();
+		}
+	}
+
 }
 
 void AdventureManager::processShipWindowStorage()
 {
+	gd->storage->update();
+	gd->storage->draw();
+}
+
+void AdventureManager::processShipWindowLab()
+{
+}
+
+void AdventureManager::processShipWindowCrew()
+{
+}
+
+void AdventureManager::processShipWindowCraft()
+{
+}
+
+void AdventureManager::processShipWindowStats()
+{
+}
+
+void AdventureManager::processShipWindowHangar()
+{
+}
+
+void AdventureManager::processShipWindowButtons()
+{
+	for (int i(0); i < 8; i++)
+		if (shipWndBtns[i] != NULL)
+			shipWndBtns[i]->draw();
+}
+
+void AdventureManager::processWorldInteractions()
+{
+	zoneId = -1;
+	for (int i(0); i < mapZones.size(); i++)
+		if (mapZones[i].active && dist2d(camX, camY, mapZones[i].x, mapZones[i].x) < zoneInteractionDistance2)
+		{
+			// in range
+
+			if (mapZones[i].instaActivation)
+			{
+				zoneId = i;
+				// activate();
+			}
+			else
+			{
+				//draw();
+				zoneId = i;
+				drawMarkerInfo(resolution_w / 2, resolution_h / 2 - 400);
+				
+			}
+			
+
+			break; // doesn't need to check other points;
+		}
+
+}
+
+void AdventureManager::drawShip()
+{
+	// debug
+
+	ship_sprites[0]->setPosition(resolution_w / 2 - 32, resolution_h / 2 - 32);
+	
+	g_wnd->draw(*ship_sprites[0]);
+	
+}
+
+void AdventureManager::drawMarkerInfo(int x, int y)
+{
+
+	UI_adv_marker_info->setPosition(x, y);
+	g_wnd->draw(*UI_adv_marker_info);
+
+	text->setCharacterSize(40);
+	text->setColor(sf::Color::White);
+	text->outTextXY(x + 25, y + 2, "Voidstorm");
+
+	text->setCharacterSize(30);
+	text->outTextXY(x + 22, y + 44, "O");
+	text->outTextXY(x + 160, y + 60, "Level: " + std::to_string(mapZones[zoneId].level));
+	text->outTextXY(x + 160, y + 120, "Danger: " + std::to_string(mapZones[zoneId].danger));
+
+	text->setCharacterSize(25);
+	text->outTextXY(x + 25, y + 180, "Voidstorm, that only remains");
+
+	text->setCharacterSize(20);
+	text->outTextXY(x + 25, y + 328, "Press Space to interact...");
+
+
+
 }
 
 void AdventureManager::drawMainUI()
@@ -483,7 +700,7 @@ void AdventureManager::InitLevel(bool debug)
 	q2->next = 1;
 	q2->text.push_back("@[color:green]@[style:italic+bold+underlined]Test line 1");
 	q2->text.push_back("@[color:#200#250#100#255]Test @[color:#100#150#250#255]line 2");
-	for (int i(0); i<100; i++)
+	for (int i(0); i<20; i++)
 		q2->text.push_back("@[color:#200#250#100#255]Test @[color:#100#150#250#255]line " + std::to_string(i));
 	q2->final = false;
 
@@ -496,6 +713,22 @@ void AdventureManager::InitLevel(bool debug)
 	q2->final = true;
 
 	gd->scriptSystem->addElement(id, q2);
+
+	AMZone buff2 = AMZone();
+
+	// 1
+	buff2.x = 500;
+	buff2.y = 500;
+
+	buff2.marker = new UI_ObjectImage(1);
+	buff2.marker->LoadFromSprite(UI_adv_marker_base);
+	buff2.marker->sprite()->setOrigin({ 128, 128 });
+	buff2.level = 1;
+	buff2.danger = 2;
+	buff2.scriptData = 1;
+	buff2.instaActivation = false;
+	mapZones.push_back(buff2);
+
 }
 
 AMContextStatus::AMContextStatus()

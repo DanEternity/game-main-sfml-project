@@ -44,5 +44,5 @@ public:
 	float CurrentShield;
 	float CurrentFuel;
 	
-
+	float HullPercent;
 };

@@ -260,6 +260,13 @@ void UI_ScrollerObject::resetBtnPosition()
 	buttonHeigh = 0;
 }
 
+void UI_ScrollerObject::setBtnSize(int x, int y)
+{
+	p_bt_size_x = x;
+	p_bt_size_y = y;
+	button->setSize(x, y);
+}
+
 void UI_ScrollerObject::setupController()
 {
 	int t = scroller_ctrl->AddElement(button);
@@ -346,6 +353,9 @@ void UI_TextObject::setPosition(int x, int y)
 void UI_TextObject::setSize(int width, int heigh)
 {
 	BaseUIElem::setSize(width, heigh);
+	delete(p_canvas);
+	p_canvas = new sf::RenderTexture();
+	p_canvas->create(width, heigh);
 }
 
 void UI_TextObject::init(sf::Font * font, int x, int y)
@@ -406,6 +416,14 @@ void UI_TextObject::buildTexture()
 
 void UI_TextObject::update()
 {
+	float yy = p_canvas->getSize().y;
+	float sz = CalcHeight();
+	
+	if (abs(sz) > 0.5f)
+	{
+		yy = yy / (CalcHeight());
+		p_Scroller->setBtnSize(p_Scroller->button->getSize().first, yy * p_canvas->getSize().y);
+	}
 	p_Scroller->Update();
 }
 
@@ -424,4 +442,78 @@ int UI_TextObject::CalcHeight()
 	if (lines.size() == 0)
 		return 0;
 	return topIndent + (lines.size() - 1) * lineSpacing;
+}
+
+UI_TableObject::UI_TableObject(int x, int y)
+{
+	create(x, y);
+}
+
+void UI_TableObject::draw()
+{
+
+	p_canvas->clear(sf::Color(0,0,0,0));
+
+	for (int i(0); i < p_list.size(); i++)
+	{
+		//p_list[i]->draw();
+		p_canvas->draw(*static_cast<UI_ObjectImage*>(p_list[i])->sprite());
+	}
+
+	p_canvas->display();
+	const sf::Texture& tex = p_canvas->getTexture();
+	p_sprite->setTexture(tex);
+	g_wnd->draw(*p_sprite);
+}
+
+void UI_TableObject::setPosition(int x, int y)
+{
+	p_sprite->setPosition(x, y);
+}
+
+void UI_TableObject::setSize(int width, int heigh)
+{
+	//UI_MultiObject::draw();
+	delete (p_canvas);
+	p_canvas = new sf::RenderTexture();
+	p_canvas->create(width, heigh);
+}
+
+void UI_TableObject::update()
+{
+	if (ySpace * ((p_list.size() / columns) + std::min(int(p_list.size() % columns), 1)) > sizeY)
+	{
+		p_Scroller->Update();
+		p_Scroller->draw();
+
+		double qq = p_Scroller->getValue();
+		baseY = (ySpace * ((p_list.size() / columns) + std::min(int(p_list.size() % columns), 1) ) - sizeY) * -qq;
+	}
+	else
+	{
+	
+	}
+
+	for (int i(0); i < p_list.size(); i++)
+	{
+		auto p = p_list[i];
+
+		int x = i % columns;
+		int y = i / columns;
+
+		p->setPosition(leftIndent + x * xSpace, topIndent + y * ySpace + baseY);
+	}
+}
+
+void UI_TableObject::create(int x, int y)
+{
+	p_Scroller = new UI_ScrollerObject();
+	p_Scroller->setPosition(resolution_w / 2 + storageTableBaseX + xSpace * columns + 10, resolution_h / 2 + storageTableBaseY + 10);
+
+	p_canvas = new sf::RenderTexture();
+	p_canvas->create(x, y);
+	p_sprite = new sf::Sprite();
+
+	sizeX = x;
+	sizeY = y;
 }

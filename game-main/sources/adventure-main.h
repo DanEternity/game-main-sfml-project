@@ -19,6 +19,8 @@
 #include <cmath>
 #include <stack>
 
+const float zoneInteractionDistance2 = 150*150;
+#define dist2d(x, y, a, b) (x - a) * (x - a) + (y - b) * (y - b)
 
 class UI_ObjectImage;
 class UI_ScrollerObject;
@@ -30,6 +32,7 @@ struct AMObject
 	float scaleX = 1, scaleY = 1;
 	float sizeX = 1, sizeY = 1;
 	float rotation = 0;
+	
 };
 
 struct AMZone
@@ -40,6 +43,18 @@ struct AMZone
 
 	int level;
 	int danger;
+
+	bool instaActivation;
+	bool visited;
+	bool completed;
+	bool active;
+
+	AMZone()
+	{
+		instaActivation = false;
+		visited = false;
+		active = true;
+	}
 };
 
 enum AMState
@@ -102,12 +117,22 @@ public:
 
 private:
 	void initUI();
-	
 	void processBaseState();
-	void processShipWindowMain();
-	void processShipWindowShip();
-	void processShipWindowStorage();
+	void processWorldInteractions();
 
+	/* ship window */
+	void processShipWindowMain();
+	void processShipWindowShip(); // Ship window
+	void processShipWindowStorage();
+	void processShipWindowLab();
+	void processShipWindowCrew();
+	void processShipWindowCraft();
+	void processShipWindowStats();
+	void processShipWindowHangar();
+	void processShipWindowButtons(); // draw buttons
+
+	void drawShip();
+	void drawMarkerInfo(int x, int y);
 	void drawMainUI();
 	void checkScriptBlock();
 	void updateScriptData();
@@ -118,6 +143,7 @@ private:
 
 	void InitLevel(QGlobalEvent q);
 	void InitLevel(bool debug = true);
+	
 
 	/* script data */
 	ScriptType scriptEventType;
@@ -131,6 +157,7 @@ private:
 	float mapScale = 1;
 	float camX, camY; // ship coordinates;
 	bool scriptDataUpdated = false;
+	int zoneId = -1;
 
 	/* UI and testing*/
 
@@ -155,11 +182,21 @@ private:
 
 	UI_text * text;
 
+	UI_ObjectImage * UIShipRightElem;
+	UI_ObjectImage * UIShipSchemeElem;
+
 	UI_ObjectImage * btnShip;
 	UI_ObjectImage * btnCharacters;
 	UI_ObjectImage * btnMap;
 	UI_ObjectImage * btnLog;
 	UI_ObjectImage * btnMenu;
+	UI_ObjectImage * btnShipFull;
+	UI_ObjectImage * btnLabFull;
+	UI_ObjectImage * btnCrewFull;
+	UI_ObjectImage * btnCraftFull;
+	UI_ObjectImage * btnStorageFull;
+	UI_ObjectImage * btnStatsFull;
+	UI_ObjectImage * btnHangarFull;
 
 	UI_ObjectImage * hullBar;
 	UI_ObjectImage * ShieldBar;
@@ -176,6 +213,21 @@ private:
 	UI_TextObject * scriptText; // used in script events
 	UI_ObjectImage * scriptOkButton; // used to handle event
 	UI_Controller * scriptTextController;
+
+	UI_ObjectImage * shipWndBtns[12]; // shipWndBtns[btnShip]->draw();
+
+	enum p_shipWndBtns
+	{
+		qbtnShip,
+		qbtnLab,
+		qbtnCrew,
+		qbtnCraft,
+		qbtnStorage,
+		qbtnStats,
+		qbtnHangar,
+		qbtnClose,
+		qbtnHelp,
+	};
 	
 };
 
