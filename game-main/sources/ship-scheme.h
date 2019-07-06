@@ -11,6 +11,7 @@ struct QShipSlotCell
 {
 	ModuleItem* m;
 	ModuleSlot s;
+	ModuleSize sz;
 	int x;
 	int y;
 	QShipSlotCell()
