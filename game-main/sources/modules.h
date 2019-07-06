@@ -5,12 +5,20 @@
 //class BaseItem;
 
 
+enum ModuleSize
+{
+	moduleSizeSmall,
+	moduleSizeMedium,
+	moduleSizeLarge,
+	moduleSizeHuge
+};
+
 class ModuleItem : public BaseItem
 {
 public:
 	ModuleType type;
 	ModuleSlot slot;
-	
+	ModuleSize size;
 
 	float powerUsage;
 };
