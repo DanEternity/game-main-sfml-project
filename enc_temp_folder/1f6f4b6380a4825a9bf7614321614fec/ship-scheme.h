@@ -18,7 +18,6 @@ struct QShipSlotCell
 	{
 		m = NULL;
 		s = slot_Universal;
-		sz = moduleSizeSmall;
 		x = 0;
 		y = 0;
 	}
